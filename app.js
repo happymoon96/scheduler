@@ -7,7 +7,7 @@ const logger = require('morgan');
 const homeRouter = require('./routes/home');
 const scheduleRouter = require('./routes/schedule');
 // const raidRouter = require('./routes/raid');
-const itemRouter = require('./routes/item');
+// const itemRouter = require('./routes/item');
 
 const app = express();
 
@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', homeRouter);
 app.use('/schedule', scheduleRouter);
 // app.use('/raid', raidRouter);
-app.use('/item', itemRouter);
+// app.use('/item', itemRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
