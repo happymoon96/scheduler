@@ -1,0 +1,12 @@
+body{
+    height: 100vh;
+    background-repeat : no-repeat;
+    background-size: cover;
+    background: #101421;
+}
+/* body{
+    height: 100vh;
+    background-repeat : no-repeat;
+    background-size: cover;
+    background: linear-gradient( to bottom, #F7CAC9, #92A8D1);
+} */

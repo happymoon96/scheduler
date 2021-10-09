@@ -1,0 +1,59 @@
+@font-face {
+    font-family: 'SEBANG_Gothic_Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SangSangRock';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/SangSangRockOTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root{
+    --white: #fff;
+}
+*{
+    padding: 0;
+    margin: 0;
+}
+a{
+    text-decoration: none;
+    color: var(--white);
+}
+#menu{
+    width: 100%;
+    background-color: #212533; 
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+#menu #menu_bar{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+#menu #menu_bar .logo{
+    font-family: 'SEBANG_Gothic_Bold';
+    font-size: 2rem;
+    text-align: center;
+}
+#menu #menu_bar .menu{
+    display: inline-block;
+    margin-top: 6px;
+    text-align: left;
+    font-family: 'SEBANG_Gothic_Bold';
+    font-size: 1.5rem;
+}
+#menu #menu_bar .menu span{
+    margin-left: 15px;
+}
+#menu #menu_bar .menu_list{
+    font-family: 'SEBANG_Gothic_Bold';
+    font-size: 1.5rem;
+    text-align: left;
+    display: inline-block;
+    margin-top: 30px;
+}
+#menu #menu_bar .menu_list a{
+    margin: 0 20px;
+}

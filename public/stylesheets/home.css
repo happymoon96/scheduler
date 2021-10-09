@@ -1,0 +1,52 @@
+@font-face {
+    font-family: 'SEBANG_Gothic_Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+:root{
+    --white: #fff;
+}
+
+#main{
+    font-family: 'SEBANG_Gothic_Bold';
+    margin-top: 20rem;
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 3rem;
+}
+#schedule:hover{
+    color: red;
+}
+#raid:hover{
+    color: red;
+}
+#main .input {
+    color: white;
+    font-family: 'SEBANG_Gothic_Bold';
+    font-size: 3rem;
+    width: 39rem;
+    border-left-width:0;
+    border-right-width:0;
+    border-top-width:0;
+    border-bottom-width:1;
+    border-bottom: 2px solid #fff;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+.explain{
+    font-family: 'SEBANG_Gothic_Bold';
+    color: white;
+    text-align: center;
+    margin-top: 1rem;
+}
+.schedule{
+    width: 200px;
+    height: 200px;
+}
+.raid{
+    width: 200px;
+    height: 175px;
+}

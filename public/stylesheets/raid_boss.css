@@ -1,0 +1,168 @@
+@font-face {
+    font-family: 'SEBANG_Gothic_Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+body{
+    color: white;
+}
+#main{
+    font-family: 'SEBANG_Gothic_Bold';
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+#main #corps_info{
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+
+}
+#main #corps_info .corps_name{
+    border: 2px solid white;
+    background-color: black;
+    font-size: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#main #corps_info img{
+    border: 2px solid white;/*보류 */
+    margin-top: -1px;
+    margin-bottom: -6px;
+    padding: 0px;
+    width: 300px;
+    height: 300px;
+}
+#main #reward .difficulty{
+    margin-top: 1rem;
+    border: 2px solid white;
+}
+#main #reward .difficulty .dejavu, 
+#main #reward .difficulty .rehearsal{
+    color: black;
+    background-color: #A4E67B;
+}
+#main #reward .difficulty .normal{
+    color: black;
+    background-color: #50bcdf;
+}
+#main #reward .difficulty .hard{
+    color: black;
+    background-color: #FFE34C;
+}
+#main #reward .difficulty .hell{
+    color: black;
+    background-color: #DB4455;
+}
+#main #reward .difficulty .more{
+    border-bottom: white 2px solid;
+}
+#main #reward .difficulty img{
+    width: 35px;
+    height: 35px;
+}
+#main #corps_method_info{
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+#main #corps_method_info img{
+    width: 35px;
+    height: 35px;
+}
+#main #corps_method_info .stage{
+    margin-bottom: 0.3rem;
+    font-size: 20px;
+    border-bottom: 2px solid white;
+}
+#main #corps_method_info .corps_method_info_table :nth-child(2){
+    margin-bottom: 0.3rem;
+}
+#main #corps_method_info .corps_method_info_table{
+    margin-bottom: 2rem;
+    border: 2px solid white;
+}
+#main #corps_method_info .corps_method_info_table .esther_img{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+#main #corps_method_info .corps_method_info_table .battleItems{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+#tier4{
+    background-color: #9F7531;
+    background-blend-mode: multiply;
+}
+#tier5{
+    background-color: #9F4E31;
+    background-blend-mode: multiply;
+}
+#blue_item{
+    background-color: #1D3E5F;
+    background-blend-mode: multiply;
+}
+#purple_item{
+    background-color: #422779;
+    background-blend-mode: multiply;
+}
+
+.raid_pattern{
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1.5fr 90fr;
+    height: 45rem;
+}
+.raid_pattern .health_bar{
+    display: grid;
+    grid-template-rows: repeat(100,1fr);
+}
+.raid_pattern .health_pattern{
+    font-size: 2rem;
+    margin-left: 1rem;
+    border: white 2px solid;
+}
+.raid_pattern .health_bar *{
+    background: #DB4455;
+}
+.raid_pattern .health_bar .first_valtan_75, 
+.raid_pattern .health_bar .first_valtan_50, 
+.raid_pattern .health_bar .first_valtan_25{
+    background: blue;
+}
+#first_valtan :nth-child(1){
+    margin-top: 24%;
+}
+#first_valtan :nth-child(2){
+    margin-top: 20%;
+}
+#first_valtan :nth-child(3){
+    margin-top: 20.5%;
+}
+
+
+.myButton {
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+	background-color:#ffffff;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+    font-family: 'SEBANG_Gothic_Bold';
+	font-size:17px;
+	font-weight:bold;
+	padding:7.5px 22px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+	background-color:#f6f6f6;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}

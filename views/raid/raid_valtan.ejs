@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/images/favicon/site.webmanifest">
+  <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" href="/stylesheets/background.css">
+  <link rel="stylesheet" href="/stylesheets/top_menu.css">
+  <link rel="stylesheet" href="/stylesheets/raid_boss.css">
+  
+  <title>레온하트</title>
+</head>
+<body>
+    <div id="menu">
+        <div></div>
+
+        <div id="menu_bar">
+            <div class="logo"><a href="/">레온하트</a></div>
+            <div class="menu">
+                <span><a href="/schedule">스케쥴</a></span>
+                <span><a href="/raid">레이드</a></span>
+            </div>
+        </div>
+    </div>
+
+    <div id="main">
+        <div id="corps_info">
+            <div></div>
+
+            <div>
+                <div class="corps_name">마수 군단장</div>
+                <img src="/images/raid/valtan.jfif" alt="마수 군단장 발탄">
+                <div class="corps_name">발탄</div>
+    
+                <div id="reward">
+                    <div class="difficulty">
+                        <div class="normal">노말</div>
+                        <div>
+                            <div>1관문</div>
+                            <span class="item">
+                                <img id="tier4" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_7_176.png" alt="마수의 힘줄" title="마수의 힘줄">
+                                <span>2</span>
+                            </span>
+                            <span class="item">
+                                <img id="tier5" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Use/Use_3_101.png" alt="마수의 뼈" title="마수의 뼈">
+                                <span>2</span>
+                            </span>
+                        </div>
+                        <div class="more">더보기</div>
+                        <div>2관문</div>
+                        <div>더보기</div>
+                    </div>
+                    <div class="difficulty">
+                        <div class="hard">하드</div>
+                        <div>1관문</div>
+                        <div class="more">더보기</div>
+                        <div>2관문</div>
+                        <div>더보기</div>
+                    </div>
+                    <div class="difficulty">
+                        <div class="hell">헬</div>
+                        <div>1관문</div>
+                        <div class="more">더보기</div>
+                        <div>2관문</div>
+                        <div>더보기</div>
+                    </div>
+                </div>
+            </div>
+
+            <div></div>
+            
+        </div>
+
+        <div id="corps_method">
+            <div>
+                <% 
+                var phase_num = 2;
+                for(var i = 1; i <= phase_num; i++){%>
+                    <button id="<%= i %>_Phase" name="<%= i %>관문" type="button" class="myButton" value="<%= i %>" ><%= i %> 관문</button>
+                <%}%>
+            </div>
+
+            <div id="first_phase" class="raid_pattern">
+                <div class="health_bar">
+                    <% for(var i = 100; i > 0; i--){%>
+                    <div class="first_valtan_<%=i%>""></div>
+                    <%}%>
+                </div>
+                <div id="first_valtan" class="health_pattern">
+                    <div>45줄 파란색 루가루 난입</div>
+                    <div>30줄 결속</div>
+                    <div>15줄 결속</div>
+                </div>
+            </div>
+
+            <div id="second_phase" class="raid_pattern" style="display: none;">
+                <div class="health_bar">
+                    <% for(var i = 100; i > 0; i--){%>
+                    <div class="second_valtan_<%=i%>""></div>
+                    <%}%>
+                </div>
+                <div class="health_pattern">
+                </div>
+            </div>
+        </div>
+
+        <div id="corps_method_info">
+            <div></div>
+
+            <div>
+                <div class="corps_method_info_table">
+                    <div class="stage">1관문</div>
+                    <div>에스더 스킬</div>
+                    <div class="esther_img">
+                        <div class="first">
+                            <img src="/images/raid/Silian.png" alt="에스더 실리안">
+                            <div>실리안</div>
+                        </div>
+                        <div class="second">
+                            <img src="/images/raid/Waye.png" alt="에스더 웨이">
+                            <div>웨이</div>
+                        </div>
+                        <div class="third">
+                            <img src="/images/raid/Bahunturr.png" alt="에스더 바훈투르">
+                            <div>바훈투르</div>
+                        </div>
+                    </div>
+                    <div class="battleItems">추천 배틀 아이템</div>
+                    <div class="battleItems_img">
+                        <span>
+                            <img id="blue_item" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Battle_Item/Battle_Item_01_17.png" alt="만능 물약" title="만능 물약">
+                        </span>
+                        <span>
+                            <img id="blue_item" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Battle_Item/Battle_Item_01_51.png" alt="성스러운 부적" title="성스러운 부적">
+                        </span>
+                        <span>
+                            <img id="blue_item" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Battle_Item/Battle_Item_01_53.png" alt="회오리 수류탄" title="회오리 수류탄">
+                        </span>
+                        <span>
+                            <img id="purple_item" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Battle_Item/Battle_Item_01_76.png" alt="시간 정지 물약" title="시간 정지 물약">
+                        </span>
+                    </div>
+                </div>
+    
+                <div class="corps_method_info_table">
+                    <div class="stage">2관문</div>
+                    <div class="esther">에스더 스킬</div>
+                    <div class="esther_img">
+                        <div>
+                            <img src="/images/raid/Silian.png" alt="에스더 실리안">
+                            <div>실리안</div>
+                        </div>
+                        <div>
+                            <img src="/images/raid/Waye.png" alt="에스더 웨이">
+                            <div>웨이</div>
+                        </div>
+                        <div>
+                            <img src="/images/raid/Bahunturr.png" alt="에스더 바훈투르">
+                            <div>바훈투르</div>
+                        </div>
+                    </div>
+                    <div class="battleItems">추천 배틀 아이템</div>
+                    <div class="battleItems_img">
+                        <span>
+                            <img id="blue_item" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Battle_Item/Battle_Item_01_21.png" alt="파괴 폭탄" title="파괴 폭탄">
+                        </span>
+                        <span>
+                            <img id="blue_item" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Battle_Item/Battle_Item_01_49.png" alt="부식 폭탄" title="부식 폭탄">
+                        </span>
+                        <span>
+                            <img id="blue_item" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Battle_Item/Battle_Item_01_47.png" alt="암흑 수류탄" title="암흑 수류탄">
+                        </span>
+                        <span>
+                            <img id="purple_item" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Battle_Item/Battle_Item_01_76.png" alt="시간 정지 물약" title="시간 정지 물약">
+                        </span>
+                        <span>
+                            <img id="blue_item" src="https://cdn-lostark.game.onstove.com/EFUI_IconAtlas/Battle_Item/Battle_Item_01_1.png" alt="화염 수류탄" title="화염 수류탄">
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div></div>
+        </div>
+    </div>
+    <%for(var i = 1; i <= phase_num; i++){%>
+    <script>
+        var target = document.getElementById("<%= i %>_Phase");
+        target.addEventListener('click', function(event){
+            var phase = document.getElementById("<%= i %>_Phase").value;
+            console.log(phase)
+            if(phase == 1){
+                first_phase();
+            }else if(phase == 2){
+                second_phase();
+            }
+        })
+        function first_phase(){
+            document.getElementById("first_phase").removeAttribute("style");
+            document.getElementById("second_phase").setAttribute("style","display:none");
+        }
+        function second_phase(){
+            document.getElementById("first_phase").setAttribute("style","display:none");
+            document.getElementById("second_phase").removeAttribute("style");
+        }
+    </script>
+    <%}%>
+</body>
+</html>

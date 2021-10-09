@@ -1,0 +1,40 @@
+@font-face {
+    font-family: 'SEBANG_Gothic_Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+    color: white;
+    font-family: 'SEBANG_Gothic_Bold';
+}
+
+#about_raid{
+    margin-top: 2rem;
+    text-align: center;
+    display: grid;
+    grid-template-rows: 5rem 15rem;
+}
+#raid_list{
+    font-size: 2rem;
+}
+#abyss_raid{
+    display: grid;
+    grid-template-columns: 1fr 200px 200px 200px 1fr;
+    grid-column-gap: 40px;
+}
+#corps_raid{
+    display: grid;
+    grid-template-columns: 1fr 200px 200px 200px 200px 1fr;
+    grid-column-gap: 40px;
+}
+img{
+    width: 200px;
+    height: 200px;
+    border: white 2px solid;
+}
+#about_raid a{
+    display: grid;
+    grid-template-rows: 1fr 30px;
+}

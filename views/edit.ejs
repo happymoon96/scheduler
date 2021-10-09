@@ -1,0 +1,216 @@
+<script>
+    function Likeability_checked(num){
+        document.getElementById("Likeability").innerHTML = '';
+        document.getElementById("Likeability").innerHTML += '<th class="schedule_rows"><div><img alt="호감도" src="/images/icon/likeability.png"/></div><div id="list_Likeability" class="schedule_list">호감도</div></th>';
+        if(select_server == "루페온"){
+            var change_cookie = json_daily.a_d3;
+            for(var i = 0; i < server_length(select_server); i++){
+                if(num == i){
+                    change_cookie[i] = 1;
+                }else{
+                    change_cookie[i] = 2;
+                }
+            }
+            json_daily.a_d3 = change_cookie;
+            localStorage.setItem('todo_daily_list', JSON.stringify(json_daily));
+
+
+            for(var i = 0; i < server_length(select_server); i++){
+                if(char_on_off(select_server)[i] == 1){
+                    if(a[i].레벨 >= 0){
+                        if(num == i){
+                            document.getElementById("Likeability").innerHTML += '<td><input checked type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
+                        }else{
+                            document.getElementById("Likeability").innerHTML += '<td><input disabled type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
+                        }
+                    }else{
+                        document.getElementById("Likeability").innerHTML += '<td><id='+user_data[i].캐릭터명+'_Likeability"></td>';
+                    }
+                }
+            }
+        }
+        if(select_server == "실리안"){
+            var change_cookie = json_daily.b_d3;
+            for(var i = 0; i < server_length(select_server); i++){
+                if(num == i){
+                    change_cookie[i] = 1;
+                }else{
+                    change_cookie[i] = 2;
+                }
+            }
+            json_daily.b_d3 = change_cookie;
+            localStorage.setItem('todo_daily_list', JSON.stringify(json_daily));
+
+            for(var i = 0; i < server_length(select_server); i++){
+                if(char_on_off(select_server)[i] == 1){
+                    if(b[i].레벨 >= 0){
+                        if(num == i){
+                            document.getElementById("Likeability").innerHTML += '<td><input checked type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
+                        }else{
+                            document.getElementById("Likeability").innerHTML += '<td><input disabled type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
+                        }
+                    }else{
+                        document.getElementById("Likeability").innerHTML += '<td><id='+user_data[i].캐릭터명+'_Likeability"></td>';
+                    }
+                }
+            }
+        }
+        if(select_server == "아만"){
+            var change_cookie = json_daily.c_d3;
+            for(var i = 0; i < server_length(select_server); i++){
+                if(num == i){
+                    change_cookie[i] = 1;
+                }else{
+                    change_cookie[i] = 2;
+                }
+            }
+            json_daily.c_d3 = change_cookie;
+            localStorage.setItem('todo_daily_list', JSON.stringify(json_daily));
+
+            for(var i = 0; i < server_length(select_server); i++){
+                if(char_on_off(select_server)[i] == 1){
+                    if(c[i].레벨 >= 0){
+                        if(num == i){
+                            document.getElementById("Likeability").innerHTML += '<td><input checked type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
+                        }else{
+                            document.getElementById("Likeability").innerHTML += '<td><input disabled type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
+                        }
+                    }else{
+                        document.getElementById("Likeability").innerHTML += '<td><id='+user_data[i].캐릭터명+'_Likeability"></td>';
+                    }
+                }
+            }
+        }
+        if(select_server == "카마인"){
+            var change_cookie = json_daily.d_d3;
+            for(var i = 0; i < server_length(select_server); i++){
+                if(num == i){
+                    change_cookie[i] = 1;
+                }else{
+                    change_cookie[i] = 2;
+                }
+            }
+            json_daily.d_d3 = change_cookie;
+            localStorage.setItem('todo_daily_list', JSON.stringify(json_daily));
+
+            for(var i = 0; i < server_length(select_server); i++){
+                if(char_on_off(select_server)[i] == 1){
+                    if(d[i].레벨 >= 0){
+                        if(num == i){
+                            document.getElementById("Likeability").innerHTML += '<td><input checked type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
+                        }else{
+                            document.getElementById("Likeability").innerHTML += '<td><input disabled type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
+                        }
+                    }else{
+                        document.getElementById("Likeability").innerHTML += '<td><id='+user_data[i].캐릭터명+'_Likeability"></td>';
+                    }
+                }
+            }
+        }
+        if(select_server == "카제로스"){
+            var change_cookie = json_daily.e_d3;
+            for(var i = 0; i < server_length(select_server); i++){
+                if(num == i){
+                    change_cookie[i] = 1;
+                }else{
+                    change_cookie[i] = 2;
+                }
+            }
+            json_daily.e_d3 = change_cookie;
+            localStorage.setItem('todo_daily_list', JSON.stringify(json_daily));
+
+            for(var i = 0; i < server_length(select_server); i++){
+                if(char_on_off(select_server)[i] == 1){
+                    if(e[i].레벨 >= 0){
+                        if(num == i){
+                            document.getElementById("Likeability").innerHTML += '<td><input checked type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
+                        }else{
+                            document.getElementById("Likeability").innerHTML += '<td><input disabled type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
+                        }
+                    }else{
+                        document.getElementById("Likeability").innerHTML += '<td><id='+user_data[i].캐릭터명+'_Likeability"></td>';
+                    }
+                }
+            }
+        }
+        if(select_server == "아브렐슈드"){
+            var change_cookie = json_daily.f_d3;
+            for(var i = 0; i < server_length(select_server); i++){
+                if(num == i){
+                    change_cookie[i] = 1;
+                }else{
+                    change_cookie[i] = 2;
+                }
+            }
+            json_daily.f_d3 = change_cookie;
+            localStorage.setItem('todo_daily_list', JSON.stringify(json_daily));
+
+            for(var i = 0; i < server_length(select_server); i++){
+                if(char_on_off(select_server)[i] == 1){
+                    if(f[i].레벨 >= 0){
+                        if(num == i){
+                            document.getElementById("Likeability").innerHTML += '<td><input checked type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
+                        }else{
+                            document.getElementById("Likeability").innerHTML += '<td><input disabled type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
+                        }
+                    }else{
+                        document.getElementById("Likeability").innerHTML += '<td><id='+user_data[i].캐릭터명+'_Likeability"></td>';
+                    }
+                }
+            }
+        }
+        if(select_server == "카단"){
+            var change_cookie = json_daily.g_d3;
+            for(var i = 0; i < server_length(select_server); i++){
+                if(num == i){
+                    change_cookie[i] = 1;
+                }else{
+                    change_cookie[i] = 2;
+                }
+            }
+            json_daily.g_d3 = change_cookie;
+            localStorage.setItem('todo_daily_list', JSON.stringify(json_daily));
+
+            for(var i = 0; i < server_length(select_server); i++){
+                if(char_on_off(select_server)[i] == 1){
+                    if(g[i].레벨 >= 0){
+                        if(num == i){
+                            document.getElementById("Likeability").innerHTML += '<td><input checked type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
+                        }else{
+                            document.getElementById("Likeability").innerHTML += '<td><input disabled type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
+                        }
+                    }else{
+                        document.getElementById("Likeability").innerHTML += '<td><id='+user_data[i].캐릭터명+'_Likeability"></td>';
+                    }
+                }
+            }
+        }
+        if(select_server == "니나브"){
+            var change_cookie = json_daily.h_d3;
+            for(var i = 0; i < server_length(select_server); i++){
+                if(num == i){
+                    change_cookie[i] = 1;
+                }else{
+                    change_cookie[i] = 2;
+                }
+            }
+            json_daily.h_d3 = change_cookie;
+            localStorage.setItem('todo_daily_list', JSON.stringify(json_daily));
+
+            for(var i = 0; i < server_length(select_server); i++){
+                if(char_on_off(select_server)[i] == 1){
+                    if(h[i].레벨 >= 0){
+                        if(num == i){
+                            document.getElementById("Likeability").innerHTML += '<td><input checked type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
+                        }else{
+                            document.getElementById("Likeability").innerHTML += '<td><input disabled type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
+                        }
+                    }else{
+                        document.getElementById("Likeability").innerHTML += '<td><id='+user_data[i].캐릭터명+'_Likeability"></td>';
+                    }
+                }
+            }
+        }
+    }
+    
+</script>

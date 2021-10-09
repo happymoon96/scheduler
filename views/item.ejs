@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/images/favicon/site.webmanifest">
+  <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" href="/stylesheets/background.css">
+  <link rel="stylesheet" href="/stylesheets/top_menu.css">
+  <link rel="stylesheet" href="/stylesheets/home.css">
+  
+  <title>레온하트</title>
+</head>
+<body>
+    <div id="menu">
+        <div>
+            <%
+            var a_ejs = a;
+            var b_ejs = b;
+            var c_ejs = c;
+            var time_ejs = time;
+            %>
+        </div>
+        <div id="menu_bar">
+          <div class="logo"><a href="/">레온하트</a></div>
+          <div class="menu">
+            <span><a href="/schedule/main">스케쥴</a></span>
+            <span><a href="/item">아이템</a></span>
+            <!-- <span><a href="/raid">레이드</a></span> -->
+          </div>
+        </div>
+    </div>
+    <div>
+        <div>버튼들</div>
+        <div>첫페이지 - 순위</div>
+        <div>아이템별</div>
+    </div>
+</body>
+<script>
+    var life_item = JSON.parse(JSON.stringify(<%-JSON.stringify(a_ejs)%>))
+    var battle_item = JSON.parse(JSON.stringify(<%-JSON.stringify(b_ejs)%>))
+    var oreha_item = JSON.parse(JSON.stringify(<%-JSON.stringify(b_ejs)%>))
+    var time_string = (<%-JSON.stringify(time_ejs)%>)
+
+    time_calculus();
+    
+    function time_calculus(){
+      var end_ymd = time_string;
+      var yyyy = end_ymd.substr(0,4);
+      var mm = end_ymd.substr(5,2);
+      var dd = end_ymd.substr(8,2);
+      var thh = end_ymd.substr(11,2);
+      var tmm = end_ymd.substr(14,2);
+      var tss = end_ymd.substr(17,2);
+      var search_time = new Date(yyyy, mm, dd, parseInt(thh)+9, tmm, tss);
+    }
+    
+    function life(name){
+      if(name == '들꽃'){
+        return "a1";
+      }
+      if(name == '수줍은 들꽃'){
+        return "a2";
+      }
+      if(name == '화사한 들꽃'){
+        return "a3";
+      }
+      if(name == '투박한 버섯'){
+        return "a4";
+      }
+      if(name == '싱싱한 버섯'){
+        return "a5";
+      }
+      if(name == '화려한 버섯'){
+        return "a6";
+      }
+
+      if(name == '목재'){
+        return "a7";
+      }
+      if(name == '부드러운 목재'){
+        return "a8";
+      }
+      if(name == '튼튼한 목재'){
+        return "a9";
+      }
+
+      if(name == '철광석'){
+        return "a10";
+      }
+      if(name == '묵직한 철광석'){
+        return "a11";
+      }
+      if(name == '단단한 철광석'){
+        return "a12";
+      }
+      
+      if(name == '두툼한 생고기'){
+        return "a13";
+      }
+      if(name == '다듬은 생고기'){
+        return "a14";
+      }
+      if(name == '질긴 가죽'){
+        return "a15";
+      }
+      if(name == '칼다르 두툼한 생고기'){
+        return "a16";
+      }
+      if(name == '오레하 두툼한 생고기'){
+        return "a17";
+      }
+      if(name == '수렵의 결정'){
+        return "a18";
+      }
+      
+      if(name == '생선'){
+        return "a19";
+      }
+      if(name == '붉은 살 생선'){
+        return "a20";
+      }
+      if(name == '자연산 진주'){
+        return "a21";
+      }
+      if(name == '칼다르 태양 잉어'){
+        return "a22";
+      }
+      if(name == '오레하 태양 잉어'){
+        return "a23";
+      }
+      if(name == '낚시의 결정'){
+        return "a24";
+      }
+      
+      if(name == '고대 유물'){
+        return "a25";
+      }
+      if(name == '희귀한 유물'){
+        return "a26";
+      }
+      if(name == '칼다르 유물'){
+        return "a27";
+      }
+      if(name == '오레하 유물'){
+        return "a28";
+      }
+      if(name == '고고학의 결정'){
+        return "a29";
+      }
+      
+      if(name == '도구 제작 부품'){
+        return "a30";
+      }
+      if(name == '초보자용 제작 키트'){
+        return "a31";
+      }
+      if(name == '견습생용 제작 키트'){
+        return "a32";
+      }
+      if(name == '숙련가용 제작 키트'){
+        return "a33";
+      }
+      if(name == '전문가용 제작 키트'){
+        return "a34";
+      }
+      if(name == '달인용 제작 키트'){
+        return "a35";
+      }
+    }
+    function battle(name){
+        if(name == '회복약'){
+          return "b1";
+        }
+        if(name == '고급 회복약'){
+          return "b2";
+        }
+        if(name == '정령의 회복약'){
+          return "b3";
+        }
+        if(name == '빛나는 정령의 회복약'){
+          return "b4";
+        }
+
+        if(name == '천둥 물약'){
+          return "b5";
+        }
+        if(name == '전기 수류탄'){
+          return "b6";
+        }
+        if(name == '성스러운 폭탄'){
+          return "b7";
+        }
+        if(name == '냉기 수류탄'){
+          return "b8";
+        }
+        if(name == '섬광 수류탄'){
+          return "b9";
+        }
+        if(name == '부식 폭탄'){
+          return "b10";
+        }
+        if(name == '점토 수류탄'){
+          return "b11";
+        }
+        if(name == '화염 수류탄'){
+          return "b12";
+        }
+        if(name == '암흑 수류탄'){
+          return "b13";
+        }
+        if(name == '회오리 수류탄'){
+          return "b14";
+        }
+        if(name == '수면 폭탄'){
+          return "b15";
+        }
+        if(name == '파괴 폭탄'){
+          return "b16";
+        }
+        if(name == '빛나는 전기 수류탄'){
+          return "b17";
+        }
+        if(name == '빛나는 부식 폭탄'){
+          return "b18";
+        }
+        if(name == '빛나는 성스러운 폭탄'){
+          return "b19";
+        }
+        if(name == '빛나는 수면 폭탄'){
+          return "b20";
+        }
+        if(name == '빛나는 파괴 폭탄'){
+          return "b21";
+        }
+        if(name == '빛나는 냉기 수류탄'){
+          return "b22";
+        }        
+        if(name == '빛나는 회오리 수류탄'){
+          return "b23";
+        }
+        if(name == '빛나는 천둥 물약'){
+          return "b24";
+        }
+        if(name == '빛나는 섬광 수류탄'){
+          return "b25";
+        }
+        if(name == '빛나는 점토 수류탄'){
+          return "b26";
+        }
+        if(name == '빛나는 화염 수류탄'){
+          return "b27";
+        }
+        if(name == '빛나는 암흑 수류탄'){
+          return "b28";
+        }
+
+        if(name == '위장 로브'){
+          return "b29";
+        }
+        if(name == '모닥불'){
+          return "b30";
+        }
+        if(name == '은신 로브'){
+          return "b31";
+        }
+        if(name == '정비소 이동 포탈 주문서'){
+          return "b32";
+        }
+        if(name == '도발 허수아비'){
+          return "b33";
+        }
+        if(name == '성스러운 부적'){
+          return "b34";
+        }
+        if(name == '루테란의 나팔'){
+          return "b35";
+        }
+        if(name == '페로몬 폭탄'){
+          return "b36";
+        }
+        if(name == '만능 물약'){
+          return "b37";
+        }
+        if(name == '신호탄'){
+          return "b38";
+        }
+        if(name == '빛나는 위장 로브'){
+          return "b39";
+        }
+        if(name == '빛나는 신호탄'){
+          return "b40";
+        }
+        if(name == '빛나는 성스러운 부적'){
+          return "b41";
+        }
+        if(name == '빛나는 모닥불'){
+          return "b42";
+        }
+        if(name == '시간 정지 물약'){
+          return "b43";
+        }
+        if(name == '빛나는 만능 물약'){
+          return "b44";
+        }
+        if(name == '빛나는 은신 로브'){
+          return "b45";
+        }
+        if(name == '빛나는 도발 허수아비'){
+          return "b46";
+        }
+
+        if(name == '보호 물약'){
+          return "b47";
+        }
+        if(name == '진군의 깃발'){
+          return "b48";
+        }
+        if(name == '신속 로브'){
+          return "b49";
+        }
+        if(name == '각성 물약'){
+          return "b50";
+        }
+        if(name == '빛나는 진군의 깃발'){
+          return "b51";
+        }
+        if(name == '아드로핀 물약'){
+          return "b52";
+        }
+        if(name == '빛나는 보호 물약'){
+          return "b53";
+        }
+        if(name == '빛나는 신속 로브'){
+          return "b54";
+        }
+      }
+    
+</script>
+</html>
