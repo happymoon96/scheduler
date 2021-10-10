@@ -8129,26 +8129,21 @@
             var date_yyyy = select(value)[i].date.substring(0,4)
             var date_MM = select(value)[i].date.substring(5,7)
             var date_dd = parseInt(select(value)[i].date.substring(8,10))
-            var date_HH = parseInt(select(value)[i].date.substring(11,13))+9
+            var date_HH = parseInt(select(value)[i].date.substring(11,13))
             var date_mm = select(value)[i].date.substring(14,16)
             var date_ss = select(value)[i].date.substring(17,19)
-            if(date_HH >= 24){
-                date_dd += 1;
-                date_HH -= 24;
-            }
-            var date_time = new Date(date_yyyy+"-"+date_MM+"-"+date_dd+" "+date_HH+":"+date_mm+":"+date_ss); 
+
+            var date_time = new Date(date_yyyy+"-"+date_MM+"-"+date_dd+" "+date_HH+":"+date_mm+":"+date_ss);
+
             var week_yyyy = select(value)[i].week.substring(0,4)
             var week_MM = select(value)[i].week.substring(5,7)
             var week_dd = parseInt(select(value)[i].week.substring(8,10))
-            var week_HH = parseInt(select(value)[i].week.substring(11,13))+9
+            var week_HH = parseInt(select(value)[i].week.substring(11,13))
             var week_mm = select(value)[i].week.substring(14,16)
             var week_ss = select(value)[i].week.substring(17,19)
-            if(week_HH >= 24){
-                week_dd += 1;
-                week_HH -= 24;
-            }
-            var week_time = new Date(week_yyyy+"-"+week_MM+"-"+week_dd+" "+week_HH+":"+week_mm+":"+week_ss);
 
+            var week_time = new Date(week_yyyy+"-"+week_MM+"-"+week_dd+" "+week_HH+":"+week_mm+":"+week_ss);
+            console.log(date_time)
             if(week_time < now){
                 select(value)[i].week = now;
                 select(value)[i].w1 = 0;

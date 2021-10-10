@@ -14,12 +14,12 @@ var update_user_data_sort = [];
 var date = new Date();
 var week = new Date();
 if(date.getHours < 6){
-    date.setDate(date.getDate()-1);
+    date.setDate(date.getDate());
     date.setHours(6);
     date.setMinutes(0);
     date.setSeconds(0);
 }else{
-    date.setDate(date.getDate());
+    date.setDate(date.getDate()+1);
     date.setHours(6);
     date.setMinutes(0);
     date.setSeconds(0);
