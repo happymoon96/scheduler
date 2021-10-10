@@ -585,7 +585,6 @@
                                         }
                                         if(todo.d8 == "on"){
                                             if(select(value)[i].level >= 250){ //평일
-                    console.log(select(value)[i].d8[0])
                                                 if(select(value)[i].d8[0] == 0){
                                                     document.getElementById("AdventureIsland_daily").innerHTML += '<td><input type="checkbox" id='+select(value)[i].name+'_AdventureIsland_daily"><label onClick="AdventureIsland_daily_checked('+i+')" id="daily" for='+select(value)[i].name+'_AdventureIsland_daily"></label></td>';
                                                 }else if(select(value)[i].d8[0] == 1){
@@ -8133,10 +8132,10 @@
             var date_HH = parseInt(select(value)[i].date.substring(11,13))+9
             var date_mm = select(value)[i].date.substring(14,16)
             var date_ss = select(value)[i].date.substring(17,19)
-            if(date_HH >= 24){
-                date_dd += 1;
-                date_HH -= 24;
-            }
+            // if(date_HH >= 24){
+            //     date_dd += 1;
+            //     date_HH -= 24;
+            // }
             var date_time = new Date(date_yyyy+"-"+date_MM+"-"+date_dd+" "+date_HH+":"+date_mm+":"+date_ss); 
             var week_yyyy = select(value)[i].week.substring(0,4)
             var week_MM = select(value)[i].week.substring(5,7)
@@ -8144,10 +8143,10 @@
             var week_HH = parseInt(select(value)[i].week.substring(11,13))+9
             var week_mm = select(value)[i].week.substring(14,16)
             var week_ss = select(value)[i].week.substring(17,19)
-            if(week_HH >= 24){
-                week_dd += 1;
-                week_HH -= 24;
-            }
+            // if(week_HH >= 24){
+            //     week_dd += 1;
+            //     week_HH -= 24;
+            // }
             var week_time = new Date(week_yyyy+"-"+week_MM+"-"+week_dd+" "+week_HH+":"+week_mm+":"+week_ss);
 
             if(week_time < now){
@@ -8182,7 +8181,7 @@
                 select(value)[i].d5 = 0;
                 select(value)[i].d6 = 0;
                 select(value)[i].d7 = 0;
-                select(value)[i].d8 = 0;
+                select(value)[i].d8 = [0,0];
                 select(value)[i].d9 = 0;
                 select(value)[i].d10 = 0;
                 select(value)[i].d11 = 0;
