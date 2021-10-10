@@ -585,6 +585,7 @@
                                         }
                                         if(todo.d8 == "on"){
                                             if(select(value)[i].level >= 250){ //평일
+                    console.log(select(value)[i].d8[0])
                                                 if(select(value)[i].d8[0] == 0){
                                                     document.getElementById("AdventureIsland_daily").innerHTML += '<td><input type="checkbox" id='+select(value)[i].name+'_AdventureIsland_daily"><label onClick="AdventureIsland_daily_checked('+i+')" id="daily" for='+select(value)[i].name+'_AdventureIsland_daily"></label></td>';
                                                 }else if(select(value)[i].d8[0] == 1){
@@ -8137,7 +8138,6 @@
                 date_HH -= 24;
             }
             var date_time = new Date(date_yyyy+"-"+date_MM+"-"+date_dd+" "+date_HH+":"+date_mm+":"+date_ss); 
-            console.log(date_time)
             var week_yyyy = select(value)[i].week.substring(0,4)
             var week_MM = select(value)[i].week.substring(5,7)
             var week_dd = parseInt(select(value)[i].week.substring(8,10))
