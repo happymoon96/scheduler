@@ -357,7 +357,7 @@
                             daily_table += AdventureIsland_daily_table;
                             //토요일 6시 보다 크고 월요일 6시보다 작아야한다.
                             
-                            if(6.06 <= now_value || now_value <= 1.06){
+                            if(6.06 <= now_value || now_value < 1.06){
                                 daily_table += AdventureIsland_weeks_table;
                             }
                         }
@@ -484,7 +484,7 @@
                             document.getElementById("GriefIsland").innerHTML += '<th class="schedule_rows"><div><img alt="비탄의 섬" src="https://cdn-lostark.game.onstove.com/uploadfiles/notice/f9a83e3dcea640118b47ae6e8d8a1370.png"/></div><div id="list_GriefIsland" class="schedule_list">비탄의 섬</div></th>';
                         }
                         if(todo.d8 == "on"){
-                            if(6.06 <= now_value || now_value <= 1.06){
+                            if(6.06 <= now_value || now_value < 1.06){
                                 document.getElementById("AdventureIsland_daily").innerHTML += '<th class="schedule_rows"><div><img alt="모험 섬(오전)" src="https://cdn-lostark.game.onstove.com/uploadfiles/notice/f9a83e3dcea640118b47ae6e8d8a1370.png"/></div><div id="list_AdventureIsland_daily" class="schedule_list">모험 섬(오전)</div></th>';
                                 document.getElementById("AdventureIsland_weeks").innerHTML += '<th class="schedule_rows"><div><img alt="모험 섬(오후)" src="https://cdn-lostark.game.onstove.com/uploadfiles/notice/f9a83e3dcea640118b47ae6e8d8a1370.png"/></div><div id="list_AdventureIsland_weeks" class="schedule_list">모험 섬(오후)</div></th>';    
                             }else{
@@ -2745,7 +2745,7 @@
     }
     function AdventureIsland_daily_checked(num){
         document.getElementById("AdventureIsland_daily").innerHTML = '';
-        if(6.06 <= now_value || now_value <= 1.06){
+        if(6.06 <= now_value || now_value < 1.06){
             document.getElementById("AdventureIsland_daily").innerHTML += '<th class="schedule_rows"><div><img alt="모험 섬(오전)" src="https://cdn-lostark.game.onstove.com/uploadfiles/notice/f9a83e3dcea640118b47ae6e8d8a1370.png"/></div><div id="list_AdventureIsland_daily" class="schedule_list">모험 섬(오전)</div></th>';
         }else{
             document.getElementById("AdventureIsland_daily").innerHTML += '<th class="schedule_rows"><div><img alt="모험 섬" src="https://cdn-lostark.game.onstove.com/uploadfiles/notice/f9a83e3dcea640118b47ae6e8d8a1370.png"/></div><div id="list_AdventureIsland_daily" class="schedule_list">모험 섬</div></th>';
@@ -3105,7 +3105,7 @@
     }
     function AdventureIsland_weeks_checked(num){
         document.getElementById("AdventureIsland_weeks").innerHTML = '';
-        if(6.06 <= now_value || now_value <= 1.06){
+        if(6.06 <= now_value || now_value < 1.06){
             document.getElementById("AdventureIsland_weeks").innerHTML += '<th class="schedule_rows"><div><img alt="모험 섬(오후)" src="https://cdn-lostark.game.onstove.com/uploadfiles/notice/f9a83e3dcea640118b47ae6e8d8a1370.png"/></div><div id="list_AdventureIsland_weeks" class="schedule_list">모험 섬(오후)</div></th>';
         }else{
             document.getElementById("AdventureIsland_weeks").innerHTML += '<th class="schedule_rows"><div><img alt="모험 섬" src="https://cdn-lostark.game.onstove.com/uploadfiles/notice/f9a83e3dcea640118b47ae6e8d8a1370.png"/></div><div id="list_AdventureIsland_weeks" class="schedule_list">모험 섬</div></th>';
