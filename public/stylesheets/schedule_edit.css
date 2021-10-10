@@ -152,6 +152,11 @@ li{
     margin-left: 3rem;
     width: 260px;
 }
+#editor #group #title_ticket{
+    padding: 5px 0;
+    background-color: #0096c6;
+    text-align: center;
+}
 #editor #group #title_daily{
     padding: 5px 0;
     background-color: #08922F;

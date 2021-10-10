@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/images/favicon/site.webmanifest">
+  <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" href="/stylesheets/background.css">
+  <link rel="stylesheet" href="/stylesheets/top_menu.css">
+  <link rel="stylesheet" href="/stylesheets/home.css">
+  
+  <title>레온하트</title>
+</head>
+<body>
+    <div id="menu">
+        <div></div>
+        <div id="menu_bar">
+            <div class="logo"><a href="/">레온하트</a></div>
+            <div class="menu">
+              <span><a href="/schedule/main">스케쥴</a></span>
+              <!-- <span><a href="/item">아이템</a></span> -->
+              <!-- <span><a href="/raid">레이드</a></span> -->
+            </div>
+          </div>
+    </div>
+
+    <div>
+        <%
+        var ejs_update = update; 
+
+        var 루페온 = [];
+        var 실리안 = [];
+        var 아만 = [];
+        var 카마인 = [];
+        var 카제로스 = [];
+        var 아브렐슈드 = [];
+        var 카단 = [];
+        var 니나브 = [];
+
+        var ejs_update_sort =  ejs_update.sort(function(a,b){
+            return a.name - b.name;
+        });      
+        var final_sort = ejs_update_sort.sort(function(a,b){
+            return b.level - a.level;
+        }); 
+
+        for(var i = 0; i < final_sort.length; i++){
+            if(final_sort[i].server == "루페온"){
+                루페온.push(final_sort[i])
+            }
+            if(final_sort[i].server == "실리안"){
+                실리안.push(final_sort[i])
+            }
+            if(final_sort[i].server == "아만"){
+                아만.push(final_sort[i])
+            }
+            if(final_sort[i].server == "카마인"){
+                카마인.push(final_sort[i])
+            }
+            if(final_sort[i].server == "카제로스"){
+                카제로스.push(final_sort[i])
+            }
+            if(final_sort[i].server == "아브렐슈드"){
+                아브렐슈드.push(final_sort[i])
+            }
+            if(final_sort[i].server == "카단"){
+                카단.push(final_sort[i])
+            }
+            if(final_sort[i].server == "니나브"){
+                니나브.push(final_sort[i])
+            }
+        }
+        %>
+    </div>
+</body>
+<script>
+    var a = JSON.parse(localStorage.getItem('server_1'))
+    var b = JSON.parse(localStorage.getItem('server_2'))
+    var c = JSON.parse(localStorage.getItem('server_3'))
+    var d = JSON.parse(localStorage.getItem('server_4'))
+    var e = JSON.parse(localStorage.getItem('server_5'))
+    var f = JSON.parse(localStorage.getItem('server_6'))
+    var g = JSON.parse(localStorage.getItem('server_7'))
+    var h = JSON.parse(localStorage.getItem('server_8'))
+    var aa = (<%- JSON.stringify(루페온) %>);
+    var bb = (<%- JSON.stringify(실리안) %>);
+    var cc = (<%- JSON.stringify(아만) %>);
+    var dd = (<%- JSON.stringify(카마인) %>);
+    var ee = (<%- JSON.stringify(카제로스) %>);
+    var ff = (<%- JSON.stringify(아브렐슈드) %>);
+    var gg = (<%- JSON.stringify(카단) %>);
+    var hh = (<%- JSON.stringify(니나브) %>);
+
+    for(var i = 0; i < a.length; i++){
+        for(var j = 0; j < aa.length; j++){
+            if(a[i].name == aa[j].name){
+                a[i].level = aa[j].level;
+                a[i].char_level = aa[j].char_level;
+                a[i].guild = aa[j].guild;
+            }
+        }
+    }
+    for(var i = 0; i < b.length; i++){
+        for(var j = 0; j< bb.length; j++){
+            if(b[i].name == bb[j].name){
+                b[i].level = bb[j].level;
+                b[i].char_level = bb[j].char_level;
+                b[i].guild = bb[j].guild;
+            }
+        }
+    }
+    for(var i = 0; i < c.length; i++){
+        for(var j = 0; j< cc.length; j++){
+            if(c[i].name == cc[j].name){
+                c[i].level = cc[j].level;
+                c[i].char_level = cc[j].char_level;
+                c[i].guild = cc[j].guild;
+            }
+        }
+    }
+    for(var i = 0; i < d.length; i++){
+        for(var j = 0; j< dd.length; j++){
+            if(d[i].name == dd[j].name){
+                d[i].level = dd[j].level;
+                d[i].char_level = dd[j].char_level;
+                d[i].guild = dd[j].guild;
+            }
+        }
+    }
+    for(var i = 0; i < e.length; i++){
+        for(var j = 0; j< ee.length; j++){
+            if(e[i].name == ee[j].name){
+                e[i].level = ee[j].level;
+                e[i].char_level = ee[j].char_level;
+                e[i].guild = ee[j].guild;
+            }
+        }
+    }
+    for(var i = 0; i < f.length; i++){
+        for(var j = 0; j< ff.length; j++){
+            if(f[i].name == ff[j].name){
+                f[i].level = ff[j].level;
+                f[i].char_level = ff[j].char_level;
+                f[i].guild = ff[j].guild;
+            }
+        }
+    }
+    for(var i = 0; i < g.length; i++){
+        for(var j = 0; j< gg.length; j++){
+            if(g[i].name == gg[j].name){
+                g[i].level = gg[j].level;
+                g[i].char_level = gg[j].char_level;
+                g[i].guild = gg[j].guild;
+            }
+        }
+    }
+    for(var i = 0; i < h.length; i++){
+        for(var j = 0; j< hh.length; j++){
+            if(h[i].name == hh[j].name){
+                h[i].level = hh[j].level;
+                h[i].char_level = hh[j].char_level;
+                h[i].guild = hh[j].guild;
+            }
+        }
+    }
+
+    localStorage.setItem('server_1', JSON.stringify(a))
+    localStorage.setItem('server_2', JSON.stringify(b))
+    localStorage.setItem('server_3', JSON.stringify(c))
+    localStorage.setItem('server_4', JSON.stringify(d))
+    localStorage.setItem('server_5', JSON.stringify(e))
+    localStorage.setItem('server_6', JSON.stringify(f))
+    localStorage.setItem('server_7', JSON.stringify(g))
+    localStorage.setItem('server_8', JSON.stringify(h))
+
+    location.href = "/schedule/main";
+</script>
+</html>

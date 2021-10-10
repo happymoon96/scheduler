@@ -98,7 +98,13 @@ th{
 	margin-top: 8px;
 	text-align: left;
 }
-#ChaosDungeon:hover #list_ChaosDungeon{
+#Cube:hover #list_Cube{
+	color:var(--hover_text_color);
+}
+#DailyEpona:hover #list_DailyEpona{
+	color:var(--hover_text_color);
+}
+#BossRush:hover #list_BossRush{
 	color:var(--hover_text_color);
 }
 #DailyEpona:hover #list_DailyEpona{
@@ -168,7 +174,13 @@ th{
 #PhantomShip:hover #list_PhantomShip{
 	color:var(--hover_text_color);
 }
-
+#ticket_contents{
+	/* margin-top: 1rem; */
+	border-top: #101421 1rem solid;
+}
+#ticket_contents tr{
+	border-left: #0096c6 8px solid;
+}
 #daily_contents{
 	/* margin-top: 1rem; */
 	border-top: #101421 1rem solid;
@@ -182,6 +194,22 @@ th{
 }
 #weeks_contents tr{
 	border-left: #E67AA3 8px solid;
+}
+input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;             
+        margin: 0;         
+    }
+input[type="number"]{
+	width: 50px;
+	margin-left: 4px;
+    font-family: 'SEBANG_Gothic_Bold';
+	background-color: #101421;
+	color: white;
+	border: #333333 solid 0.5px;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	text-align:center;
 }
 input[type="checkbox"]{
 	display: none;

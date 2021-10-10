@@ -26,28 +26,40 @@
       <div class="logo"><a href="/">레온하트</a></div>
       <div class="menu">
         <span><a href="/schedule/main">스케쥴</a></span>
-        <span><a href="/item">아이템</a></span>
+        <!-- <span><a href="/item">아이템</a></span> -->
         <!-- <span><a href="/raid">레이드</a></span> -->
       </div>
     </div>
+  </div>
   <div></div>
   <div>
     <button id="edit" onclick = "location.href = '/schedule/main'" class="myButton">저장</button>
   </div>
   <div id="editor">
     <div id="group">
+      <div id="title_ticket">입장권</div>
+        <div id="contents">
+          <ol class="switches">
+            <li id="Cube">
+            </li>
+            <li id="BossRush">
+            </li>
+          </ol>
+        </div>
+    </div>
+    <div id="group">
       <div id="title_daily">일일 컨텐츠</div>
         <div id="contents">
           <ol class="switches">
+            <li id="Guild">
+            </li>
             <li id="ChaosDungeon">
             </li>
             <li id="DailyEpona">
             </li>
-            <li id="Likeability">
-            </li>
             <li id="GuardianSubdue">
             </li>
-            <li id="Guild">
+            <li id="Likeability">
             </li>
             <li id="GriefIsland">
             </li>
@@ -98,46 +110,26 @@
   </div>
 </body>
 <script>
-  var char_info = JSON.parse(localStorage.getItem('char_info'))
+  var a = JSON.parse(localStorage.getItem('server_1'))
+  var b = JSON.parse(localStorage.getItem('server_2'))
+  var c = JSON.parse(localStorage.getItem('server_3'))
+  var d = JSON.parse(localStorage.getItem('server_4'))
+  var e = JSON.parse(localStorage.getItem('server_5'))
+  var f = JSON.parse(localStorage.getItem('server_6'))
+  var g = JSON.parse(localStorage.getItem('server_7'))
+  var h = JSON.parse(localStorage.getItem('server_8'))
   var todo = JSON.parse(localStorage.getItem('todo'))
-  var on_off = JSON.parse(localStorage.getItem('on_off'))
   var server = JSON.parse(localStorage.getItem('server'))
-  var user_data_sort = char_info.sort(function(a,b){
-                            return b.레벨 - a.레벨;
-                        }); 
-  var a = [];
-  var b = [];
-  var c = [];
-  var d = [];
-  var e = [];
-  var f = [];
-  var g = [];
-  var h = [];
-  for(var i = 0; i < user_data_sort.length; i++){
-    if(user_data_sort[i].서버 == "루페온"){
-      a.push(user_data_sort[i])
-    }
-    if(user_data_sort[i].서버 == "실리안"){
-      b.push(user_data_sort[i])
-    }
-    if(user_data_sort[i].서버 == "아만"){
-      c.push(user_data_sort[i])
-    }
-    if(user_data_sort[i].서버 == "카마인"){
-      d.push(user_data_sort[i])
-    }
-    if(user_data_sort[i].서버 == "카제로스"){
-      e.push(user_data_sort[i])
-    }
-    if(user_data_sort[i].서버 == "아브렐슈드"){
-      f.push(user_data_sort[i])
-    }
-    if(user_data_sort[i].서버 == "카단"){
-      g.push(user_data_sort[i])
-    }
-    if(user_data_sort[i].서버 == "니나브"){
-      h.push(user_data_sort[i])
-    }
+
+  if(todo.t1 == "on"){
+    document.getElementById("Cube").innerHTML = '<input checked id="Cube_label" type="checkbox"><label for="Cube_label" onClick="Cube()"><span>큐브</span><span></span></label>'
+  }else{
+    document.getElementById("Cube").innerHTML = '<input id="Cube_label" type="checkbox"><label for="Cube_label" onClick="Cube()"><span>큐브</span><span></span></label>'
+  }
+  if(todo.t2 == "on"){
+    document.getElementById("BossRush").innerHTML = '<input checked id="BossRush_label" type="checkbox"><label for="BossRush_label" onClick="BossRush()"><span>보스러시</span><span></span></label>'
+  }else{
+    document.getElementById("BossRush").innerHTML = '<input id="BossRush_label" type="checkbox"><label for="BossRush_label" onClick="BossRush()"><span>보스러시</span><span></span></label>'
   }
   
   if(todo.d1 == "on"){
@@ -197,7 +189,7 @@
     document.getElementById("AbyssDungeon").innerHTML = '<input id="AbyssDungeon_label" type="checkbox"><label for="AbyssDungeon_label" onClick="AbyssDungeon()"><span>어비스 던전</span><span></span></label>'
   }
   if(todo.w3 == "on"){
-    document.getElementById("AbyssRaid").innerHTML = '<input checked id="AbyssRaid_label" type="checkbox"><label for="AbyssRaid_label" onClick="AbyssRaid()"><span>어비스 레이드</span><span></span></label>'
+    document.getElementById("AbyssRaid").innerHTML = '<input checked id="AbyssRaid_label" type="checkbox"><label for="AbyssRaid_label" onClick="AbyssRaid()"><span>아르고스</span><span></span></label>'
   }else{
     document.getElementById("AbyssRaid").innerHTML = '<input id="AbyssRaid_label" type="checkbox"><label for="AbyssRaid_label" onClick="AbyssRaid()"><span>어비스 레이드</span><span></span></label>'
   }
@@ -256,151 +248,178 @@
     if(value == "루페온"){
       document.getElementById("server_group").innerHTML += '<div id="group"><div id="title">'+value+'</div><div id="contents"><ol id='+value+' class="switches"></ol></div></div>'
       for(var i = 0; i < a.length; i++){
-        if(on_off.a[i] == "1"){
-          document.getElementById("루페온").innerHTML += '<li><input checked id='+a[i].캐릭터명+'_label" type="checkbox"><label for='+a[i].캐릭터명+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+a[i].캐릭터명+'</span><span></span></label><li>'
+        if(a[i].toggle == "on"){
+          document.getElementById("루페온").innerHTML += '<li><input checked id='+a[i].name+'_label" type="checkbox"><label for='+a[i].name+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+a[i].name+'</span><span></span></label><li>'
         }else{
-          document.getElementById("루페온").innerHTML += '<li><input id='+a[i].캐릭터명+'_label" type="checkbox"><label for='+a[i].캐릭터명+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+a[i].캐릭터명+'</span><span></span></label><li>'
+          document.getElementById("루페온").innerHTML += '<li><input id='+a[i].name+'_label" type="checkbox"><label for='+a[i].name+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+a[i].name+'</span><span></span></label><li>'
         }
       }
     }
     if(value == "실리안"){
       document.getElementById("server_group").innerHTML += '<div id="group"><div id="title">'+value+'</div><div id="contents"><ol id='+value+' class="switches"></ol></div></div>'
       for(var i = 0; i < b.length; i++){
-        if(on_off.b[i] == "1"){
-          document.getElementById("실리안").innerHTML += '<li><input checked id='+b[i].캐릭터명+'_label" type="checkbox"><label for='+b[i].캐릭터명+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+b[i].캐릭터명+'</span><span></span></label><li>'
+        if(b[i].toggle == "on"){
+          document.getElementById("실리안").innerHTML += '<li><input checked id='+b[i].name+'_label" type="checkbox"><label for='+b[i].name+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+b[i].name+'</span><span></span></label><li>'
         }else{
-          document.getElementById("실리안").innerHTML += '<li><input id='+b[i].캐릭터명+'_label" type="checkbox"><label for='+b[i].캐릭터명+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+b[i].캐릭터명+'</span><span></span></label><li>'
+          document.getElementById("실리안").innerHTML += '<li><input id='+b[i].name+'_label" type="checkbox"><label for='+b[i].name+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+b[i].name+'</span><span></span></label><li>'
         }
       }
     }
     if(value == "아만"){
       document.getElementById("server_group").innerHTML += '<div id="group"><div id="title">'+value+'</div><div id="contents"><ol id='+value+' class="switches"></ol></div></div>'
       for(var i = 0; i < c.length; i++){
-        if(on_off.c[i] == "1"){
-          document.getElementById("실리안").innerHTML += '<li><input checked id='+c[i].캐릭터명+'_label" type="checkbox"><label for='+c[i].캐릭터명+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+c[i].캐릭터명+'</span><span></span></label><li>'
+        if(c[i].toggle == "on"){
+          document.getElementById("실리안").innerHTML += '<li><input checked id='+c[i].name+'_label" type="checkbox"><label for='+c[i].name+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+c[i].name+'</span><span></span></label><li>'
         }else{
-          document.getElementById("실리안").innerHTML += '<li><input id='+c[i].캐릭터명+'_label" type="checkbox"><label for='+c[i].캐릭터명+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+c[i].캐릭터명+'</span><span></span></label><li>'
+          document.getElementById("실리안").innerHTML += '<li><input id='+c[i].name+'_label" type="checkbox"><label for='+c[i].name+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+c[i].name+'</span><span></span></label><li>'
         }
       }      
     }
     if(value == "카마인"){
       document.getElementById("server_group").innerHTML += '<div id="group"><div id="title">'+value+'</div><div id="contents"><ol id='+value+' class="switches"></ol></div></div>'
       for(var i = 0; i < d.length; i++){
-        if(on_off.d[i] == "1"){
-          document.getElementById("카마인").innerHTML += '<li><input checked id='+d[i].캐릭터명+'_label" type="checkbox"><label for='+d[i].캐릭터명+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+d[i].캐릭터명+'</span><span></span></label><li>'
+        if(d[i].toggle == "on"){
+          document.getElementById("카마인").innerHTML += '<li><input checked id='+d[i].name+'_label" type="checkbox"><label for='+d[i].name+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+d[i].name+'</span><span></span></label><li>'
         }else{
-          document.getElementById("카마인").innerHTML += '<li><input id='+d[i].캐릭터명+'_label" type="checkbox"><label for='+d[i].캐릭터명+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+d[i].캐릭터명+'</span><span></span></label><li>'
+          document.getElementById("카마인").innerHTML += '<li><input id='+d[i].name+'_label" type="checkbox"><label for='+d[i].name+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+d[i].name+'</span><span></span></label><li>'
         }
       }
     }
     if(value == "카제로스"){
       document.getElementById("server_group").innerHTML += '<div id="group"><div id="title">'+value+'</div><div id="contents"><ol id='+value+' class="switches"></ol></div></div>'
       for(var i = 0; i < e.length; i++){
-        if(on_off.e[i] == "1"){
-          document.getElementById("카제로스").innerHTML += '<li><input checked id='+e[i].캐릭터명+'_label" type="checkbox"><label for='+e[i].캐릭터명+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+e[i].캐릭터명+'</span><span></span></label><li>'
+        if(e[i].toggle == "on"){
+          document.getElementById("카제로스").innerHTML += '<li><input checked id='+e[i].name+'_label" type="checkbox"><label for='+e[i].name+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+e[i].name+'</span><span></span></label><li>'
         }else{
-          document.getElementById("카제로스").innerHTML += '<li><input id='+e[i].캐릭터명+'_label" type="checkbox"><label for='+e[i].캐릭터명+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+e[i].캐릭터명+'</span><span></span></label><li>'
+          document.getElementById("카제로스").innerHTML += '<li><input id='+e[i].name+'_label" type="checkbox"><label for='+e[i].name+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+e[i].name+'</span><span></span></label><li>'
         }
       }
     }
     if(value == "아브렐슈드"){
       document.getElementById("server_group").innerHTML += '<div id="group"><div id="title">'+value+'</div><div id="contents"><ol id='+value+' class="switches"></ol></div></div>'
       for(var i = 0; i < f.length; i++){
-        if(on_off.f[i] == "1"){
-          document.getElementById("아브렐슈드").innerHTML += '<li><input checked id='+f[i].캐릭터명+'_label" type="checkbox"><label for='+f[i].캐릭터명+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+f[i].캐릭터명+'</span><span></span></label><li>'
+        if(f[i].toggle == "on"){
+          document.getElementById("아브렐슈드").innerHTML += '<li><input checked id='+f[i].name+'_label" type="checkbox"><label for='+f[i].name+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+f[i].name+'</span><span></span></label><li>'
         }else{
-          document.getElementById("아브렐슈드").innerHTML += '<li><input id='+f[i].캐릭터명+'_label" type="checkbox"><label for='+f[i].캐릭터명+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+f[i].캐릭터명+'</span><span></span></label><li>'
+          document.getElementById("아브렐슈드").innerHTML += '<li><input id='+f[i].name+'_label" type="checkbox"><label for='+f[i].name+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+f[i].name+'</span><span></span></label><li>'
         }
       }
     }
     if(value == "카단"){
       document.getElementById("server_group").innerHTML += '<div id="group"><div id="title">'+value+'</div><div id="contents"><ol id='+value+' class="switches"></ol></div></div>'
       for(var i = 0; i < g.length; i++){
-        if(on_off.g[i] == "1"){
-          document.getElementById("카단").innerHTML += '<li><input checked id='+g[i].캐릭터명+'_label" type="checkbox"><label for='+g[i].캐릭터명+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+g[i].캐릭터명+'</span><span></span></label><li>'
+        if(g[i].toggle == "on"){
+          document.getElementById("카단").innerHTML += '<li><input checked id='+g[i].name+'_label" type="checkbox"><label for='+g[i].name+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+g[i].name+'</span><span></span></label><li>'
         }else{
-          document.getElementById("카단").innerHTML += '<li><input id='+g[i].캐릭터명+'_label" type="checkbox"><label for='+g[i].캐릭터명+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+g[i].캐릭터명+'</span><span></span></label><li>'
+          document.getElementById("카단").innerHTML += '<li><input id='+g[i].name+'_label" type="checkbox"><label for='+g[i].name+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+g[i].name+'</span><span></span></label><li>'
         }
       }
     }
     if(value == "니나브"){
       document.getElementById("server_group").innerHTML += '<div id="group"><div id="title">'+value+'</div><div id="contents"><ol id='+value+' class="switches"></ol></div></div>'
       for(var i = 0; i < h.length; i++){
-        if(on_off.h[i] == "1"){
-          document.getElementById("니나브").innerHTML += '<li><input checked id='+h[i].캐릭터명+'_label" type="checkbox"><label for='+h[i].캐릭터명+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+h[i].캐릭터명+'</span><span></span></label><li>'
+        if(h[i].toggle == "on"){
+          document.getElementById("니나브").innerHTML += '<li><input checked id='+h[i].name+'_label" type="checkbox"><label for='+h[i].name+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+h[i].name+'</span><span></span></label><li>'
         }else{
-          document.getElementById("니나브").innerHTML += '<li><input id='+h[i].캐릭터명+'_label" type="checkbox"><label for='+h[i].캐릭터명+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+h[i].캐릭터명+'</span><span></span></label><li>'
+          document.getElementById("니나브").innerHTML += '<li><input id='+h[i].name+'_label" type="checkbox"><label for='+h[i].name+'_label" onClick="Char_on_off('+value+','+i+')"><span>'+h[i].name+'</span><span></span></label><li>'
         }
       }
     }
   }
 
-  function Char_on_off(name,number){
-    var change_on_off = on_off;
+  function Char_on_off(name,number){;
     if(name.id == "루페온"){
-      if(change_on_off.a[number] == 1){
-        change_on_off.a[number] = 0
+      var change_on_off = a;
+
+      if(change_on_off[number].toggle == "on"){
+        change_on_off[number].toggle = "off"
       }else{
-        change_on_off.a[number] = 1
+        change_on_off[number].toggle = "on"
       }
-      localStorage.setItem("on_off", JSON.stringify(change_on_off))
+      localStorage.setItem("server_1", JSON.stringify(change_on_off))
     }
     if(name.id == "실리안"){
-      if(change_on_off.b[number] == 1){
-        change_on_off.b[number] = 0
+      var change_on_off = b;
+      if(change_on_off[number].toggle == "on"){
+        change_on_off[number].toggle = "off"
       }else{
-        change_on_off.b[number] = 1
+        change_on_off[number].toggle = "on"
       }
-      localStorage.setItem("on_off", JSON.stringify(change_on_off))
+      localStorage.setItem("server_2", JSON.stringify(change_on_off))
     }
     if(name.id == "아만"){
-      if(change_on_off.c[number] == 1){
-        change_on_off.c[number] = 0
+      var change_on_off = c;
+      if(change_on_off[number].toggle == "on"){
+        change_on_off[number].toggle = "off"
       }else{
-        change_on_off.c[number] = 1
+        change_on_off[number].toggle = "on"
       }
-      localStorage.setItem("on_off", JSON.stringify(change_on_off))
+      localStorage.setItem("server_3", JSON.stringify(change_on_off))
     }
     if(name.id == "카마인"){
-      if(change_on_off.d[number] == 1){
-        change_on_off.d[number] = 0
+      var change_on_off = d;
+      if(change_on_off[number].toggle == "on"){
+        change_on_off[number].toggle = "off"
       }else{
-        change_on_off.d[number] = 1
+        change_on_off[number].toggle = "on"
       }
-      localStorage.setItem("on_off", JSON.stringify(change_on_off))
+      localStorage.setItem("server_4", JSON.stringify(change_on_off))
     }
     if(name.id == "카제로스"){
-      if(change_on_off.e[number] == 1){
-        change_on_off.e[number] = 0
+      var change_on_off = e;
+      if(change_on_off[number].toggle == "on"){
+        change_on_off[number].toggle = "off"
       }else{
-        change_on_off.e[number] = 1
+        change_on_off[number].toggle = "on"
       }
-      localStorage.setItem("on_off", JSON.stringify(change_on_off))
+      localStorage.setItem("server_5", JSON.stringify(change_on_off))
     }
     if(name.id == "아브렐슈드"){
-      if(change_on_off.f[number] == 1){
-        change_on_off.f[number] = 0
+      var change_on_off = f;
+      if(change_on_off[number].toggle == "on"){
+        change_on_off[number].toggle = "off"
       }else{
-        change_on_off.f[number] = 1
+        change_on_off[number].toggle = "on"
       }
-      localStorage.setItem("on_off", JSON.stringify(change_on_off))
+      localStorage.setItem("server_6", JSON.stringify(change_on_off))
     }
     if(name.id == "카단"){
-      if(change_on_off.g[number] == 1){
-        change_on_off.g[number] = 0
+      var change_on_off = g;
+      if(change_on_off[number].toggle == "on"){
+        change_on_off[number].toggle = "off"
       }else{
-        change_on_off.g[number] = 1
+        change_on_off[number].toggle = "on"
       }
-      localStorage.setItem("on_off", JSON.stringify(change_on_off))
+      localStorage.setItem("server_7", JSON.stringify(change_on_off))
     }
     if(name.id == "니나브"){
-      if(change_on_off.h[number] == 1){
-        change_on_off.h[number] = 0
+      var change_on_off = h;
+      if(change_on_off[number].toggle == "on"){
+        change_on_off[number].toggle = "off"
       }else{
-        change_on_off.h[number] = 1
+        change_on_off[number].toggle = "on"
       }
-      localStorage.setItem("on_off", JSON.stringify(change_on_off))
+      localStorage.setItem("server_8", JSON.stringify(change_on_off))
     }
+  }
+
+  function Cube(){
+    var change_todo = todo;
+    if(todo.t1 == "on"){
+      change_todo.t1 = "off"
+    }else{
+      change_todo.t1 = "on"
+    }
+    localStorage.setItem("todo", JSON.stringify(change_todo))
+  }
+  function BossRush(){
+    var change_todo = todo;
+    if(todo.t2 == "on"){
+      change_todo.t2 = "off"
+    }else{
+      change_todo.t2 = "on"
+    }
+    localStorage.setItem("todo", JSON.stringify(change_todo))
   }
 
   function ChaosDungeon(){

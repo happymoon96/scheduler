@@ -40,7 +40,9 @@
 </body>
 <script>
     function move(){
-        if(localStorage.getItem('char_info') !== null && localStorage.getItem('todo') !== null && localStorage.getItem('on_off') !== null && localStorage.getItem('server') !== null){
+        var server = (localStorage.getItem('server_1') !== null && localStorage.getItem('server_2') !== null && localStorage.getItem('server_3') !== null && localStorage.getItem('server_4') !== null && localStorage.getItem('server_5') !== null && localStorage.getItem('server_6') !== null && localStorage.getItem('server_7') !== null && localStorage.getItem('server_8') !== null )
+        console.log(server)
+        if(server && localStorage.getItem('todo') !== null && localStorage.getItem('server') !== null){
             location.href = "/schedule/main";
         }else{
             location.href = "/schedule";

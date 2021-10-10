@@ -1,216 +1,359 @@
 <script>
-    function Likeability_checked(num){
-        document.getElementById("Likeability").innerHTML = '';
-        document.getElementById("Likeability").innerHTML += '<th class="schedule_rows"><div><img alt="호감도" src="/images/icon/likeability.png"/></div><div id="list_Likeability" class="schedule_list">호감도</div></th>';
+   function ChallengeAbyssDungeon_checked(num){
+        document.getElementById("ChallengeAbyssDungeon").innerHTML = '';
+        document.getElementById("ChallengeAbyssDungeon").innerHTML += '<th class="schedule_rows"><div><img alt="도전 어비스 던전" src="/images/icon/abyss_dungeon.png"/></div><div id="list_ChallengeAbyssDungeon" class="schedule_list">도전 어비스 던전</div></th>';
         if(select_server == "루페온"){
-            var change_cookie = json_daily.a_d3;
-            for(var i = 0; i < server_length(select_server); i++){
-                if(num == i){
-                    change_cookie[i] = 1;
-                }else{
-                    change_cookie[i] = 2;
+            var change_cookie = a;
+            if(change_cookie[num].w13 == 0){
+                change_cookie[num].w13 = 1;
+                for(var i = 0; i < server_length(select_server); i++){
+                    if(num == i){
+                        continue;
+                    }
+                    change_cookie[i].w13 = 2;
+                }
+            }else if(change_cookie[num].w13 == 1){
+                change_cookie[num].w13 = 1;
+                for(var i = 0; i < server_length(select_server); i++){
+                    change_cookie[i].w13 = 0;
                 }
             }
-            json_daily.a_d3 = change_cookie;
-            localStorage.setItem('todo_daily_list', JSON.stringify(json_daily));
-
+            json_week = change_cookie;
+            localStorage.setItem('server_1', JSON.stringify(json_week));
 
             for(var i = 0; i < server_length(select_server); i++){
-                if(char_on_off(select_server)[i] == 1){
-                    if(a[i].레벨 >= 0){
+                if(select(select_server)[i].toggle == "on"){
+                    if(a[i].level >= 960){
                         if(num == i){
-                            document.getElementById("Likeability").innerHTML += '<td><input checked type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
+                            if(a[i].w13 == 1){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input checked type="checkbox" id='+a[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+a[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else if(a[i].w13 == 2){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input disabled type="checkbox" id='+a[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+a[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else{
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input type="checkbox" id='+a[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+a[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }
                         }else{
-                            document.getElementById("Likeability").innerHTML += '<td><input disabled type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
-                        }
+                            if(a[i].w13 == 1){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input checked type="checkbox" id='+a[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+a[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else if(a[i].w13 == 2){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input disabled type="checkbox" id='+a[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+a[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else{
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input type="checkbox" id='+a[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+a[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }}
                     }else{
-                        document.getElementById("Likeability").innerHTML += '<td><id='+user_data[i].캐릭터명+'_Likeability"></td>';
+                        document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><id='+a[i].name+'_ChallengeAbyssDungeon"></td>';
                     }
                 }
             }
         }
         if(select_server == "실리안"){
-            var change_cookie = json_daily.b_d3;
-            for(var i = 0; i < server_length(select_server); i++){
-                if(num == i){
-                    change_cookie[i] = 1;
-                }else{
-                    change_cookie[i] = 2;
+            var change_cookie = b;
+            if(change_cookie[num].w13 == 0){
+                change_cookie[num].w13 = 1;
+                for(var i = 0; i < server_length(select_server); i++){
+                    if(num == i){
+                        continue;
+                    }
+                    change_cookie[i].w13 = 2;
+                }
+            }else if(change_cookie[num].w13 == 1){
+                change_cookie[num].w13 = 1;
+                for(var i = 0; i < server_length(select_server); i++){
+                    change_cookie[i].w13 = 0;
                 }
             }
-            json_daily.b_d3 = change_cookie;
-            localStorage.setItem('todo_daily_list', JSON.stringify(json_daily));
+            json_week = change_cookie;
+            localStorage.setItem('server_2', JSON.stringify(json_week));
 
             for(var i = 0; i < server_length(select_server); i++){
-                if(char_on_off(select_server)[i] == 1){
-                    if(b[i].레벨 >= 0){
+                if(select(select_server)[i].toggle == "on"){
+                    if(b[i].level >= 960){
                         if(num == i){
-                            document.getElementById("Likeability").innerHTML += '<td><input checked type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
+                            if(b[i].w13 == 1){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input checked type="checkbox" id='+b[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+b[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else if(b[i].w13 == 2){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input disabled type="checkbox" id='+b[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+b[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else{
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input type="checkbox" id='+b[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+b[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }
                         }else{
-                            document.getElementById("Likeability").innerHTML += '<td><input disabled type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
-                        }
+                            if(b[i].w13 == 1){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input checked type="checkbox" id='+b[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+b[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else if(b[i].w13 == 2){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input disabled type="checkbox" id='+b[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+b[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else{
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input type="checkbox" id='+b[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+b[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }}
                     }else{
-                        document.getElementById("Likeability").innerHTML += '<td><id='+user_data[i].캐릭터명+'_Likeability"></td>';
+                        document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><id='+b[i].name+'_ChallengeAbyssDungeon"></td>';
                     }
                 }
             }
         }
         if(select_server == "아만"){
-            var change_cookie = json_daily.c_d3;
-            for(var i = 0; i < server_length(select_server); i++){
-                if(num == i){
-                    change_cookie[i] = 1;
-                }else{
-                    change_cookie[i] = 2;
+            var change_cookie = c;
+            if(change_cookie[num].w13 == 0){
+                change_cookie[num].w13 = 1;
+                for(var i = 0; i < server_length(select_server); i++){
+                    if(num == i){
+                        continue;
+                    }
+                    change_cookie[i].w13 = 2;
+                }
+            }else if(change_cookie[num].w13 == 1){
+                change_cookie[num].w13 = 1;
+                for(var i = 0; i < server_length(select_server); i++){
+                    change_cookie[i].w13 = 0;
                 }
             }
-            json_daily.c_d3 = change_cookie;
-            localStorage.setItem('todo_daily_list', JSON.stringify(json_daily));
+            json_week = change_cookie;
+            localStorage.setItem('server_3', JSON.stringify(json_week));
 
             for(var i = 0; i < server_length(select_server); i++){
-                if(char_on_off(select_server)[i] == 1){
-                    if(c[i].레벨 >= 0){
+                if(select(select_server)[i].toggle == "on"){
+                    if(c[i].level >= 960){
                         if(num == i){
-                            document.getElementById("Likeability").innerHTML += '<td><input checked type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
+                            if(c[i].w13 == 1){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input checked type="checkbox" id='+c[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+c[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else if(c[i].w13 == 2){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input disabled type="checkbox" id='+c[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+c[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else{
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input type="checkbox" id='+c[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+c[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }
                         }else{
-                            document.getElementById("Likeability").innerHTML += '<td><input disabled type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
-                        }
+                            if(c[i].w13 == 1){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input checked type="checkbox" id='+c[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+c[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else if(c[i].w13 == 2){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input disabled type="checkbox" id='+c[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+c[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else{
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input type="checkbox" id='+c[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+c[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }}
                     }else{
-                        document.getElementById("Likeability").innerHTML += '<td><id='+user_data[i].캐릭터명+'_Likeability"></td>';
+                        document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><id='+c[i].name+'_ChallengeAbyssDungeon"></td>';
                     }
                 }
             }
         }
         if(select_server == "카마인"){
-            var change_cookie = json_daily.d_d3;
-            for(var i = 0; i < server_length(select_server); i++){
-                if(num == i){
-                    change_cookie[i] = 1;
-                }else{
-                    change_cookie[i] = 2;
+            var change_cookie = d;
+            if(change_cookie[num].w13 == 0){
+                change_cookie[num].w13 = 1;
+                for(var i = 0; i < server_length(select_server); i++){
+                    if(num == i){
+                        continue;
+                    }
+                    change_cookie[i].w13 = 2;
+                }
+            }else if(change_cookie[num].w13 == 1){
+                change_cookie[num].w13 = 1;
+                for(var i = 0; i < server_length(select_server); i++){
+                    change_cookie[i].w13 = 0;
                 }
             }
-            json_daily.d_d3 = change_cookie;
-            localStorage.setItem('todo_daily_list', JSON.stringify(json_daily));
+            json_week = change_cookie;
+            localStorage.setItem('server_4', JSON.stringify(json_week));
 
             for(var i = 0; i < server_length(select_server); i++){
-                if(char_on_off(select_server)[i] == 1){
-                    if(d[i].레벨 >= 0){
+                if(select(select_server)[i].toggle == "on"){
+                    if(d[i].level >= 960){
                         if(num == i){
-                            document.getElementById("Likeability").innerHTML += '<td><input checked type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
+                            if(d[i].w13 == 1){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input checked type="checkbox" id='+d[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+d[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else if(d[i].w13 == 2){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input disabled type="checkbox" id='+d[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+d[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else{
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input type="checkbox" id='+d[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+d[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }
                         }else{
-                            document.getElementById("Likeability").innerHTML += '<td><input disabled type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
-                        }
+                            if(d[i].w13 == 1){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input checked type="checkbox" id='+d[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+d[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else if(d[i].w13 == 2){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input disabled type="checkbox" id='+d[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+d[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else{
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input type="checkbox" id='+d[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+d[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }}
                     }else{
-                        document.getElementById("Likeability").innerHTML += '<td><id='+user_data[i].캐릭터명+'_Likeability"></td>';
+                        document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><id='+d[i].name+'_ChallengeAbyssDungeon"></td>';
                     }
                 }
             }
         }
         if(select_server == "카제로스"){
-            var change_cookie = json_daily.e_d3;
-            for(var i = 0; i < server_length(select_server); i++){
-                if(num == i){
-                    change_cookie[i] = 1;
-                }else{
-                    change_cookie[i] = 2;
+            var change_cookie = e;
+            if(change_cookie[num].w13 == 0){
+                change_cookie[num].w13 = 1;
+                for(var i = 0; i < server_length(select_server); i++){
+                    if(num == i){
+                        continue;
+                    }
+                    change_cookie[i].w13 = 2;
+                }
+            }else if(change_cookie[num].w13 == 1){
+                change_cookie[num].w13 = 1;
+                for(var i = 0; i < server_length(select_server); i++){
+                    change_cookie[i].w13 = 0;
                 }
             }
-            json_daily.e_d3 = change_cookie;
-            localStorage.setItem('todo_daily_list', JSON.stringify(json_daily));
+            json_week = change_cookie;
+            localStorage.setItem('server_5', JSON.stringify(json_week));
 
             for(var i = 0; i < server_length(select_server); i++){
-                if(char_on_off(select_server)[i] == 1){
-                    if(e[i].레벨 >= 0){
+                if(select(select_server)[i].toggle == "on"){
+                    if(e[i].level >= 960){
                         if(num == i){
-                            document.getElementById("Likeability").innerHTML += '<td><input checked type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
+                            if(e[i].w13 == 1){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input checked type="checkbox" id='+e[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+e[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else if(e[i].w13 == 2){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input disabled type="checkbox" id='+e[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+e[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else{
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input type="checkbox" id='+e[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+e[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }
                         }else{
-                            document.getElementById("Likeability").innerHTML += '<td><input disabled type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
-                        }
+                            if(e[i].w13 == 1){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input checked type="checkbox" id='+e[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+e[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else if(e[i].w13 == 2){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input disabled type="checkbox" id='+e[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+e[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else{
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input type="checkbox" id='+e[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+e[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }}
                     }else{
-                        document.getElementById("Likeability").innerHTML += '<td><id='+user_data[i].캐릭터명+'_Likeability"></td>';
+                        document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><id='+e[i].name+'_ChallengeAbyssDungeon"></td>';
                     }
                 }
             }
         }
         if(select_server == "아브렐슈드"){
-            var change_cookie = json_daily.f_d3;
-            for(var i = 0; i < server_length(select_server); i++){
-                if(num == i){
-                    change_cookie[i] = 1;
-                }else{
-                    change_cookie[i] = 2;
+            var change_cookie = f;
+            if(change_cookie[num].w13 == 0){
+                change_cookie[num].w13 = 1;
+                for(var i = 0; i < server_length(select_server); i++){
+                    if(num == i){
+                        continue;
+                    }
+                    change_cookie[i].w13 = 2;
+                }
+            }else if(change_cookie[num].w13 == 1){
+                change_cookie[num].w13 = 1;
+                for(var i = 0; i < server_length(select_server); i++){
+                    change_cookie[i].w13 = 0;
                 }
             }
-            json_daily.f_d3 = change_cookie;
-            localStorage.setItem('todo_daily_list', JSON.stringify(json_daily));
+            json_week = change_cookie;
+            localStorage.setItem('server_6', JSON.stringify(json_week));
 
             for(var i = 0; i < server_length(select_server); i++){
-                if(char_on_off(select_server)[i] == 1){
-                    if(f[i].레벨 >= 0){
+                if(select(select_server)[i].toggle == "on"){
+                    if(f[i].level >= 960){
                         if(num == i){
-                            document.getElementById("Likeability").innerHTML += '<td><input checked type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
+                            if(f[i].w13 == 1){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input checked type="checkbox" id='+f[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+f[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else if(f[i].w13 == 2){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input disabled type="checkbox" id='+f[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+f[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else{
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input type="checkbox" id='+f[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+f[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }
                         }else{
-                            document.getElementById("Likeability").innerHTML += '<td><input disabled type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
-                        }
+                            if(f[i].w13 == 1){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input checked type="checkbox" id='+f[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+f[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else if(f[i].w13 == 2){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input disabled type="checkbox" id='+f[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+f[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else{
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input type="checkbox" id='+f[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+f[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }}
                     }else{
-                        document.getElementById("Likeability").innerHTML += '<td><id='+user_data[i].캐릭터명+'_Likeability"></td>';
+                        document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><id='+f[i].name+'_ChallengeAbyssDungeon"></td>';
                     }
                 }
             }
         }
         if(select_server == "카단"){
-            var change_cookie = json_daily.g_d3;
-            for(var i = 0; i < server_length(select_server); i++){
-                if(num == i){
-                    change_cookie[i] = 1;
-                }else{
-                    change_cookie[i] = 2;
+            var change_cookie = g;
+            if(change_cookie[num].w13 == 0){
+                change_cookie[num].w13 = 1;
+                for(var i = 0; i < server_length(select_server); i++){
+                    if(num == i){
+                        continue;
+                    }
+                    change_cookie[i].w13 = 2;
+                }
+            }else if(change_cookie[num].w13 == 1){
+                change_cookie[num].w13 = 1;
+                for(var i = 0; i < server_length(select_server); i++){
+                    change_cookie[i].w13 = 0;
                 }
             }
-            json_daily.g_d3 = change_cookie;
-            localStorage.setItem('todo_daily_list', JSON.stringify(json_daily));
+            json_week = change_cookie;
+            localStorage.setItem('server_7', JSON.stringify(json_week));
 
             for(var i = 0; i < server_length(select_server); i++){
-                if(char_on_off(select_server)[i] == 1){
-                    if(g[i].레벨 >= 0){
+                if(select(select_server)[i].toggle == "on"){
+                    if(g[i].level >= 960){
                         if(num == i){
-                            document.getElementById("Likeability").innerHTML += '<td><input checked type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
+                            if(g[i].w13 == 1){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input checked type="checkbox" id='+g[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+g[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else if(g[i].w13 == 2){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input disabled type="checkbox" id='+g[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+g[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else{
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input type="checkbox" id='+g[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+g[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }
                         }else{
-                            document.getElementById("Likeability").innerHTML += '<td><input disabled type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
-                        }
+                            if(g[i].w13 == 1){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input checked type="checkbox" id='+g[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+g[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else if(g[i].w13 == 2){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input disabled type="checkbox" id='+g[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+g[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else{
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input type="checkbox" id='+g[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+g[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }}
                     }else{
-                        document.getElementById("Likeability").innerHTML += '<td><id='+user_data[i].캐릭터명+'_Likeability"></td>';
+                        document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><id='+g[i].name+'_ChallengeAbyssDungeon"></td>';
                     }
                 }
             }
         }
         if(select_server == "니나브"){
-            var change_cookie = json_daily.h_d3;
-            for(var i = 0; i < server_length(select_server); i++){
-                if(num == i){
-                    change_cookie[i] = 1;
-                }else{
-                    change_cookie[i] = 2;
+            var change_cookie = h;
+            if(change_cookie[num].w13 == 0){
+                change_cookie[num].w13 = 1;
+                for(var i = 0; i < server_length(select_server); i++){
+                    if(num == i){
+                        continue;
+                    }
+                    change_cookie[i].w13 = 2;
+                }
+            }else if(change_cookie[num].w13 == 1){
+                change_cookie[num].w13 = 1;
+                for(var i = 0; i < server_length(select_server); i++){
+                    change_cookie[i].w13 = 0;
                 }
             }
-            json_daily.h_d3 = change_cookie;
-            localStorage.setItem('todo_daily_list', JSON.stringify(json_daily));
+            json_week = change_cookie;
+            localStorage.setItem('server_8', JSON.stringify(json_week));
 
             for(var i = 0; i < server_length(select_server); i++){
-                if(char_on_off(select_server)[i] == 1){
-                    if(h[i].레벨 >= 0){
+                if(select(select_server)[i].toggle == "on"){
+                    if(h[i].level >= 960){
                         if(num == i){
-                            document.getElementById("Likeability").innerHTML += '<td><input checked type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
+                            if(h[i].w13 == 1){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input checked type="checkbox" id='+h[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+h[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else if(h[i].w13 == 2){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input disabled type="checkbox" id='+h[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+h[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else{
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input type="checkbox" id='+h[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+h[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }
                         }else{
-                            document.getElementById("Likeability").innerHTML += '<td><input disabled type="checkbox" id='+user_data[i].캐릭터명+'_Likeability><label onClick="Likeability_checked('+i+')" id="daily" for='+user_data[i].캐릭터명+'_Likeability"></label></td>';
-                        }
+                            if(h[i].w13 == 1){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input checked type="checkbox" id='+h[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+h[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else if(h[i].w13 == 2){
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input disabled type="checkbox" id='+h[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+h[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }else{
+                                document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><input type="checkbox" id='+h[i].name+'_ChallengeAbyssDungeon><label onClick="ChallengeAbyssDungeon_checked('+i+')" id="week" for='+h[i].name+'_ChallengeAbyssDungeon"></label></td>';
+                            }}
                     }else{
-                        document.getElementById("Likeability").innerHTML += '<td><id='+user_data[i].캐릭터명+'_Likeability"></td>';
+                        document.getElementById("ChallengeAbyssDungeon").innerHTML += '<td><id='+h[i].name+'_ChallengeAbyssDungeon"></td>';
                     }
                 }
             }
         }
     }
-    
+      
 </script>
