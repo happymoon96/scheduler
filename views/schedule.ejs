@@ -595,7 +595,7 @@
                                             }else{
                                                 document.getElementById("AdventureIsland_daily").innerHTML += '<td><id='+select(value)[i].name+'AdventureIsland_daily"></td>';
                                             }
-                                            if(6.06 <= now_value || now_value <= 1.06){
+                                            if(6.06 <= now_value || now_value < 1.06){
                                                 if(select(value)[i].level >= 250){ //주말
                                                     if(select(value)[i].d8[1] == 0){
                                                         document.getElementById("AdventureIsland_weeks").innerHTML += '<td><input type="checkbox" id='+select(value)[i].name+'_AdventureIsland_weeks"><label onClick="AdventureIsland_weeks_checked('+i+')" id="daily" for='+select(value)[i].name+'_AdventureIsland_weeks"></label></td>';
