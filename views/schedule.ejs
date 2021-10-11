@@ -8127,12 +8127,12 @@
     var change_date = new Date();
     var change_week = new Date();
     if(change_date.getHours < 6){
-        change_date.setDate(change_date.getDate()+1);
+        change_date.setDate(change_date.getDate());
         change_date.setHours(6);
         change_date.setMinutes(0);
         change_date.setSeconds(0);
     }else{
-        change_date.setDate(change_date.getDate()+2);
+        change_date.setDate(change_date.getDate()+1);
         change_date.setHours(6);
         change_date.setMinutes(0);
         change_date.setSeconds(0);
@@ -8182,13 +8182,6 @@
         change_week.setSeconds(0);
     }
 
-    var now_yyyy = now.getFullYear();
-    var now_MM = now.getMonth();
-    var now_dd = now.getDate();
-    var now_HH = now.getHours();
-    var now_mm = now.getMinutes();
-    var now_ss = now.getSeconds();
-    var now_time = new Date(now_yyyy+"-"+now_MM+"-"+now_dd+" "+now_HH+":"+now_mm+":"+now_ss);
     for(var value of server){//daily, weeks 초기화
         for(var i = 0; i < server_length(value); i++){
             if(select(value)[i].date == 0){
@@ -8242,28 +8235,28 @@
                 var json_date_yyyy = select(value)[i].date.substring(0,4)
                 var json_date_MM = select(value)[i].date.substring(5,7)
                 var json_date_dd = parseInt(select(value)[i].date.substring(8,10))
-                var json_date_HH = parseInt(select(value)[i].date.substring(11,13))
+                var json_date_HH = parseInt(select(value)[i].date.substring(11,13))+9
                 var json_date_mm = select(value)[i].date.substring(14,16)
                 var json_date_ss = select(value)[i].date.substring(17,19)
 
-                // if(json_date_HH>=24){
-                //     json_date_HH -= 24;
-                //     json_date_dd += 1;
-                // }
+                if(json_date_HH>=24){
+                    json_date_HH -= 24;
+                    json_date_dd += 1;
+                }
 
                 json_date_time = new Date(json_date_yyyy+"-"+json_date_MM+"-"+json_date_dd+" "+json_date_HH+":"+json_date_mm+":"+json_date_ss);
                 console.log(json_date_time)
                 var json_week_yyyy = select(value)[i].week.substring(0,4)
                 var json_week_MM = select(value)[i].week.substring(5,7)
                 var json_week_dd = parseInt(select(value)[i].week.substring(8,10))
-                var json_week_HH = parseInt(select(value)[i].week.substring(11,13))
+                var json_week_HH = parseInt(select(value)[i].week.substring(11,13))+9
                 var json_week_mm = select(value)[i].week.substring(14,16)
                 var json_week_ss = select(value)[i].week.substring(17,19)
 
-                // if(json_week_HH>=24){
-                //     json_week_HH -= 24;
-                //     json_week_dd += 1;
-                // }
+                if(json_week_HH>=24){
+                    json_week_HH -= 24;
+                    json_week_dd += 1;
+                }
 
                 json_week_time = new Date(json_week_yyyy+"-"+json_week_MM+"-"+json_week_dd+" "+json_week_HH+":"+json_week_mm+":"+json_week_ss);
 
