@@ -8127,12 +8127,12 @@
     var change_date = new Date();
     var change_week = new Date();
     if(change_date.getHours < 6){
-        change_date.setDate(change_date.getDate());
+        change_date.setDate(change_date.getDate()+1);
         change_date.setHours(6);
         change_date.setMinutes(0);
         change_date.setSeconds(0);
     }else{
-        change_date.setDate(change_date.getDate()+1);
+        change_date.setDate(change_date.getDate()+2);
         change_date.setHours(6);
         change_date.setMinutes(0);
         change_date.setSeconds(0);
@@ -8290,7 +8290,7 @@
                     select(value)[i].w19 = 0;
                     select(value)[i].w20 = 0;
                 }
-                if(json_date_time > now){
+                if(json_date_time < now){
                     select(value)[i].date = change_date;
                     select(value)[i].d1 = 0;
                     select(value)[i].d2 = 0;
