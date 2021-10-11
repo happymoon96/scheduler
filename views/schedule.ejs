@@ -8252,7 +8252,7 @@
                 }
 
                 json_date_time = new Date(json_date_yyyy+"-"+json_date_MM+"-"+json_date_dd+" "+json_date_HH+":"+json_date_mm+":"+json_date_ss);
-
+                console.log(json_date_time)
                 var json_week_yyyy = select(value)[i].week.substring(0,4)
                 var json_week_MM = select(value)[i].week.substring(5,7)
                 var json_week_dd = parseInt(select(value)[i].week.substring(8,10))
@@ -8267,6 +8267,7 @@
 
                 json_week_time = new Date(json_week_yyyy+"-"+json_week_MM+"-"+json_week_dd+" "+json_week_HH+":"+json_week_mm+":"+json_week_ss);
 
+                console.log(json_week_time)
                 if(json_week_time < now){
                     select(value)[i].week = change_week;
                     select(value)[i].w1 = 0;
