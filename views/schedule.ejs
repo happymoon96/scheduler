@@ -654,22 +654,22 @@
                             document.getElementById("WeeksEpona").innerHTML += '<th class="schedule_rows"><div><img alt="주간 에포나" src="/images/icon/weeks_epona.png"/></div><div id="list_WeeksEpona" class="schedule_list">주간 에포나</div></th>';
                         }
                         if(todo.w5 == "on"){
-                            document.getElementById("Valtan").innerHTML += '<th onClick="location.href='+"'/raid/valtan'"+'"'+'style="cursor:pointer;" class="schedule_rows"><div><img alt="발탄" src="/images/icon/corps_raid.png"/></div><div id="list_Valtan" class="schedule_list">발탄</div></th>';
+                            document.getElementById("Valtan").innerHTML += '<th class="schedule_rows"><div><img alt="발탄" src="/images/icon/corps_raid.png"/></div><div id="list_Valtan" class="schedule_list">발탄</div></th>';
                         }
                         if(todo.w6 == "on"){
-                            document.getElementById("Biackiss").innerHTML += '<th onClick="location.href='+"'/raid/biackiss'"+'"'+'style="cursor:pointer;" class="schedule_rows"><div><img alt="비아키스" src="/images/icon/corps_raid.png"/></div><div id="list_Biackiss" class="schedule_list">비아키스</div></th>';
+                            document.getElementById("Biackiss").innerHTML += '<th class="schedule_rows"><div><img alt="비아키스" src="/images/icon/corps_raid.png"/></div><div id="list_Biackiss" class="schedule_list">비아키스</div></th>';
                         }
                         if(todo.w7 == "on"){
-                            document.getElementById("KoukuSaton").innerHTML += '<th onClick="location.href='+"'/raid/koukusaton'"+'"'+'style="cursor:pointer;" class="schedule_rows"><div><img alt="쿠크세이튼" src="/images/icon/corps_raid.png"/></div><div id="list_KoukuSaton" class="schedule_list">쿠크세이튼</div></th>';
+                            document.getElementById("KoukuSaton").innerHTML += '<th class="schedule_rows"><div><img alt="쿠크세이튼" src="/images/icon/corps_raid.png"/></div><div id="list_KoukuSaton" class="schedule_list">쿠크세이튼</div></th>';
                         }
                         if(todo.w8 == "on"){
-                            document.getElementById("Abrelshud").innerHTML += '<th onClick="location.href='+"'/raid/abrelshud'"+'"'+'style="cursor:pointer;" class="schedule_rows"><div><img alt="아브렐슈드" src="/images/icon/corps_raid.png"/></div><div id="list_Abrelshud" class="schedule_list">아브렐슈드</div></th>';
+                            document.getElementById("Abrelshud").innerHTML += '<th class="schedule_rows"><div><img alt="아브렐슈드" src="/images/icon/corps_raid.png"/></div><div id="list_Abrelshud" class="schedule_list">아브렐슈드</div></th>';
                         }
                         if(todo.w9 == "on"){
-                            document.getElementById("KoukuSaton_Rehearsal").innerHTML += '<th onClick="location.href='+"'/raid/koukusaton'"+'"'+'style="cursor:pointer;" class="schedule_rows"><div><img alt="쿠크세이튼 리허설" src="/images/icon/koukuSaton_rehearsal.png"/></div><div id="list_KoukuSaton_Rehearsal" class="schedule_list">쿠크세이튼 리허설</div></th>';
+                            document.getElementById("KoukuSaton_Rehearsal").innerHTML += '<th class="schedule_rows"><div><img alt="쿠크세이튼 리허설" src="/images/icon/koukuSaton_rehearsal.png"/></div><div id="list_KoukuSaton_Rehearsal" class="schedule_list">쿠크세이튼 리허설</div></th>';
                         }
                         if(todo.w10 == "on"){
-                            document.getElementById("Abrelshud_Dejavu").innerHTML += '<th onClick="location.href='+"'/raid/abrelshud'"+'"'+'style="cursor:pointer;" class="schedule_rows"><div><img alt="아브렐슈드 데자뷰" src="/images/icon/abrelshud_dejavu.png"/></div><div id="list_Abrelshud_Dejavu" class="schedule_list">아브렐슈드 데자뷰</div></th>';
+                            document.getElementById("Abrelshud_Dejavu").innerHTML += '<th class="schedule_rows"><div><img alt="아브렐슈드 데자뷰" src="/images/icon/abrelshud_dejavu.png"/></div><div id="list_Abrelshud_Dejavu" class="schedule_list">아브렐슈드 데자뷰</div></th>';
                         }
                         if(todo.w11 == "on"){
                             document.getElementById("ChaosDiagonal").innerHTML += '<th class="schedule_rows"><div><img alt="혼돈의 사선" src="https://cdn-lostark.game.onstove.com/uploadfiles/notice/b472aa3df00f4e56be2f1f634f220900.png"/></div><div id="list_ChaosDiagonal" class="schedule_list">혼돈의 사선</div></th>';
@@ -732,45 +732,53 @@
                                         if(todo.w5 == "on"){
                                             if(select(value)[i].level >= 1415){
                                                 if(select(value)[i].w5 == 0){
-                                                    document.getElementById("Valtan").innerHTML += '<td><input type="checkbox" id='+select(value)[i].name+'_Valtan"><label onClick="Valtan_checked('+i+')" id="week" for='+select(value)[i].name+'_Valtan"></label></td>';
+                                                    document.getElementById("Valtan").innerHTML += '<td><input type="checkbox" id='+select(value)[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+select(value)[i].name+'_Valtan></label></td>';
                                                 }else if(select(value)[i].w5 == 1){
-                                                    document.getElementById("Valtan").innerHTML += '<td><input checked type="checkbox" id='+select(value)[i].name+'_Valtan"><label onClick="Valtan_checked('+i+')" id="week" for='+select(value)[i].name+'_Valtan"></label></td>';
+                                                    document.getElementById("Valtan").innerHTML += '<td><input checked type="checkbox" id='+select(value)[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+select(value)[i].name+'_Valtan></label></td>';
+                                                }else{
+                                                    document.getElementById("Valtan").innerHTML += '<td><input disabled type="checkbox" id='+select(value)[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+select(value)[i].name+'_Valtan></label></td>';
                                                 }
                                             }else{
-                                                document.getElementById("Valtan").innerHTML += '<td><id='+select(value)[i].name+'_Valtan"></td>';
+                                                document.getElementById("Valtan").innerHTML += '<td><id='+select(value)[i].name+'_Valtan></td>';
                                             }
                                         }
                                         if(todo.w6 == "on"){
                                             if(select(value)[i].level >= 1430){
                                                 if(select(value)[i].w6 == 0){
-                                                    document.getElementById("Biackiss").innerHTML += '<td><input type="checkbox" id='+select(value)[i].name+'_Biackiss"><label onClick="Biackiss_checked('+i+')" id="week" for='+select(value)[i].name+'_Biackiss"></label></td>';
+                                                    document.getElementById("Biackiss").innerHTML += '<td><input type="checkbox" id='+select(value)[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+select(value)[i].name+'_Biackiss></label></td>';
+                                                }else if(select(value)[i].w6 == 1){
+                                                    document.getElementById("Biackiss").innerHTML += '<td><input checked type="checkbox" id='+select(value)[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+select(value)[i].name+'_Biackiss></label></td>';
                                                 }else{
-                                                    document.getElementById("Biackiss").innerHTML += '<td><input checked type="checkbox" id='+select(value)[i].name+'_Biackiss"><label onClick="Biackiss_checked('+i+')" id="week" for='+select(value)[i].name+'_Biackiss"></label></td>';
+                                                    document.getElementById("Biackiss").innerHTML += '<td><input disabled type="checkbox" id='+select(value)[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+select(value)[i].name+'_Biackiss></label></td>';
                                                 }
                                             }else{
-                                                document.getElementById("Biackiss").innerHTML += '<td><id='+select(value)[i].name+'_Biackiss"></td>';
+                                                document.getElementById("Biackiss").innerHTML += '<td><id='+select(value)[i].name+'_Biackiss></td>';
                                             }
                                         }
                                         if(todo.w7 == "on"){
                                             if(select(value)[i].level >= 1475){
                                                 if(select(value)[i].w7 == 0){
-                                                    document.getElementById("KoukuSaton").innerHTML += '<td><input type="checkbox" id='+select(value)[i].name+'_KoukuSaton"><label onClick="KoukuSaton_checked('+i+')" id="week" for='+select(value)[i].name+'_KoukuSaton"></label></td>';
+                                                    document.getElementById("KoukuSaton").innerHTML += '<td><input type="checkbox" id='+select(value)[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+select(value)[i].name+'_KoukuSaton></label></td>';
+                                                }else if(select(value)[i].w7 == 1){
+                                                    document.getElementById("KoukuSaton").innerHTML += '<td><input checked type="checkbox" id='+select(value)[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+select(value)[i].name+'_KoukuSaton></label></td>';
                                                 }else{
-                                                    document.getElementById("KoukuSaton").innerHTML += '<td><input checked type="checkbox" id='+select(value)[i].name+'_KoukuSaton"><label onClick="KoukuSaton_checked('+i+')" id="week" for='+select(value)[i].name+'_KoukuSaton"></label></td>';
+                                                    document.getElementById("KoukuSaton").innerHTML += '<td><input disabled type="checkbox" id='+select(value)[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+select(value)[i].name+'_KoukuSaton></label></td>';
                                                 }
                                             }else{
-                                                document.getElementById("KoukuSaton").innerHTML += '<td><id='+select(value)[i].name+'_KoukuSaton"></td>';
+                                                document.getElementById("KoukuSaton").innerHTML += '<td><id='+select(value)[i].name+'_KoukuSaton></td>';
                                             }
                                         }
                                         if(todo.w8 == "on"){
                                             if(select(value)[i].level >= 1490){
                                                 if(select(value)[i].w8 == 0){
-                                                    document.getElementById("Abrelshud").innerHTML += '<td><input type="checkbox" id='+select(value)[i].name+'_Abrelshud"><label onClick="Abrelshud_checked('+i+')" id="week" for='+select(value)[i].name+'_Abrelshud"></label></td>';
+                                                    document.getElementById("Abrelshud").innerHTML += '<td><input type="checkbox" id='+select(value)[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+select(value)[i].name+'_Abrelshud></label></td>';
+                                                }else if(select(value)[i].w8 == 1){
+                                                    document.getElementById("Abrelshud").innerHTML += '<td><input checked type="checkbox" id='+select(value)[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+select(value)[i].name+'_Abrelshud></label></td>';
                                                 }else{
-                                                    document.getElementById("Abrelshud").innerHTML += '<td><input checked type="checkbox" id='+select(value)[i].name+'_Abrelshud"><label onClick="Abrelshud_checked('+i+')" id="week" for='+select(value)[i].name+'_Abrelshud"></label></td>';
+                                                    document.getElementById("Abrelshud").innerHTML += '<td><input disabled type="checkbox" id='+select(value)[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+select(value)[i].name+'_Abrelshud></label></td>';
                                                 }
                                             }else{
-                                                document.getElementById("Abrelshud").innerHTML += '<td><id='+select(value)[i].name+'_Abrelshud"></td>';
+                                                document.getElementById("Abrelshud").innerHTML += '<td><id='+select(value)[i].name+'_Abrelshud></td>';
                                             }
                                         }
                                         if(todo.w9 == "on"){
@@ -5219,15 +5227,16 @@
     
     function Valtan_checked(num){
         document.getElementById("Valtan").innerHTML = '';
-        document.getElementById("Valtan").innerHTML += '<th onClick="location.href='+"'/raid/valtan'"+'"'+'style="cursor:pointer;" class="schedule_rows"><div><img alt="발탄" src="/images/icon/corps_raid.png"/></div><div id="list_Valtan" class="schedule_list">발탄</div></th>';
+        document.getElementById("Valtan").innerHTML += '<th  class="schedule_rows"><div><img alt="발탄" src="/images/icon/corps_raid.png"/></div><div id="list_Valtan" class="schedule_list">발탄</div></th>';
         if(select_server == "루페온"){
             var change_cookie = a;
+            
             if(change_cookie[num].w5 == 0){
                 change_cookie[num].w5 = 1;
-            }else{
+            }else if(change_cookie[num].w5 == 1){
                 change_cookie[num].w5 = 0;
             }
-            
+
             json_week = change_cookie;
             localStorage.setItem('server_1', JSON.stringify(json_week));
 
@@ -5239,19 +5248,61 @@
                                 document.getElementById("Valtan").innerHTML += '<td><input checked type="checkbox" id='+a[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+a[i].name+'_Valtan"></label></td>';
                             }else if(a[i].w5 == 0){
                                 document.getElementById("Valtan").innerHTML += '<td><input type="checkbox" id='+a[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+a[i].name+'_Valtan"></label></td>';
+                            }else{
+                                document.getElementById("Valtan").innerHTML += '<td><input disabled type="checkbox" id='+a[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+a[i].name+'_Valtan></label></td>';
                             }
                         }else{
                             if(a[i].w5 == 1){
                                 document.getElementById("Valtan").innerHTML += '<td><input checked type="checkbox" id='+a[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+a[i].name+'_Valtan"></label></td>';
-                            }else{
+                            }else if(a[i].w5 == 0){
                                 document.getElementById("Valtan").innerHTML += '<td><input type="checkbox" id='+a[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+a[i].name+'_Valtan"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Valtan").innerHTML += '<td><input disabled type="checkbox" id='+a[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+a[i].name+'_Valtan></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("Valtan").innerHTML += '<td><id='+a[i].name+'_Valtan"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_1', JSON.stringify(change_cookie));
         }
         if(select_server == "실리안"){
             var change_cookie = b;
@@ -5270,21 +5321,63 @@
                         if(num == i){
                             if(b[i].w5 == 1){
                                 document.getElementById("Valtan").innerHTML += '<td><input checked type="checkbox" id='+b[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+b[i].name+'_Valtan"></label></td>';
-                            }else{
+                            }else if(b[i].w5 == 0){
                                 document.getElementById("Valtan").innerHTML += '<td><input type="checkbox" id='+b[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+b[i].name+'_Valtan"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Valtan").innerHTML += '<td><input disabled type="checkbox" id='+b[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+b[i].name+'_Valtan></label></td>';
+                            }
                         }else{
                             if(b[i].w5 == 1){
                                 document.getElementById("Valtan").innerHTML += '<td><input checked type="checkbox" id='+b[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+b[i].name+'_Valtan"></label></td>';
-                            }else{
+                            }else if(b[i].w5 == 0){
                                 document.getElementById("Valtan").innerHTML += '<td><input type="checkbox" id='+b[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+b[i].name+'_Valtan"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Valtan").innerHTML += '<td><input disabled type="checkbox" id='+b[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+b[i].name+'_Valtan></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("Valtan").innerHTML += '<td><id='+b[i].name+'_Valtan"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_2', JSON.stringify(change_cookie));
         }
         if(select_server == "아만"){
             var change_cookie = c;
@@ -5303,21 +5396,63 @@
                         if(num == i){
                             if(c[i].w5 == 1){
                                 document.getElementById("Valtan").innerHTML += '<td><input checked type="checkbox" id='+c[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+c[i].name+'_Valtan"></label></td>';
-                            }else{
+                            }else if(c[i].w5 == 0){
                                 document.getElementById("Valtan").innerHTML += '<td><input type="checkbox" id='+c[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+c[i].name+'_Valtan"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Valtan").innerHTML += '<td><input disabled type="checkbox" id='+c[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+c[i].name+'_Valtan></label></td>';
+                            }
                         }else{
                             if(c[i].w5 == 1){
                                 document.getElementById("Valtan").innerHTML += '<td><input checked type="checkbox" id='+c[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+c[i].name+'_Valtan"></label></td>';
-                            }else{
+                            }else if(c[i].w5 == 0){
                                 document.getElementById("Valtan").innerHTML += '<td><input type="checkbox" id='+c[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+c[i].name+'_Valtan"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Valtan").innerHTML += '<td><input disabled type="checkbox" id='+c[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+c[i].name+'_Valtan></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("Valtan").innerHTML += '<td><id='+c[i].name+'_Valtan"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_3', JSON.stringify(change_cookie));
         }
         if(select_server == "카마인"){
             var change_cookie = d;
@@ -5336,21 +5471,63 @@
                         if(num == i){
                             if(d[i].w5 == 1){
                                 document.getElementById("Valtan").innerHTML += '<td><input checked type="checkbox" id='+d[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+d[i].name+'_Valtan"></label></td>';
-                            }else{
+                            }else if(d[i].w5 == 0){
                                 document.getElementById("Valtan").innerHTML += '<td><input type="checkbox" id='+d[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+d[i].name+'_Valtan"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Valtan").innerHTML += '<td><input disabled type="checkbox" id='+d[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+d[i].name+'_Valtan></label></td>';
+                            }
                         }else{
                             if(d[i].w5 == 1){
                                 document.getElementById("Valtan").innerHTML += '<td><input checked type="checkbox" id='+d[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+d[i].name+'_Valtan"></label></td>';
-                            }else{
+                            }else if(d[i].w5 == 0){
                                 document.getElementById("Valtan").innerHTML += '<td><input type="checkbox" id='+d[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+d[i].name+'_Valtan"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Valtan").innerHTML += '<td><input disabled type="checkbox" id='+d[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+d[i].name+'_Valtan></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("Valtan").innerHTML += '<td><id='+d[i].name+'_Valtan"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_4', JSON.stringify(change_cookie));
         }
         if(select_server == "카제로스"){
             var change_cookie = e;
@@ -5369,21 +5546,63 @@
                         if(num == i){
                             if(e[i].w5 == 1){
                                 document.getElementById("Valtan").innerHTML += '<td><input checked type="checkbox" id='+e[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+e[i].name+'_Valtan"></label></td>';
-                            }else{
+                            }else if(e[i].w5 == 0){
                                 document.getElementById("Valtan").innerHTML += '<td><input type="checkbox" id='+e[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+e[i].name+'_Valtan"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Valtan").innerHTML += '<td><input disabled type="checkbox" id='+e[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+e[i].name+'_Valtan></label></td>';
+                            }
                         }else{
                             if(e[i].w5 == 1){
                                 document.getElementById("Valtan").innerHTML += '<td><input checked type="checkbox" id='+e[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+e[i].name+'_Valtan"></label></td>';
-                            }else{
+                            }else if(e[i].w5 == 0){
                                 document.getElementById("Valtan").innerHTML += '<td><input type="checkbox" id='+e[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+e[i].name+'_Valtan"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Valtan").innerHTML += '<td><input disabled type="checkbox" id='+e[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+e[i].name+'_Valtan></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("Valtan").innerHTML += '<td><id='+e[i].name+'_Valtan"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_5', JSON.stringify(change_cookie));
         }
         if(select_server == "아브렐슈드"){
             var change_cookie = f;
@@ -5402,21 +5621,63 @@
                         if(num == i){
                             if(f[i].w5 == 1){
                                 document.getElementById("Valtan").innerHTML += '<td><input checked type="checkbox" id='+f[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+f[i].name+'_Valtan"></label></td>';
-                            }else{
+                            }else if(f[i].w5 == 0){
                                 document.getElementById("Valtan").innerHTML += '<td><input type="checkbox" id='+f[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+f[i].name+'_Valtan"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Valtan").innerHTML += '<td><input disabled type="checkbox" id='+f[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+f[i].name+'_Valtan></label></td>';
+                            }
                         }else{
                             if(f[i].w5 == 1){
                                 document.getElementById("Valtan").innerHTML += '<td><input checked type="checkbox" id='+f[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+f[i].name+'_Valtan"></label></td>';
-                            }else{
+                            }else if(f[i].w5 == 0){
                                 document.getElementById("Valtan").innerHTML += '<td><input type="checkbox" id='+f[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+f[i].name+'_Valtan"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Valtan").innerHTML += '<td><input disabled type="checkbox" id='+f[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+f[i].name+'_Valtan></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("Valtan").innerHTML += '<td><id='+f[i].name+'_Valtan"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_6', JSON.stringify(change_cookie));
         }
         if(select_server == "카단"){
             var change_cookie = g;
@@ -5435,21 +5696,63 @@
                         if(num == i){
                             if(g[i].w5 == 1){
                                 document.getElementById("Valtan").innerHTML += '<td><input checked type="checkbox" id='+g[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+g[i].name+'_Valtan"></label></td>';
-                            }else{
+                            }else if(g[i].w5 == 0){
                                 document.getElementById("Valtan").innerHTML += '<td><input type="checkbox" id='+g[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+g[i].name+'_Valtan"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Valtan").innerHTML += '<td><input disabled type="checkbox" id='+g[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+g[i].name+'_Valtan></label></td>';
+                            }
                         }else{
                             if(g[i].w5 == 1){
                                 document.getElementById("Valtan").innerHTML += '<td><input checked type="checkbox" id='+g[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+g[i].name+'_Valtan"></label></td>';
-                            }else{
+                            }else if(g[i].w5 == 0){
                                 document.getElementById("Valtan").innerHTML += '<td><input type="checkbox" id='+g[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+g[i].name+'_Valtan"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Valtan").innerHTML += '<td><input disabled type="checkbox" id='+g[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+g[i].name+'_Valtan></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("Valtan").innerHTML += '<td><id='+g[i].name+'_Valtan"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_7', JSON.stringify(change_cookie));
         }
         if(select_server == "니나브"){
             var change_cookie = h;
@@ -5468,26 +5771,68 @@
                         if(num == i){
                             if(h[i].w5 == 1){
                                 document.getElementById("Valtan").innerHTML += '<td><input checked type="checkbox" id='+h[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+h[i].name+'_Valtan"></label></td>';
-                            }else{
+                            }else if(h[i].w5 == 0){
                                 document.getElementById("Valtan").innerHTML += '<td><input type="checkbox" id='+h[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+h[i].name+'_Valtan"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Valtan").innerHTML += '<td><input disabled type="checkbox" id='+h[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+h[i].name+'_Valtan></label></td>';
+                            }
                         }else{
                             if(h[i].w5 == 1){
                                 document.getElementById("Valtan").innerHTML += '<td><input checked type="checkbox" id='+h[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+h[i].name+'_Valtan"></label></td>';
-                            }else{
+                            }else if(h[i].w5 == 0){
                                 document.getElementById("Valtan").innerHTML += '<td><input type="checkbox" id='+h[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+h[i].name+'_Valtan"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Valtan").innerHTML += '<td><input disabled type="checkbox" id='+h[i].name+'_Valtan><label onClick="Valtan_checked('+i+')" id="week" for='+h[i].name+'_Valtan></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("Valtan").innerHTML += '<td><id='+h[i].name+'_Valtan"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_8', JSON.stringify(change_cookie));
         }
     }
     function Biackiss_checked(num){
         document.getElementById("Biackiss").innerHTML = '';
-        document.getElementById("Biackiss").innerHTML += '<th onClick="location.href='+"'/raid/biackiss'"+'"'+'style="cursor:pointer;" class="schedule_rows"><div><img alt="비아키스" src="/images/icon/corps_raid.png"/></div><div id="list_Biackiss" class="schedule_list">비아키스</div></th>';
+        document.getElementById("Biackiss").innerHTML += '<th class="schedule_rows"><div><img alt="비아키스" src="/images/icon/corps_raid.png"/></div><div id="list_Biackiss" class="schedule_list">비아키스</div></th>';
         if(select_server == "루페온"){
             var change_cookie = a;
             if(change_cookie[num].w6 == 0){
@@ -5505,21 +5850,63 @@
                         if(num == i){
                             if(a[i].w6 == 1){
                                 document.getElementById("Biackiss").innerHTML += '<td><input checked type="checkbox" id='+a[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+a[i].name+'_Biackiss"></label></td>';
-                            }else{
+                            }else if(a[i].w6 == 0){
                                 document.getElementById("Biackiss").innerHTML += '<td><input type="checkbox" id='+a[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+a[i].name+'_Biackiss"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Biackiss").innerHTML += '<td><input disabled type="checkbox" id='+a[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+a[i].name+'_Biackiss></label></td>';
+                            }
                         }else{
                             if(a[i].w6 == 1){
                                 document.getElementById("Biackiss").innerHTML += '<td><input checked type="checkbox" id='+a[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+a[i].name+'_Biackiss"></label></td>';
-                            }else{
+                            }else if(a[i].w6 == 0){
                                 document.getElementById("Biackiss").innerHTML += '<td><input type="checkbox" id='+a[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+a[i].name+'_Biackiss"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Biackiss").innerHTML += '<td><input disabled type="checkbox" id='+a[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+a[i].name+'_Biackiss></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("Biackiss").innerHTML += '<td><id='+a[i].name+'_Biackiss"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_1', JSON.stringify(change_cookie));
         }
         if(select_server == "실리안"){
             var change_cookie = b;
@@ -5538,21 +5925,63 @@
                         if(num == i){
                             if(b[i].w6 == 1){
                                 document.getElementById("Biackiss").innerHTML += '<td><input checked type="checkbox" id='+b[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+b[i].name+'_Biackiss"></label></td>';
-                            }else{
+                            }else if(b[i].w6 == 0){
                                 document.getElementById("Biackiss").innerHTML += '<td><input type="checkbox" id='+b[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+b[i].name+'_Biackiss"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Biackiss").innerHTML += '<td><input disabled type="checkbox" id='+b[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+b[i].name+'_Biackiss></label></td>';
+                            }
                         }else{
                             if(b[i].w6 == 1){
                                 document.getElementById("Biackiss").innerHTML += '<td><input checked type="checkbox" id='+b[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+b[i].name+'_Biackiss"></label></td>';
-                            }else{
+                            }else if(b[i].w6 == 0){
                                 document.getElementById("Biackiss").innerHTML += '<td><input type="checkbox" id='+b[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+b[i].name+'_Biackiss"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Biackiss").innerHTML += '<td><input disabled type="checkbox" id='+b[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+b[i].name+'_Biackiss></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("Biackiss").innerHTML += '<td><id='+b[i].name+'_Biackiss"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_2', JSON.stringify(change_cookie));
         }
         if(select_server == "아만"){
             var change_cookie = c;
@@ -5571,21 +6000,63 @@
                         if(num == i){
                             if(c[i].w6 == 1){
                                 document.getElementById("Biackiss").innerHTML += '<td><input checked type="checkbox" id='+c[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+c[i].name+'_Biackiss"></label></td>';
-                            }else{
+                            }else if(c[i].w6 == 0){
                                 document.getElementById("Biackiss").innerHTML += '<td><input type="checkbox" id='+c[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+c[i].name+'_Biackiss"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Biackiss").innerHTML += '<td><input disabled type="checkbox" id='+c[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+c[i].name+'_Biackiss></label></td>';
+                            }
                         }else{
                             if(c[i].w6 == 1){
                                 document.getElementById("Biackiss").innerHTML += '<td><input checked type="checkbox" id='+c[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+c[i].name+'_Biackiss"></label></td>';
-                            }else{
+                            }else if(c[i].w6 == 0){
                                 document.getElementById("Biackiss").innerHTML += '<td><input type="checkbox" id='+c[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+c[i].name+'_Biackiss"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Biackiss").innerHTML += '<td><input disabled type="checkbox" id='+c[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+c[i].name+'_Biackiss></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("Biackiss").innerHTML += '<td><id='+c[i].name+'_Biackiss"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_3', JSON.stringify(change_cookie));
         }
         if(select_server == "카마인"){
             var change_cookie = d;
@@ -5604,21 +6075,63 @@
                         if(num == i){
                             if(d[i].w6 == 1){
                                 document.getElementById("Biackiss").innerHTML += '<td><input checked type="checkbox" id='+d[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+d[i].name+'_Biackiss"></label></td>';
-                            }else{
+                            }else if(d[i].w6 == 0){
                                 document.getElementById("Biackiss").innerHTML += '<td><input type="checkbox" id='+d[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+d[i].name+'_Biackiss"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Biackiss").innerHTML += '<td><input disabled type="checkbox" id='+d[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+d[i].name+'_Biackiss></label></td>';
+                            }
                         }else{
                             if(d[i].w6 == 1){
                                 document.getElementById("Biackiss").innerHTML += '<td><input checked type="checkbox" id='+d[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+d[i].name+'_Biackiss"></label></td>';
-                            }else{
+                            }else if(d[i].w6 == 0){
                                 document.getElementById("Biackiss").innerHTML += '<td><input type="checkbox" id='+d[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+d[i].name+'_Biackiss"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Biackiss").innerHTML += '<td><input disabled type="checkbox" id='+d[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+d[i].name+'_Biackiss></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("Biackiss").innerHTML += '<td><id='+d[i].name+'_Biackiss"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_4', JSON.stringify(change_cookie));
         }
         if(select_server == "카제로스"){
             var change_cookie = e;
@@ -5637,21 +6150,63 @@
                         if(num == i){
                             if(e[i].w6 == 1){
                                 document.getElementById("Biackiss").innerHTML += '<td><input checked type="checkbox" id='+e[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+e[i].name+'_Biackiss"></label></td>';
-                            }else{
+                            }else if(e[i].w6 == 0){
                                 document.getElementById("Biackiss").innerHTML += '<td><input type="checkbox" id='+e[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+e[i].name+'_Biackiss"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Biackiss").innerHTML += '<td><input disabled type="checkbox" id='+e[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+e[i].name+'_Biackiss></label></td>';
+                            }
                         }else{
                             if(e[i].w6 == 1){
                                 document.getElementById("Biackiss").innerHTML += '<td><input checked type="checkbox" id='+e[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+e[i].name+'_Biackiss"></label></td>';
-                            }else{
+                            }else if(e[i].w6 == 0){
                                 document.getElementById("Biackiss").innerHTML += '<td><input type="checkbox" id='+e[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+e[i].name+'_Biackiss"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Biackiss").innerHTML += '<td><input disabled type="checkbox" id='+e[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+e[i].name+'_Biackiss></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("Biackiss").innerHTML += '<td><id='+e[i].name+'_Biackiss"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_5', JSON.stringify(change_cookie));
         }
         if(select_server == "아브렐슈드"){
             var change_cookie = f;
@@ -5670,21 +6225,63 @@
                         if(num == i){
                             if(f[i].w6 == 1){
                                 document.getElementById("Biackiss").innerHTML += '<td><input checked type="checkbox" id='+f[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+f[i].name+'_Biackiss"></label></td>';
-                            }else{
+                            }else if(f[i].w6 == 0){
                                 document.getElementById("Biackiss").innerHTML += '<td><input type="checkbox" id='+f[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+f[i].name+'_Biackiss"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Biackiss").innerHTML += '<td><input disabled type="checkbox" id='+f[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+f[i].name+'_Biackiss></label></td>';
+                            }
                         }else{
                             if(f[i].w6 == 1){
                                 document.getElementById("Biackiss").innerHTML += '<td><input checked type="checkbox" id='+f[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+f[i].name+'_Biackiss"></label></td>';
-                            }else{
+                            }else if(f[i].w6 == 0){
                                 document.getElementById("Biackiss").innerHTML += '<td><input type="checkbox" id='+f[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+f[i].name+'_Biackiss"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Biackiss").innerHTML += '<td><input disabled type="checkbox" id='+f[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+f[i].name+'_Biackiss></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("Biackiss").innerHTML += '<td><id='+f[i].name+'_Biackiss"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_6', JSON.stringify(change_cookie));
         }
         if(select_server == "카단"){
             var change_cookie = g;
@@ -5703,21 +6300,63 @@
                         if(num == i){
                             if(g[i].w6 == 1){
                                 document.getElementById("Biackiss").innerHTML += '<td><input checked type="checkbox" id='+g[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+g[i].name+'_Biackiss"></label></td>';
-                            }else{
+                            }else if(g[i].w6 == 0){
                                 document.getElementById("Biackiss").innerHTML += '<td><input type="checkbox" id='+g[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+g[i].name+'_Biackiss"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Biackiss").innerHTML += '<td><input disabled type="checkbox" id='+g[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+g[i].name+'_Biackiss></label></td>';
+                            }
                         }else{
                             if(g[i].w6 == 1){
                                 document.getElementById("Biackiss").innerHTML += '<td><input checked type="checkbox" id='+g[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+g[i].name+'_Biackiss"></label></td>';
-                            }else{
+                            }else if(g[i].w6 == 0){
                                 document.getElementById("Biackiss").innerHTML += '<td><input type="checkbox" id='+g[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+g[i].name+'_Biackiss"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Biackiss").innerHTML += '<td><input disabled type="checkbox" id='+g[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+g[i].name+'_Biackiss></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("Biackiss").innerHTML += '<td><id='+g[i].name+'_Biackiss"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_7', JSON.stringify(change_cookie));
         }
         if(select_server == "니나브"){
             var change_cookie = h;
@@ -5736,26 +6375,68 @@
                         if(num == i){
                             if(h[i].w6 == 1){
                                 document.getElementById("Biackiss").innerHTML += '<td><input checked type="checkbox" id='+h[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+h[i].name+'_Biackiss"></label></td>';
-                            }else{
+                            }else if(h[i].w6 == 0){
                                 document.getElementById("Biackiss").innerHTML += '<td><input type="checkbox" id='+h[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+h[i].name+'_Biackiss"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Biackiss").innerHTML += '<td><input disabled type="checkbox" id='+h[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+h[i].name+'_Biackiss></label></td>';
+                            }
                         }else{
                             if(h[i].w6 == 1){
                                 document.getElementById("Biackiss").innerHTML += '<td><input checked type="checkbox" id='+h[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+h[i].name+'_Biackiss"></label></td>';
-                            }else{
+                            }else if(h[i].w6 == 0){
                                 document.getElementById("Biackiss").innerHTML += '<td><input type="checkbox" id='+h[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+h[i].name+'_Biackiss"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Biackiss").innerHTML += '<td><input disabled type="checkbox" id='+h[i].name+'_Biackiss><label onClick="Biackiss_checked('+i+')" id="week" for='+h[i].name+'_Biackiss></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("Biackiss").innerHTML += '<td><id='+h[i].name+'_Biackiss"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_8', JSON.stringify(change_cookie));
         }
     }
     function KoukuSaton_checked(num){
         document.getElementById("KoukuSaton").innerHTML = '';
-        document.getElementById("KoukuSaton").innerHTML += '<th onClick="location.href='+"'/raid/koukusaton'"+'"'+'style="cursor:pointer;" class="schedule_rows"><div><img alt="쿠크세이튼" src="/images/icon/corps_raid.png"/></div><div id="list_KoukuSaton" class="schedule_list">쿠크세이튼</div></th>';
+        document.getElementById("KoukuSaton").innerHTML += '<th class="schedule_rows"><div><img alt="쿠크세이튼" src="/images/icon/corps_raid.png"/></div><div id="list_KoukuSaton" class="schedule_list">쿠크세이튼</div></th>';
         if(select_server == "루페온"){
             var change_cookie = a;
             if(change_cookie[num].w7 == 0){
@@ -5773,21 +6454,63 @@
                         if(num == i){
                             if(a[i].w7 == 1){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input checked type="checkbox" id='+a[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+a[i].name+'_KoukuSaton"></label></td>';
-                            }else{
+                            }else if(a[i].w7 == 0){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input type="checkbox" id='+a[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+a[i].name+'_KoukuSaton"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("KoukuSaton").innerHTML += '<td><input disabled type="checkbox" id='+a[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+a[i].name+'_KoukuSaton></label></td>';
+                            }
                         }else{
                             if(a[i].w7 == 1){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input checked type="checkbox" id='+a[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+a[i].name+'_KoukuSaton"></label></td>';
-                            }else{
+                            }else if(a[i].w7 == 0){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input type="checkbox" id='+a[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+a[i].name+'_KoukuSaton"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("KoukuSaton").innerHTML += '<td><input disabled type="checkbox" id='+a[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+a[i].name+'_KoukuSaton></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("KoukuSaton").innerHTML += '<td><id='+a[i].name+'_KoukuSaton"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_1', JSON.stringify(change_cookie));
         }
         if(select_server == "실리안"){
             var change_cookie = b;
@@ -5806,21 +6529,63 @@
                         if(num == i){
                             if(b[i].w7 == 1){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input checked type="checkbox" id='+b[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+b[i].name+'_KoukuSaton"></label></td>';
-                            }else{
+                            }else if(b[i].w7 == 0){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input type="checkbox" id='+b[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+b[i].name+'_KoukuSaton"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("KoukuSaton").innerHTML += '<td><input disabled type="checkbox" id='+b[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+b[i].name+'_KoukuSaton></label></td>';
+                            }
                         }else{
                             if(b[i].w7 == 1){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input checked type="checkbox" id='+b[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+b[i].name+'_KoukuSaton"></label></td>';
-                            }else{
+                            }else if(b[i].w7 == 0){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input type="checkbox" id='+b[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+b[i].name+'_KoukuSaton"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("KoukuSaton").innerHTML += '<td><input disabled type="checkbox" id='+b[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+b[i].name+'_KoukuSaton></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("KoukuSaton").innerHTML += '<td><id='+b[i].name+'_KoukuSaton"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_2', JSON.stringify(change_cookie));
         }
         if(select_server == "아만"){
             var change_cookie = c;
@@ -5839,21 +6604,63 @@
                         if(num == i){
                             if(c[i].w7 == 1){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input checked type="checkbox" id='+c[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+c[i].name+'_KoukuSaton"></label></td>';
-                            }else{
+                            }else if(c[i].w7 == 0){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input type="checkbox" id='+c[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+c[i].name+'_KoukuSaton"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("KoukuSaton").innerHTML += '<td><input disabled type="checkbox" id='+c[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+c[i].name+'_KoukuSaton></label></td>';
+                            }
                         }else{
                             if(c[i].w7 == 1){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input checked type="checkbox" id='+c[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+c[i].name+'_KoukuSaton"></label></td>';
-                            }else{
+                            }else if(c[i].w7 == 0){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input type="checkbox" id='+c[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+c[i].name+'_KoukuSaton"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("KoukuSaton").innerHTML += '<td><input disabled type="checkbox" id='+c[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+c[i].name+'_KoukuSaton></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("KoukuSaton").innerHTML += '<td><id='+c[i].name+'_KoukuSaton"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_3', JSON.stringify(change_cookie));
         }
         if(select_server == "카마인"){
             var change_cookie = d;
@@ -5872,21 +6679,63 @@
                         if(num == i){
                             if(d[i].w7 == 1){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input checked type="checkbox" id='+d[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+d[i].name+'_KoukuSaton"></label></td>';
-                            }else{
+                            }else if(d[i].w7 == 0){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input type="checkbox" id='+d[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+d[i].name+'_KoukuSaton"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("KoukuSaton").innerHTML += '<td><input disabled type="checkbox" id='+d[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+d[i].name+'_KoukuSaton></label></td>';
+                            }
                         }else{
                             if(d[i].w7 == 1){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input checked type="checkbox" id='+d[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+d[i].name+'_KoukuSaton"></label></td>';
-                            }else{
+                            }else if(d[i].w7 == 0){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input type="checkbox" id='+d[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+d[i].name+'_KoukuSaton"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("KoukuSaton").innerHTML += '<td><input disabled type="checkbox" id='+d[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+d[i].name+'_KoukuSaton></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("KoukuSaton").innerHTML += '<td><id='+d[i].name+'_KoukuSaton"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_4', JSON.stringify(change_cookie));
         }
         if(select_server == "카제로스"){
             var change_cookie = e;
@@ -5905,21 +6754,63 @@
                         if(num == i){
                             if(e[i].w7 == 1){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input checked type="checkbox" id='+e[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+e[i].name+'_KoukuSaton"></label></td>';
-                            }else{
+                            }else if(e[i].w7 == 0){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input type="checkbox" id='+e[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+e[i].name+'_KoukuSaton"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("KoukuSaton").innerHTML += '<td><input disabled type="checkbox" id='+e[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+e[i].name+'_KoukuSaton></label></td>';
+                            }
                         }else{
                             if(e[i].w7 == 1){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input checked type="checkbox" id='+e[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+e[i].name+'_KoukuSaton"></label></td>';
-                            }else{
+                            }else if(e[i].w7 == 0){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input type="checkbox" id='+e[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+e[i].name+'_KoukuSaton"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("KoukuSaton").innerHTML += '<td><input disabled type="checkbox" id='+e[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+e[i].name+'_KoukuSaton></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("KoukuSaton").innerHTML += '<td><id='+e[i].name+'_KoukuSaton"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_5', JSON.stringify(change_cookie));
         }
         if(select_server == "아브렐슈드"){
             var change_cookie = f;
@@ -5938,21 +6829,63 @@
                         if(num == i){
                             if(f[i].w7 == 1){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input checked type="checkbox" id='+f[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+f[i].name+'_KoukuSaton"></label></td>';
-                            }else{
+                            }else if(f[i].w7 == 0){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input type="checkbox" id='+f[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+f[i].name+'_KoukuSaton"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("KoukuSaton").innerHTML += '<td><input disabled type="checkbox" id='+f[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+f[i].name+'_KoukuSaton></label></td>';
+                            }
                         }else{
                             if(f[i].w7 == 1){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input checked type="checkbox" id='+f[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+f[i].name+'_KoukuSaton"></label></td>';
-                            }else{
+                            }else if(f[i].w7 == 0){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input type="checkbox" id='+f[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+f[i].name+'_KoukuSaton"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("KoukuSaton").innerHTML += '<td><input disabled type="checkbox" id='+f[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+f[i].name+'_KoukuSaton></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("KoukuSaton").innerHTML += '<td><id='+f[i].name+'_KoukuSaton"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_6', JSON.stringify(change_cookie));
         }
         if(select_server == "카단"){
             var change_cookie = g;
@@ -5971,21 +6904,63 @@
                         if(num == i){
                             if(g[i].w7 == 1){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input checked type="checkbox" id='+g[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+g[i].name+'_KoukuSaton"></label></td>';
-                            }else{
+                            }else if(g[i].w7 == 0){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input type="checkbox" id='+g[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+g[i].name+'_KoukuSaton"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("KoukuSaton").innerHTML += '<td><input disabled type="checkbox" id='+g[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+g[i].name+'_KoukuSaton></label></td>';
+                            }
                         }else{
                             if(g[i].w7 == 1){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input checked type="checkbox" id='+g[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+g[i].name+'_KoukuSaton"></label></td>';
-                            }else{
+                            }else if(g[i].w7 == 0){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input type="checkbox" id='+g[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+g[i].name+'_KoukuSaton"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("KoukuSaton").innerHTML += '<td><input disabled type="checkbox" id='+g[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+g[i].name+'_KoukuSaton></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("KoukuSaton").innerHTML += '<td><id='+g[i].name+'_KoukuSaton"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_7', JSON.stringify(change_cookie));
         }
         if(select_server == "니나브"){
             var change_cookie = h;
@@ -6004,26 +6979,68 @@
                         if(num == i){
                             if(h[i].w7 == 1){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input checked type="checkbox" id='+h[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+h[i].name+'_KoukuSaton"></label></td>';
-                            }else{
+                            }else if(h[i].w7 == 0){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input type="checkbox" id='+h[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+h[i].name+'_KoukuSaton"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("KoukuSaton").innerHTML += '<td><input disabled type="checkbox" id='+h[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+h[i].name+'_KoukuSaton></label></td>';
+                            }
                         }else{
                             if(h[i].w7 == 1){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input checked type="checkbox" id='+h[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+h[i].name+'_KoukuSaton"></label></td>';
-                            }else{
+                            }else if(h[i].w7 == 0){
                                 document.getElementById("KoukuSaton").innerHTML += '<td><input type="checkbox" id='+h[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+h[i].name+'_KoukuSaton"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("KoukuSaton").innerHTML += '<td><input disabled type="checkbox" id='+h[i].name+'_KoukuSaton><label onClick="KoukuSaton_checked('+i+')" id="week" for='+h[i].name+'_KoukuSaton></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("KoukuSaton").innerHTML += '<td><id='+h[i].name+'_KoukuSaton"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_8', JSON.stringify(change_cookie));
         }
     }
     function Abrelshud_checked(num){
         document.getElementById("Abrelshud").innerHTML = '';
-        document.getElementById("Abrelshud").innerHTML += '<th onClick="location.href='+"'/raid/abrelshud'"+'"'+'style="cursor:pointer;" class="schedule_rows"><div><img alt="아브렐슈드" src="/images/icon/corps_raid.png"/></div><div id="list_Abrelshud" class="schedule_list">아브렐슈드</div></th>';
+        document.getElementById("Abrelshud").innerHTML += '<th class="schedule_rows"><div><img alt="아브렐슈드" src="/images/icon/corps_raid.png"/></div><div id="list_Abrelshud" class="schedule_list">아브렐슈드</div></th>';
         if(select_server == "루페온"){
             var change_cookie = a;
             if(change_cookie[num].w8 == 0){
@@ -6041,21 +7058,63 @@
                         if(num == i){
                             if(a[i].w8 == 1){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input checked type="checkbox" id='+a[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+a[i].name+'_Abrelshud"></label></td>';
-                            }else{
+                            }else if(a[i].w8 == 0){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input type="checkbox" id='+a[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+a[i].name+'_Abrelshud"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Abrelshud").innerHTML += '<td><input disabled type="checkbox" id='+a[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+a[i].name+'_Abrelshud></label></td>';
+                            }
                         }else{
                             if(a[i].w8 == 1){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input checked type="checkbox" id='+a[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+a[i].name+'_Abrelshud"></label></td>';
-                            }else{
+                            }else if(a[i].w8 == 0){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input type="checkbox" id='+a[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+a[i].name+'_Abrelshud"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Abrelshud").innerHTML += '<td><input disabled type="checkbox" id='+a[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+a[i].name+'_Abrelshud></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("Abrelshud").innerHTML += '<td><id='+a[i].name+'_Abrelshud"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_1', JSON.stringify(change_cookie));
         }
         if(select_server == "실리안"){
             var change_cookie = b;
@@ -6074,21 +7133,63 @@
                         if(num == i){
                             if(b[i].w8 == 1){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input checked type="checkbox" id='+b[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+b[i].name+'_Abrelshud"></label></td>';
-                            }else{
+                            }else if(b[i].w8 == 0){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input type="checkbox" id='+b[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+b[i].name+'_Abrelshud"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Abrelshud").innerHTML += '<td><input disabled type="checkbox" id='+b[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+b[i].name+'_Abrelshud></label></td>';
+                            }
                         }else{
                             if(b[i].w8 == 1){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input checked type="checkbox" id='+b[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+b[i].name+'_Abrelshud"></label></td>';
-                            }else{
+                            }else if(b[i].w8 == 0){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input type="checkbox" id='+b[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+b[i].name+'_Abrelshud"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Abrelshud").innerHTML += '<td><input disabled type="checkbox" id='+b[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+b[i].name+'_Abrelshud></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("Abrelshud").innerHTML += '<td><id='+b[i].name+'_Abrelshud"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_2', JSON.stringify(change_cookie));
         }
         if(select_server == "아만"){
             var change_cookie = c;
@@ -6107,21 +7208,63 @@
                         if(num == i){
                             if(c[i].w8 == 1){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input checked type="checkbox" id='+c[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+c[i].name+'_Abrelshud"></label></td>';
-                            }else{
+                            }else if(c[i].w8 == 0){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input type="checkbox" id='+c[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+c[i].name+'_Abrelshud"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Abrelshud").innerHTML += '<td><input disabled type="checkbox" id='+c[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+c[i].name+'_Abrelshud></label></td>';
+                            }
                         }else{
                             if(c[i].w8 == 1){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input checked type="checkbox" id='+c[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+c[i].name+'_Abrelshud"></label></td>';
-                            }else{
+                            }else if(c[i].w8 == 0){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input type="checkbox" id='+c[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+c[i].name+'_Abrelshud"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Abrelshud").innerHTML += '<td><input disabled type="checkbox" id='+c[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+c[i].name+'_Abrelshud></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("Abrelshud").innerHTML += '<td><id='+c[i].name+'_Abrelshud"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_3', JSON.stringify(change_cookie));
         }
         if(select_server == "카마인"){
             var change_cookie = d;
@@ -6140,21 +7283,63 @@
                         if(num == i){
                             if(d[i].w8 == 1){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input checked type="checkbox" id='+d[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+d[i].name+'_Abrelshud"></label></td>';
-                            }else{
+                            }else if(d[i].w8 == 0){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input type="checkbox" id='+d[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+d[i].name+'_Abrelshud"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Abrelshud").innerHTML += '<td><input disabled type="checkbox" id='+d[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+d[i].name+'_Abrelshud></label></td>';
+                            }
                         }else{
                             if(d[i].w8 == 1){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input checked type="checkbox" id='+d[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+d[i].name+'_Abrelshud"></label></td>';
-                            }else{
+                            }else if(d[i].w8 == 0){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input type="checkbox" id='+d[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+d[i].name+'_Abrelshud"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Abrelshud").innerHTML += '<td><input disabled type="checkbox" id='+d[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+d[i].name+'_Abrelshud></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("Abrelshud").innerHTML += '<td><id='+d[i].name+'_Abrelshud"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_4', JSON.stringify(change_cookie));
         }
         if(select_server == "카제로스"){
             var change_cookie = e;
@@ -6173,21 +7358,63 @@
                         if(num == i){
                             if(e[i].w8 == 1){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input checked type="checkbox" id='+e[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+e[i].name+'_Abrelshud"></label></td>';
-                            }else{
+                            }else if(e[i].w8 == 0){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input type="checkbox" id='+e[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+e[i].name+'_Abrelshud"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Abrelshud").innerHTML += '<td><input disabled type="checkbox" id='+e[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+e[i].name+'_Abrelshud></label></td>';
+                            }
                         }else{
                             if(e[i].w8 == 1){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input checked type="checkbox" id='+e[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+e[i].name+'_Abrelshud"></label></td>';
-                            }else{
+                            }else if(e[i].w8 == 0){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input type="checkbox" id='+e[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+e[i].name+'_Abrelshud"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Abrelshud").innerHTML += '<td><input disabled type="checkbox" id='+e[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+e[i].name+'_Abrelshud></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("Abrelshud").innerHTML += '<td><id='+e[i].name+'_Abrelshud"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_5', JSON.stringify(change_cookie));
         }
         if(select_server == "아브렐슈드"){
             var change_cookie = f;
@@ -6206,21 +7433,63 @@
                         if(num == i){
                             if(f[i].w8 == 1){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input checked type="checkbox" id='+f[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+f[i].name+'_Abrelshud"></label></td>';
-                            }else{
+                            }else if(f[i].w8 == 0){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input type="checkbox" id='+f[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+f[i].name+'_Abrelshud"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Abrelshud").innerHTML += '<td><input disabled type="checkbox" id='+f[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+f[i].name+'_Abrelshud></label></td>';
+                            }
                         }else{
                             if(f[i].w8 == 1){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input checked type="checkbox" id='+f[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+f[i].name+'_Abrelshud"></label></td>';
-                            }else{
+                            }else if(f[i].w8 == 0){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input type="checkbox" id='+f[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+f[i].name+'_Abrelshud"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Abrelshud").innerHTML += '<td><input disabled type="checkbox" id='+f[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+f[i].name+'_Abrelshud></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("Abrelshud").innerHTML += '<td><id='+f[i].name+'_Abrelshud"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_6', JSON.stringify(change_cookie));
         }
         if(select_server == "카단"){
             var change_cookie = g;
@@ -6239,21 +7508,63 @@
                         if(num == i){
                             if(g[i].w8 == 1){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input checked type="checkbox" id='+g[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+g[i].name+'_Abrelshud"></label></td>';
-                            }else{
+                            }else if(g[i].w8 == 0){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input type="checkbox" id='+g[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+g[i].name+'_Abrelshud"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Abrelshud").innerHTML += '<td><input disabled type="checkbox" id='+g[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+g[i].name+'_Abrelshud></label></td>';
+                            }
                         }else{
                             if(g[i].w8 == 1){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input checked type="checkbox" id='+g[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+g[i].name+'_Abrelshud"></label></td>';
-                            }else{
+                            }else if(g[i].w8 == 0){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input type="checkbox" id='+g[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+g[i].name+'_Abrelshud"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Abrelshud").innerHTML += '<td><input disabled type="checkbox" id='+g[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+g[i].name+'_Abrelshud></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("Abrelshud").innerHTML += '<td><id='+g[i].name+'_Abrelshud"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_7', JSON.stringify(change_cookie));
         }
         if(select_server == "니나브"){
             var change_cookie = h;
@@ -6272,27 +7583,69 @@
                         if(num == i){
                             if(h[i].w8 == 1){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input checked type="checkbox" id='+h[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+h[i].name+'_Abrelshud"></label></td>';
-                            }else{
+                            }else if(h[i].w8 == 0){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input type="checkbox" id='+h[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+h[i].name+'_Abrelshud"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Abrelshud").innerHTML += '<td><input disabled type="checkbox" id='+h[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+h[i].name+'_Abrelshud></label></td>';
+                            }
                         }else{
                             if(h[i].w8 == 1){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input checked type="checkbox" id='+h[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+h[i].name+'_Abrelshud"></label></td>';
-                            }else{
+                            }else if(h[i].w8 == 0){
                                 document.getElementById("Abrelshud").innerHTML += '<td><input type="checkbox" id='+h[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+h[i].name+'_Abrelshud"></label></td>';
-                            } 
+                            }else{
+                                document.getElementById("Abrelshud").innerHTML += '<td><input disabled type="checkbox" id='+h[i].name+'_Abrelshud><label onClick="Abrelshud_checked('+i+')" id="week" for='+h[i].name+'_Abrelshud></label></td>';
+                            }
                         }
                     }else{
                         document.getElementById("Abrelshud").innerHTML += '<td><id='+h[i].name+'_Abrelshud"></td>';
                     }
                 }
             }
+        
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 3){
+                if(change_cookie[num].w5 == 0){
+                    change_cookie[num].w5 = 2;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = true;
+                }
+                if(change_cookie[num].w6 == 0){
+                    change_cookie[num].w6 = 2;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = true;
+                }
+                if(change_cookie[num].w7 == 0){
+                    change_cookie[num].w7 = 2;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = true;
+                }
+                if(change_cookie[num].w8 == 0){
+                    change_cookie[num].w8 = 2;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = true;
+                }
+            }
+            if(change_cookie[num].w5 + change_cookie[num].w6 + change_cookie[num].w7 + change_cookie[num].w8 == 4){
+                if(change_cookie[num].w5 == 2){
+                    change_cookie[num].w5 = 0;
+                    document.getElementById(change_cookie[num].name+'_Valtan').disabled = false;
+                }
+                if(change_cookie[num].w6 == 2){
+                    change_cookie[num].w6 = 0;
+                    document.getElementById(change_cookie[num].name+'_Biackiss').disabled = false;
+                }
+                if(change_cookie[num].w7 == 2){
+                    change_cookie[num].w7 = 0;
+                    document.getElementById(change_cookie[num].name+'_KoukuSaton').disabled = false;
+                }
+                if(change_cookie[num].w8 == 2){
+                    change_cookie[num].w8 = 0;
+                    document.getElementById(change_cookie[num].name+'_Abrelshud').disabled = false;
+                }
+            }
+            localStorage.setItem('server_8', JSON.stringify(change_cookie));
         }
     }
     
     function Rehearsal_checked(num){
         document.getElementById("KoukuSaton_Rehearsal").innerHTML = '';
-        document.getElementById("KoukuSaton_Rehearsal").innerHTML += '<th onClick="location.href='+"'/raid/koukusaton'"+'"'+'style="cursor:pointer;" class="schedule_rows"><div><img alt="쿠크세이튼 리허설" src="/images/icon/koukuSaton_rehearsal.png"/></div><div id="list_KoukuSaton_Rehearsal" class="schedule_list">쿠크세이튼 리허설</div></th>';
+        document.getElementById("KoukuSaton_Rehearsal").innerHTML += '<th class="schedule_rows"><div><img alt="쿠크세이튼 리허설" src="/images/icon/koukuSaton_rehearsal.png"/></div><div id="list_KoukuSaton_Rehearsal" class="schedule_list">쿠크세이튼 리허설</div></th>';
         if(select_server == "루페온"){
             var change_cookie = a;
             if(change_cookie[num].w9 == 0){
@@ -6648,7 +8001,7 @@
     }
     function Dejavu_checked(num){
         document.getElementById("Abrelshud_Dejavu").innerHTML = '';
-        document.getElementById("Abrelshud_Dejavu").innerHTML += '<th onClick="location.href='+"'/raid/abrelshud'"+'"'+'style="cursor:pointer;" class="schedule_rows"><div><img alt="아브렐슈드 데자뷰" src="/images/icon/abrelshud_dejavu.png"/></div><div id="list_Abrelshud_Dejavu" class="schedule_list">아브렐슈드 데자뷰</div></th>';
+        document.getElementById("Abrelshud_Dejavu").innerHTML += '<th class="schedule_rows"><div><img alt="아브렐슈드 데자뷰" src="/images/icon/abrelshud_dejavu.png"/></div><div id="list_Abrelshud_Dejavu" class="schedule_list">아브렐슈드 데자뷰</div></th>';
         if(select_server == "루페온"){
             var change_cookie = a;
             if(change_cookie[num].w10 == 0){
@@ -8334,5 +9687,6 @@
             localStorage.setItem("server_8", JSON.stringify(h))  
         }
     }
+
 </script>
 </html>
