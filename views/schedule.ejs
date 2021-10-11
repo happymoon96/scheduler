@@ -8124,28 +8124,75 @@
         }
     }
     
+    var change_date = new Date();
+    var change_week = new Date();
+    if(change_date.getHours < 6){
+        change_date.setDate(change_date.getDate());
+        change_date.setHours(6);
+        change_date.setMinutes(0);
+        change_date.setSeconds(0);
+    }else{
+        change_date.setDate(change_date.getDate()+1);
+        change_date.setHours(6);
+        change_date.setMinutes(0);
+        change_date.setSeconds(0);
+    }
+
+    if(change_week.getDay() == 0){
+        change_week.setDate(change_week.getDate()+3);
+        change_week.setHours(6);
+        change_week.setMinutes(0);
+        change_week.setSeconds(0);
+    }else if(change_week.getDay() == 1){
+        change_week.setDate(change_week.getDate()+2);
+        change_week.setHours(6);
+        change_week.setMinutes(0);
+        change_week.setSeconds(0);
+    }else if(change_week.getDay() == 2){
+        change_week.setDate(change_week.getDate()+1);
+        change_week.setHours(6);
+        change_week.setMinutes(0);
+        change_week.setSeconds(0);
+    }else if(change_week.getDay() == 3){
+        if(change_week.getHours < 6){
+            change_week.setDate(change_week.getDate());
+            change_week.setHours(6);
+            change_week.setMinutes(0);
+            change_week.setSeconds(0);
+        }else{
+            change_week.setDate(change_week.getDate()+7);
+            change_week.setHours(6);
+            change_week.setMinutes(0);
+            change_week.setSeconds(0);
+        }
+    }else if(change_week.getDay() == 4){
+        change_week.setDate(change_week.getDate()+6);
+        change_week.setHours(6);
+        change_week.setMinutes(0);
+        change_week.setSeconds(0);
+    }else if(change_week.getDay() == 5){
+        change_week.setDate(change_week.getDate()+5);
+        change_week.setHours(6);
+        change_week.setMinutes(0);
+        change_week.setSeconds(0);
+    }else if(change_week.getDay() == 6){
+        change_week.setDate(change_week.getDate()+4);
+        change_week.setHours(6);
+        change_week.setMinutes(0);
+        change_week.setSeconds(0);
+    }
+
+    var now_yyyy = now.getFullYear();
+    var now_MM = now.getMonth();
+    var now_dd = now.getDate();
+    var now_HH = now.getHours();
+    var now_mm = now.getMinutes();
+    var now_ss = now.getSeconds();
+    var now_time = new Date(now_yyyy+"-"+now_MM+"-"+now_dd+" "+now_HH+":"+now_mm+":"+now_ss);
     for(var value of server){//daily, weeks 초기화
         for(var i = 0; i < server_length(value); i++){
-            var date_yyyy = select(value)[i].date.substring(0,4)
-            var date_MM = select(value)[i].date.substring(5,7)
-            var date_dd = parseInt(select(value)[i].date.substring(8,10))
-            var date_HH = parseInt(select(value)[i].date.substring(11,13))
-            var date_mm = select(value)[i].date.substring(14,16)
-            var date_ss = select(value)[i].date.substring(17,19)
-
-            var date_time = new Date(date_yyyy+"-"+date_MM+"-"+date_dd+" "+date_HH+":"+date_mm+":"+date_ss);
-
-            var week_yyyy = select(value)[i].week.substring(0,4)
-            var week_MM = select(value)[i].week.substring(5,7)
-            var week_dd = parseInt(select(value)[i].week.substring(8,10))
-            var week_HH = parseInt(select(value)[i].week.substring(11,13))
-            var week_mm = select(value)[i].week.substring(14,16)
-            var week_ss = select(value)[i].week.substring(17,19)
-
-            var week_time = new Date(week_yyyy+"-"+week_MM+"-"+week_dd+" "+week_HH+":"+week_mm+":"+week_ss);
-            console.log(date_time)
-            if(week_time < now){
-                select(value)[i].week = now;
+            if(select(value)[i].date == 0){
+                select(value)[i].week = change_week;
                 select(value)[i].w1 = 0;
                 select(value)[i].w2 = 0;
                 select(value)[i].w3 = 0;
@@ -8166,9 +8213,8 @@
                 select(value)[i].w18 = 0;
                 select(value)[i].w19 = 0;
                 select(value)[i].w20 = 0;
-            }
-            if(date_time < now){
-                select(value)[i].date = now;
+
+                select(value)[i].date = change_date;
                 select(value)[i].d1 = 0;
                 select(value)[i].d2 = 0;
                 select(value)[i].d3 = 0;
@@ -8189,6 +8235,84 @@
                 select(value)[i].d18 = 0;
                 select(value)[i].d19 = 0;
                 select(value)[i].d20 = 0;
+            }else{
+                var json_date_time = select(value)[i].date;
+                var json_week_time = select(value)[i].week;
+
+                var json_date_yyyy = select(value)[i].date.substring(0,4)
+                var json_date_MM = select(value)[i].date.substring(5,7)
+                var json_date_dd = parseInt(select(value)[i].date.substring(8,10))
+                var json_date_HH = parseInt(select(value)[i].date.substring(11,13))+9
+                var json_date_mm = select(value)[i].date.substring(14,16)
+                var json_date_ss = select(value)[i].date.substring(17,19)
+
+                if(json_date_HH>=24){
+                    json_date_HH -= 24;
+                    json_date_dd += 1;
+                }
+
+                json_date_time = new Date(json_date_yyyy+"-"+json_date_MM+"-"+json_date_dd+" "+json_date_HH+":"+json_date_mm+":"+json_date_ss);
+
+                var json_week_yyyy = select(value)[i].week.substring(0,4)
+                var json_week_MM = select(value)[i].week.substring(5,7)
+                var json_week_dd = parseInt(select(value)[i].week.substring(8,10))
+                var json_week_HH = parseInt(select(value)[i].week.substring(11,13))+9
+                var json_week_mm = select(value)[i].week.substring(14,16)
+                var json_week_ss = select(value)[i].week.substring(17,19)
+
+                if(json_week_HH>=24){
+                    json_week_HH -= 24;
+                    json_week_dd += 1;
+                }
+
+                json_week_time = new Date(json_week_yyyy+"-"+json_week_MM+"-"+json_week_dd+" "+json_week_HH+":"+json_week_mm+":"+json_week_ss);
+
+                if(json_week_time < now){
+                    select(value)[i].week = change_week;
+                    select(value)[i].w1 = 0;
+                    select(value)[i].w2 = 0;
+                    select(value)[i].w3 = 0;
+                    select(value)[i].w4 = 0;
+                    select(value)[i].w5 = 0;
+                    select(value)[i].w6 = 0;
+                    select(value)[i].w7 = 0;
+                    select(value)[i].w8 = 0;
+                    select(value)[i].w9 = 0;
+                    select(value)[i].w10 = 0;
+                    select(value)[i].w11 = 0;
+                    select(value)[i].w12 = 0;
+                    select(value)[i].w13 = 0;
+                    select(value)[i].w14 = 0;
+                    select(value)[i].w15 = 0;
+                    select(value)[i].w16 = 0;
+                    select(value)[i].w17 = 0;
+                    select(value)[i].w18 = 0;
+                    select(value)[i].w19 = 0;
+                    select(value)[i].w20 = 0;
+                }
+                if(json_date_time > now){
+                    select(value)[i].date = change_date;
+                    select(value)[i].d1 = 0;
+                    select(value)[i].d2 = 0;
+                    select(value)[i].d3 = 0;
+                    select(value)[i].d4 = 0;
+                    select(value)[i].d5 = 0;
+                    select(value)[i].d6 = 0;
+                    select(value)[i].d7 = 0;
+                    select(value)[i].d8 = [0,0];
+                    select(value)[i].d9 = 0;
+                    select(value)[i].d10 = 0;
+                    select(value)[i].d11 = 0;
+                    select(value)[i].d12 = 0;
+                    select(value)[i].d13 = 0;
+                    select(value)[i].d14 = 0;
+                    select(value)[i].d15 = 0;
+                    select(value)[i].d16 = 0;
+                    select(value)[i].d17 = 0;
+                    select(value)[i].d18 = 0;
+                    select(value)[i].d19 = 0;
+                    select(value)[i].d20 = 0;
+                }
             }
         }
 

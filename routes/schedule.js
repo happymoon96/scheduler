@@ -11,64 +11,6 @@ var update_user_data = [];
 var update_user_data_sort = [];
 // var time_value = new Date().getDay() + new Date().getHours()/100
 
-var date = new Date();
-var week = new Date();
-if(date.getHours < 6){
-    date.setDate(date.getDate());
-    date.setHours(6);
-    date.setMinutes(0);
-    date.setSeconds(0);
-}else{
-    date.setDate(date.getDate()+1);
-    date.setHours(6);
-    date.setMinutes(0);
-    date.setSeconds(0);
-}
-
-if(week.getDay() == 0){
-    week.setDate(week.getDate()+3);
-    week.setHours(6);
-    week.setMinutes(0);
-    week.setSeconds(0);
-}else if(week.getDay() == 1){
-    week.setDate(week.getDate()+2);
-    week.setHours(6);
-    week.setMinutes(0);
-    week.setSeconds(0);
-}else if(week.getDay() == 2){
-    week.setDate(week.getDate()+1);
-    week.setHours(6);
-    week.setMinutes(0);
-    week.setSeconds(0);
-}else if(week.getDay() == 3){
-    if(week.getHours < 6){
-        week.setDate(week.getDate());
-        week.setHours(6);
-        week.setMinutes(0);
-        week.setSeconds(0);
-    }else{
-        week.setDate(week.getDate()+7);
-        week.setHours(6);
-        week.setMinutes(0);
-        week.setSeconds(0);
-    }
-}else if(week.getDay() == 4){
-    week.setDate(week.getDate()+6);
-    week.setHours(6);
-    week.setMinutes(0);
-    week.setSeconds(0);
-}else if(week.getDay() == 5){
-    week.setDate(week.getDate()+5);
-    week.setHours(6);
-    week.setMinutes(0);
-    week.setSeconds(0);
-}else if(week.getDay() == 6){
-    week.setDate(week.getDate()+4);
-    week.setHours(6);
-    week.setMinutes(0);
-    week.setSeconds(0);
-}
-
 /* GET users listing. */
 router.get('/', (req, res) => {
     res.render('schedule_index');
@@ -128,8 +70,8 @@ router.post('/name_post', (req, res, next) => {
                                     "char_level": char_level,
                                     "guild": guild,
                                     "toggle": "on",
-                                    "date": date,
-                                    "week": week,
+                                    "date": 0,
+                                    "week": 0,
                                     "t1": 0,
                                     "t2": 0,
                                     "d1": 0,
