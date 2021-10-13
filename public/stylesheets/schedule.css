@@ -107,6 +107,9 @@ th{
 #BossRush:hover #list_BossRush{
 	color:var(--hover_text_color);
 }
+#ChaosDungeon:hover #list_ChaosDungeon{
+	color:var(--hover_text_color);
+}
 #DailyEpona:hover #list_DailyEpona{
 	color:var(--hover_text_color);
 }
