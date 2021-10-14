@@ -356,7 +356,7 @@
                             ticket_table += BossRush_table
                         }
                         ticket_table += ticket_contents_close;
-
+                    
                         var daily_table = daily_contents_open; 
                         if(todo.d6 == "on"){//길드
                             daily_table += Guild_table
@@ -388,16 +388,16 @@
                             }
                         }
                         if(todo.d9 == "on"){//필드보스
-                            if(4.06 <= now_value && now_value < 5.06){// 목
+                            if(2.06 <= now_value && now_value < 3.06){// 화
                                 daily_table += FieldBoss_table;
-                            }else if(6.06 <= now_value){//토
+                            }else if(5.06 <= now_value && now_value < 6.06){// 금
                                 daily_table += FieldBoss_table;
-                            }else if(now_value < 2.06){//일,월
+                            }else if(0.06 <= now_value && now_value < 1.06){// 일
                                 daily_table += FieldBoss_table;
                             }
                         }
                         if(todo.d10 == "on"){//카오스게이트
-                            if(2.06 <= now_value && now_value < 3.06){// 화
+                            if(0.06 <= now_value && now_value < 2.06){// 일,월
                                 daily_table += ChaosGate_table;
                             }else if(4.06 <= now_value && now_value < 5.06){// 목
                                 daily_table += ChaosGate_table;
@@ -533,19 +533,19 @@
                             }
                         }
                         if(todo.d9 == "on"){
-                            if(4.06 <= now_value && now_value < 5.06){// 목
+                            if(2.06 <= now_value && now_value < 3.06){// 화
                                 console.log(now_value)
                                 document.getElementById("FieldBoss").innerHTML += '<th class="schedule_rows"><div><img alt="필드보스" src="https://cdn-lostark.game.onstove.com/uploadfiles/notice/379ca84cd8094b66a51af11eafbf84d1.png"/></div><div id="list_FieldBoss" class="schedule_list">필드보스</div></th>';
-                            }else if(6.06 <= now_value){//토
+                            }else if(5.06 <= now_value && now_value < 6.06){// 금
                                 console.log(2)
                                 document.getElementById("FieldBoss").innerHTML += '<th class="schedule_rows"><div><img alt="필드보스" src="https://cdn-lostark.game.onstove.com/uploadfiles/notice/379ca84cd8094b66a51af11eafbf84d1.png"/></div><div id="list_FieldBoss" class="schedule_list">필드보스</div></th>';
-                            }else if(now_value < 2.06){//일,월
+                            }else if(0.06 <= now_value && now_value < 1.06){// 일
                                 console.log(3)
                                 document.getElementById("FieldBoss").innerHTML += '<th class="schedule_rows"><div><img alt="필드보스" src="https://cdn-lostark.game.onstove.com/uploadfiles/notice/379ca84cd8094b66a51af11eafbf84d1.png"/></div><div id="list_FieldBoss" class="schedule_list">필드보스</div></th>';
                             }
                         }
                         if(todo.d10 == "on"){//카오스게이트
-                            if(2.06 <= now_value && now_value < 3.06){// 화
+                            if(0.06 <= now_value && now_value < 2.06){// 일,월
                                  document.getElementById("ChaosGate").innerHTML += '<th class="schedule_rows"><div><img alt="카오스게이트" src="https://cdn-lostark.game.onstove.com/uploadfiles/notice/91dcab783f024124b71c67d21a849298.png"/></div><div id="list_ChaosGate" class="schedule_list">카오스게이트</div></th>';
                             }else if(4.06 <= now_value && now_value < 5.06){// 목
                                  document.getElementById("ChaosGate").innerHTML += '<th class="schedule_rows"><div><img alt="카오스게이트" src="https://cdn-lostark.game.onstove.com/uploadfiles/notice/91dcab783f024124b71c67d21a849298.png"/></div><div id="list_ChaosGate" class="schedule_list">카오스게이트</div></th>';
@@ -667,7 +667,7 @@
                                             }
                                         }
                                         if(todo.d9 == "on"){
-                                            if(4.06 <= now_value && now_value < 5.06){// 목
+                                            if(2.06 <= now_value && now_value < 3.06){// 화
                                                 if(select(value)[i].level >= 380){
                                                     if(select(value)[i].d9 == 0){
                                                         document.getElementById("FieldBoss").innerHTML += '<td><input type="checkbox" id='+select(value)[i].name+'_FieldBoss"><label onClick="FieldBoss_checked('+i+')" id="daily" for='+select(value)[i].name+'_FieldBoss"></label></td>';
@@ -679,7 +679,7 @@
                                                 }else{
                                                     document.getElementById("FieldBoss").innerHTML += '<td><id='+select(value)[i].name+'FieldBoss"></td>';
                                                 }
-                                            }else if(6.06 <= now_value){//토
+                                            }else if(5.06 <= now_value && now_value < 6.06){// 금
                                                 if(select(value)[i].level >= 380){
                                                     if(select(value)[i].d9 == 0){
                                                         document.getElementById("FieldBoss").innerHTML += '<td><input type="checkbox" id='+select(value)[i].name+'_FieldBoss"><label onClick="FieldBoss_checked('+i+')" id="daily" for='+select(value)[i].name+'_FieldBoss"></label></td>';
@@ -691,7 +691,7 @@
                                                 }else{
                                                     document.getElementById("FieldBoss").innerHTML += '<td><id='+select(value)[i].name+'FieldBoss"></td>';
                                                 }
-                                            }else if(now_value < 2.06){//일,월
+                                            }else if(0.06 <= now_value && now_value < 1.06){// 일
                                                 if(select(value)[i].level >= 380){
                                                     if(select(value)[i].d9 == 0){
                                                         document.getElementById("FieldBoss").innerHTML += '<td><input type="checkbox" id='+select(value)[i].name+'_FieldBoss"><label onClick="FieldBoss_checked('+i+')" id="daily" for='+select(value)[i].name+'_FieldBoss"></label></td>';
@@ -706,7 +706,7 @@
                                             }
                                         }
                                         if(todo.d10 == "on"){
-                                            if(2.06 <= now_value && now_value < 3.06){// 화
+                                            if(0.06 <= now_value && now_value < 2.06){// 일,월
                                                 if(select(value)[i].level >= 302){
                                                     if(select(value)[i].d10 == 0){
                                                         document.getElementById("ChaosGate").innerHTML += '<td><input type="checkbox" id='+select(value)[i].name+'_ChaosGate"><label onClick="ChaosGate_checked('+i+')" id="daily" for='+select(value)[i].name+'_ChaosGate"></label></td>';
@@ -3594,7 +3594,7 @@
         }
     }
     function FieldBoss_checked(num){
-        if(4.06 <= now_value && now_value < 5.06){
+        if(2.06 <= now_value && now_value < 3.06){// 화
             document.getElementById("FieldBoss").innerHTML = '';
             document.getElementById("FieldBoss").innerHTML += '<th class="schedule_rows"><div><img alt="필드보스" src="https://cdn-lostark.game.onstove.com/uploadfiles/notice/379ca84cd8094b66a51af11eafbf84d1.png"/></div><div id="list_FieldBoss" class="schedule_list">필드보스</div></th>';
             if(select_server == "루페온"){
@@ -3949,7 +3949,7 @@
                     }
                 }
             }
-        }else if(6.06 <= now_value){//토
+        }else if(5.06 <= now_value && now_value < 6.06){// 금
             document.getElementById("FieldBoss").innerHTML = '';
             document.getElementById("FieldBoss").innerHTML += '<th class="schedule_rows"><div><img alt="필드보스" src="https://cdn-lostark.game.onstove.com/uploadfiles/notice/379ca84cd8094b66a51af11eafbf84d1.png"/></div><div id="list_FieldBoss" class="schedule_list">필드보스</div></th>';
             if(select_server == "루페온"){
@@ -4304,7 +4304,7 @@
                     }
                 }
             }
-        }else if(now_value < 2.06){//일,월
+        }else if(0.06 <= now_value && now_value < 1.06){// 일
             document.getElementById("FieldBoss").innerHTML = '';
             document.getElementById("FieldBoss").innerHTML += '<th class="schedule_rows"><div><img alt="필드보스" src="https://cdn-lostark.game.onstove.com/uploadfiles/notice/379ca84cd8094b66a51af11eafbf84d1.png"/></div><div id="list_FieldBoss" class="schedule_list">필드보스</div></th>';
             if(select_server == "루페온"){
@@ -4662,7 +4662,7 @@
         }
     }
     function ChaosGate_checked(num){
-        if(2.06 <= now_value && now_value < 3.06){// 화
+        if(0.06 <= now_value && now_value < 2.06){// 일,월
             document.getElementById("ChaosGate").innerHTML = '';
             document.getElementById("ChaosGate").innerHTML += '<th class="schedule_rows"><div><img alt="카오스게이트" src="https://cdn-lostark.game.onstove.com/uploadfiles/notice/91dcab783f024124b71c67d21a849298.png"/></div><div id="list_ChaosGate" class="schedule_list">카오스게이트</div></th>';
             if(select_server == "루페온"){
