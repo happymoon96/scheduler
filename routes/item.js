@@ -76,9 +76,11 @@ const crawler = async () => {
     await page.click( '#lostark-wrapper > div > main > div > div.deal-wrapper > div.deal-fixed > form > fieldset > div > div.detail > button');
         
     await page.waitForTimeout(1000);
+    await page.waitForSelector('#lostark-wrapper > div > main > div > div.deal-wrapper > div.category > div > div > div > ul > li:nth-child(8) > a') 
     await page.click( '#lostark-wrapper > div > main > div > div.deal-wrapper > div.category > div > div > div > ul > li:nth-child(8) > a');
   
     await page.waitForTimeout(1000);
+    await page.waitForSelector('#lostark-wrapper > div > main > div > div.deal-wrapper > div.category > div > div > div > ul > li.is-active > ul > li:nth-child(1) > a') 
     await page.click( '#lostark-wrapper > div > main > div > div.deal-wrapper > div.category > div > div > div > ul > li.is-active > ul > li:nth-child(1) > a');
   
     await page.waitForTimeout(1000);
@@ -124,9 +126,11 @@ const crawler = async () => {
     await page.click( '#lostark-wrapper > div > main > div > div.deal-wrapper > div.deal-fixed > form > fieldset > div > div.detail > button');
   
     await page.waitForTimeout(1000);
+    await page.waitForSelector('#lostark-wrapper > div > main > div > div.deal-wrapper > div.category > div > div > div > ul > li:nth-child(6) > a') 
     await page.click( '#lostark-wrapper > div > main > div > div.deal-wrapper > div.category > div > div > div > ul > li:nth-child(6) > a');
   
     await page.waitForTimeout(1000);
+    await page.waitForSelector('#lostark-wrapper > div > main > div > div.deal-wrapper > div.category > div > div > div > ul > li.is-active > ul > li:nth-child(1) > a') 
     await page.click( '#lostark-wrapper > div > main > div > div.deal-wrapper > div.category > div > div > div > ul > li.is-active > ul > li:nth-child(1) > a');
       
     await page.waitForTimeout(1000);
@@ -171,9 +175,11 @@ const crawler = async () => {
     await page.click( '#lostark-wrapper > div > main > div > div.deal-wrapper > div.deal-fixed > form > fieldset > div > div.detail > button');
   
     await page.waitForTimeout(1000);
+    await page.waitForSelector('#lostark-wrapper > div > main > div > div.deal-wrapper > div.category > div > div > div > ul > li:nth-child(7) > a')  
     await page.click( '#lostark-wrapper > div > main > div > div.deal-wrapper > div.category > div > div > div > ul > li:nth-child(7) > a');
   
     await page.waitForTimeout(1000);
+    await page.waitForSelector('#lostark-wrapper > div > main > div > div.deal-wrapper > div.category > div > div > div > ul > li.is-active > ul > li > a')  
     await page.click( '#lostark-wrapper > div > main > div > div.deal-wrapper > div.category > div > div > div > ul > li.is-active > ul > li > a');
       
     await page.waitForTimeout(1000);
@@ -217,6 +223,7 @@ const crawler = async () => {
     await page.type( '#txtItemName', '오레하 융화 재료' );
       
     await page.waitForTimeout(1000);
+    await page.waitForSelector('#lostark-wrapper > div > main > div > div.deal-wrapper > div.deal-fixed > form > fieldset > div > div.name > button.button.button--deal-submit')  
     await page.click( '#lostark-wrapper > div > main > div > div.deal-wrapper > div.deal-fixed > form > fieldset > div > div.name > button.button.button--deal-submit');
       
     await page.waitForTimeout(1000);
