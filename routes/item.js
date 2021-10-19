@@ -51,7 +51,7 @@ const crawler = async () => {
   //브라우저를 종료한다 
   await browser.close();
   }
-  setInterval(crawler(),300000)
+  crawler();
   
 
   
