@@ -21,6 +21,9 @@
 #raid:hover{
     color: red;
 }
+#item:hover{
+    color: red;
+}
 #main .input {
     color: white;
     font-family: 'SEBANG_Gothic_Bold';

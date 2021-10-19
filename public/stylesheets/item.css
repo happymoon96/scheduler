@@ -1,0 +1,93 @@
+@font-face {
+    font-family: 'SEBANG_Gothic_Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+*{
+    font-family: 'SEBANG_Gothic_Bold';
+}
+img{
+    width: 40px;
+    height: 40px;
+    vertical-align:middle;
+}
+table{
+    border-collapse: separate;
+    border-spacing: 0px 10px; 
+}
+td{
+    text-align: center;
+}
+th{
+    background-color: #212533;
+}
+#top_main{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+#top_main #time{
+    margin-top: 2rem;
+    color: white;
+}
+#main{
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+#main #selectBox{
+    margin-top: 2rem;
+    text-align: right;
+}
+#main #contents{
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 30fr 1fr 30fr;
+}
+#main #contents #profit{
+    background-color: #00a3a3;
+    color: cornsilk;
+    text-align: center;
+}
+#main #contents th{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#main #contents table{
+    width: 100%;
+}
+#main #contents #profit_table{
+    color: white;
+}
+#main #contents #loss_table{
+    color: white;
+}
+#main #contents #loss{
+    background-color: #b10f2f;
+    color: cornsilk;
+    text-align: center;
+}
+#purple_border{
+    background: linear-gradient(135deg,#261331,#480d5d);
+    border: #6D6756 solid 0.5px;
+}
+#purple{
+    background: linear-gradient(135deg,#261331,#480d5d);
+}
+#blue_border{
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg,#111f2c,#113d5d);
+    border: #6D6756 solid 0.5px;
+}
+#blue{
+    background: linear-gradient(135deg,#111f2c,#113d5d);
+}
+#green_border{
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg,#18220b,#304911);
+    border: #6D6756 solid 0.5px;
+}
+#green{
+    background: linear-gradient(135deg,#18220b,#304911);
+}

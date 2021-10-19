@@ -15,7 +15,7 @@
 
   <link rel="stylesheet" href="/stylesheets/background.css">
   <link rel="stylesheet" href="/stylesheets/top_menu.css">
-  <link rel="stylesheet" href="/stylesheets/home.css">
+  <link rel="stylesheet" href="/stylesheets/item.css">
   
   <title>레온하트</title>
 </head>
@@ -26,6 +26,7 @@
             var a_ejs = a;
             var b_ejs = b;
             var c_ejs = c;
+            var d_ejs = d;
             var time_ejs = time;
             %>
         </div>
@@ -33,316 +34,1636 @@
           <div class="logo"><a href="/">레온하트</a></div>
           <div class="menu">
             <span><a href="/schedule/main">스케쥴</a></span>
-            <span><a href="/item">아이템</a></span>
+            <span><a href="/item">영지 효율</a></span>
             <!-- <span><a href="/raid">레이드</a></span> -->
           </div>
         </div>
     </div>
-    <div>
-        <div>버튼들</div>
-        <div>첫페이지 - 순위</div>
-        <div>아이템별</div>
+    <div id="main">
+      <div></div>
+      <div>
+        <div>
+          <div id="top_main">
+            <div id="time">123123</div>
+            <div id="selectBox">
+              <select id="level" onchange="sale_handleOnChange(this)">
+                <option value="0">수수료감소</option>
+              </select>
+              <select id="item" onchange="list_handleOnChange(this)">
+                <option value="total">전체</option>
+                <option value="battleItem">배틀아이템</option>
+                <option value="dish">요리</option>
+                <option value="unique">특수</option>
+              </select>
+            </div>
+          </div>
+          <div id="contents">
+            <div>
+              <div id="profit">이득</div>
+              <table id="profit_table">
+                <th colspan = "2">이름</th>
+                <th>영지제작</th>
+                <th>거래소가격</th>
+                <th>이득</th>
+              </table>
+            </div>
+            <div>
+
+            </div>
+            <div>
+              <div id="loss">손해</div>
+              <table id="loss_table">
+                <th colspan = "2">이름</th>
+                <th>영지제작</th>
+                <th>거래소가격</th>
+                <th>손해</th>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div></div>
     </div>
+    
 </body>
 <script>
-    var life_item = JSON.parse(JSON.stringify(<%-JSON.stringify(a_ejs)%>))
-    var battle_item = JSON.parse(JSON.stringify(<%-JSON.stringify(b_ejs)%>))
-    var oreha_item = JSON.parse(JSON.stringify(<%-JSON.stringify(b_ejs)%>))
-    var time_string = (<%-JSON.stringify(time_ejs)%>)
-
-    time_calculus();
-    
-    function time_calculus(){
-      var end_ymd = time_string;
-      var yyyy = end_ymd.substr(0,4);
-      var mm = end_ymd.substr(5,2);
-      var dd = end_ymd.substr(8,2);
-      var thh = end_ymd.substr(11,2);
-      var tmm = end_ymd.substr(14,2);
-      var tss = end_ymd.substr(17,2);
-      var search_time = new Date(yyyy, mm, dd, parseInt(thh)+9, tmm, tss);
+  var total = [];
+  var sort_total = [];
+  var select_sale;
+  var select_list;
+  var sale = 1;
+  for(i = 1; i <= 30; i++){
+    var target = document.getElementById("level")
+    target.innerHTML += '<option value='+i+'>'+i+'%</option>'
+  }
+  function list_handleOnChange(e) {
+    total = []
+    select_list = e.value;
+    if(select_list == "battleItem"){
+      battle()
     }
-    
-    function life(name){
-      if(name == '들꽃'){
-        return "a1";
+    if(select_list == "dish"){
+      dish()
+    }
+    if(select_list == "unique"){
+      oreha()
+    }
+    if(select_list == "total"){
+      battle()
+      dish()
+      oreha()
+    }
+    sort_total =  total.sort(function(a,b){
+        return b.profit - a.profit;
+    });
+    document.getElementById("profit_table").innerHTML = '<th colspan = "2">이름</th><th>영지제작</th><th>거래소가격</th><th>제작시 이득</th>'
+    document.getElementById("loss_table").innerHTML = '<th colspan = "2">이름</th><th>영지제작</th><th>거래소가격</th><th>제작시 손해</th>'
+    for(var i = 0; i < sort_total.length; i++){
+      if(sort_total[i].profit > 0){
+        if(battle_serial(sort_total[i].name) !== undefined){
+          document.getElementById("profit_table").innerHTML += '<tr><td><img id='+backgroundColor(sort_total[i].name)+' src="/images/item/'+battle_serial(sort_total[i].name)+'.png"></td><td>'+sort_total[i].name+'</td><td>'+sort_total[i].produce+'</td><td>'+sort_total[i].exchange+'</td><td>'+sort_total[i].profit+'</td></tr>'
+        }else if(dish_serial(sort_total[i].name) !== undefined){
+          document.getElementById("profit_table").innerHTML += '<tr><td><img id='+backgroundColor(sort_total[i].name)+' src="/images/item/'+dish_serial(sort_total[i].name)+'.png"></td><td>'+sort_total[i].name+'(10개 단위)</td><td>'+sort_total[i].produce+'</td><td>'+sort_total[i].exchange+'</td><td>'+sort_total[i].profit+'</td></tr>'
+        }else if(oreha_serial(sort_total[i].name) !== undefined){
+        document.getElementById("profit_table").innerHTML += '<tr><td><img id='+backgroundColor(sort_total[i].name)+' src="/images/item/'+oreha_serial(sort_total[i].name)+'.png"></td><td>'+sort_total[i].name+'</td><td>'+sort_total[i].produce+'</td><td>'+sort_total[i].exchange+'</td><td>'+sort_total[i].profit+'</td></tr>'
       }
-      if(name == '수줍은 들꽃'){
-        return "a2";
-      }
-      if(name == '화사한 들꽃'){
-        return "a3";
-      }
-      if(name == '투박한 버섯'){
-        return "a4";
-      }
-      if(name == '싱싱한 버섯'){
-        return "a5";
-      }
-      if(name == '화려한 버섯'){
-        return "a6";
-      }
-
-      if(name == '목재'){
-        return "a7";
-      }
-      if(name == '부드러운 목재'){
-        return "a8";
-      }
-      if(name == '튼튼한 목재'){
-        return "a9";
-      }
-
-      if(name == '철광석'){
-        return "a10";
-      }
-      if(name == '묵직한 철광석'){
-        return "a11";
-      }
-      if(name == '단단한 철광석'){
-        return "a12";
-      }
-      
-      if(name == '두툼한 생고기'){
-        return "a13";
-      }
-      if(name == '다듬은 생고기'){
-        return "a14";
-      }
-      if(name == '질긴 가죽'){
-        return "a15";
-      }
-      if(name == '칼다르 두툼한 생고기'){
-        return "a16";
-      }
-      if(name == '오레하 두툼한 생고기'){
-        return "a17";
-      }
-      if(name == '수렵의 결정'){
-        return "a18";
-      }
-      
-      if(name == '생선'){
-        return "a19";
-      }
-      if(name == '붉은 살 생선'){
-        return "a20";
-      }
-      if(name == '자연산 진주'){
-        return "a21";
-      }
-      if(name == '칼다르 태양 잉어'){
-        return "a22";
-      }
-      if(name == '오레하 태양 잉어'){
-        return "a23";
-      }
-      if(name == '낚시의 결정'){
-        return "a24";
-      }
-      
-      if(name == '고대 유물'){
-        return "a25";
-      }
-      if(name == '희귀한 유물'){
-        return "a26";
-      }
-      if(name == '칼다르 유물'){
-        return "a27";
-      }
-      if(name == '오레하 유물'){
-        return "a28";
-      }
-      if(name == '고고학의 결정'){
-        return "a29";
-      }
-      
-      if(name == '도구 제작 부품'){
-        return "a30";
-      }
-      if(name == '초보자용 제작 키트'){
-        return "a31";
-      }
-      if(name == '견습생용 제작 키트'){
-        return "a32";
-      }
-      if(name == '숙련가용 제작 키트'){
-        return "a33";
-      }
-      if(name == '전문가용 제작 키트'){
-        return "a34";
-      }
-      if(name == '달인용 제작 키트'){
-        return "a35";
       }
     }
-    function battle(name){
-        if(name == '회복약'){
-          return "b1";
-        }
-        if(name == '고급 회복약'){
-          return "b2";
-        }
-        if(name == '정령의 회복약'){
-          return "b3";
-        }
-        if(name == '빛나는 정령의 회복약'){
-          return "b4";
-        }
-
-        if(name == '천둥 물약'){
-          return "b5";
-        }
-        if(name == '전기 수류탄'){
-          return "b6";
-        }
-        if(name == '성스러운 폭탄'){
-          return "b7";
-        }
-        if(name == '냉기 수류탄'){
-          return "b8";
-        }
-        if(name == '섬광 수류탄'){
-          return "b9";
-        }
-        if(name == '부식 폭탄'){
-          return "b10";
-        }
-        if(name == '점토 수류탄'){
-          return "b11";
-        }
-        if(name == '화염 수류탄'){
-          return "b12";
-        }
-        if(name == '암흑 수류탄'){
-          return "b13";
-        }
-        if(name == '회오리 수류탄'){
-          return "b14";
-        }
-        if(name == '수면 폭탄'){
-          return "b15";
-        }
-        if(name == '파괴 폭탄'){
-          return "b16";
-        }
-        if(name == '빛나는 전기 수류탄'){
-          return "b17";
-        }
-        if(name == '빛나는 부식 폭탄'){
-          return "b18";
-        }
-        if(name == '빛나는 성스러운 폭탄'){
-          return "b19";
-        }
-        if(name == '빛나는 수면 폭탄'){
-          return "b20";
-        }
-        if(name == '빛나는 파괴 폭탄'){
-          return "b21";
-        }
-        if(name == '빛나는 냉기 수류탄'){
-          return "b22";
-        }        
-        if(name == '빛나는 회오리 수류탄'){
-          return "b23";
-        }
-        if(name == '빛나는 천둥 물약'){
-          return "b24";
-        }
-        if(name == '빛나는 섬광 수류탄'){
-          return "b25";
-        }
-        if(name == '빛나는 점토 수류탄'){
-          return "b26";
-        }
-        if(name == '빛나는 화염 수류탄'){
-          return "b27";
-        }
-        if(name == '빛나는 암흑 수류탄'){
-          return "b28";
-        }
-
-        if(name == '위장 로브'){
-          return "b29";
-        }
-        if(name == '모닥불'){
-          return "b30";
-        }
-        if(name == '은신 로브'){
-          return "b31";
-        }
-        if(name == '정비소 이동 포탈 주문서'){
-          return "b32";
-        }
-        if(name == '도발 허수아비'){
-          return "b33";
-        }
-        if(name == '성스러운 부적'){
-          return "b34";
-        }
-        if(name == '루테란의 나팔'){
-          return "b35";
-        }
-        if(name == '페로몬 폭탄'){
-          return "b36";
-        }
-        if(name == '만능 물약'){
-          return "b37";
-        }
-        if(name == '신호탄'){
-          return "b38";
-        }
-        if(name == '빛나는 위장 로브'){
-          return "b39";
-        }
-        if(name == '빛나는 신호탄'){
-          return "b40";
-        }
-        if(name == '빛나는 성스러운 부적'){
-          return "b41";
-        }
-        if(name == '빛나는 모닥불'){
-          return "b42";
-        }
-        if(name == '시간 정지 물약'){
-          return "b43";
-        }
-        if(name == '빛나는 만능 물약'){
-          return "b44";
-        }
-        if(name == '빛나는 은신 로브'){
-          return "b45";
-        }
-        if(name == '빛나는 도발 허수아비'){
-          return "b46";
-        }
-
-        if(name == '보호 물약'){
-          return "b47";
-        }
-        if(name == '진군의 깃발'){
-          return "b48";
-        }
-        if(name == '신속 로브'){
-          return "b49";
-        }
-        if(name == '각성 물약'){
-          return "b50";
-        }
-        if(name == '빛나는 진군의 깃발'){
-          return "b51";
-        }
-        if(name == '아드로핀 물약'){
-          return "b52";
-        }
-        if(name == '빛나는 보호 물약'){
-          return "b53";
-        }
-        if(name == '빛나는 신속 로브'){
-          return "b54";
+    for(var i = sort_total.length - 1; i >= 0; i--){
+      if(sort_total[i].profit < 0){
+        if(battle_serial(sort_total[i].name) !== undefined){
+          document.getElementById("loss_table").innerHTML += '<tr><td><img id='+backgroundColor(sort_total[i].name)+' src="/images/item/'+battle_serial(sort_total[i].name)+'.png"></td><td>'+sort_total[i].name+'</td><td>'+sort_total[i].produce+'</td><td>'+sort_total[i].exchange+'</td><td>'+sort_total[i].profit+'</td></tr>'
+        }else if(dish_serial(sort_total[i].name) !== undefined){
+          document.getElementById("loss_table").innerHTML += '<tr><td><img id='+backgroundColor(sort_total[i].name)+' src="/images/item/'+dish_serial(sort_total[i].name)+'.png"></td><td>'+sort_total[i].name+'(10개 단위)</td><td>'+sort_total[i].produce+'</td><td>'+sort_total[i].exchange+'</td><td>'+sort_total[i].profit+'</td></tr>'
+        }else if(oreha_serial(sort_total[i].name) !== undefined){
+          document.getElementById("loss_table").innerHTML += '<tr><td><img id='+backgroundColor(sort_total[i].name)+' src="/images/item/'+oreha_serial(sort_total[i].name)+'.png"></td><td>'+sort_total[i].name+'</td><td>'+sort_total[i].produce+'</td><td>'+sort_total[i].exchange+'</td><td>'+sort_total[i].profit+'</td></tr>'
         }
       }
+    }
+  }
+  function sale_handleOnChange(e) {
+    total = [];
+    const value = e.value;
+    sale = (100-parseInt(value))/100;
+    if(select_list == "battleItem"){
+      battle()
+    }
+    if(select_list == "dish"){
+      dish()
+    }
+    if(select_list == "unique"){
+      oreha()
+    }
+    if(select_list == "total" || select_list == undefined){
+      battle()
+      dish()
+      oreha()
+    }
+    sort_total =  total.sort(function(a,b){
+        return b.profit - a.profit;
+    });
+    document.getElementById("profit_table").innerHTML = '<th colspan = "2">이름</th><th>영지제작</th><th>거래소가격</th><th>제작시 이득</th>'
+    document.getElementById("loss_table").innerHTML = '<th colspan = "2">이름</th><th>영지제작</th><th>거래소가격</th><th>제작시 손해</th>'
+    for(var i = 0; i < sort_total.length; i++){
+      if(sort_total[i].profit > 0){
+        if(battle_serial(sort_total[i].name) !== undefined){
+          document.getElementById("profit_table").innerHTML += '<tr><td><img id='+backgroundColor(sort_total[i].name)+' src="/images/item/'+battle_serial(sort_total[i].name)+'.png"></td><td>'+sort_total[i].name+'</td><td>'+sort_total[i].produce+'</td><td>'+sort_total[i].exchange+'</td><td>'+sort_total[i].profit+'</td></tr>'
+        }else if(dish_serial(sort_total[i].name) !== undefined){
+          document.getElementById("profit_table").innerHTML += '<tr><td><img id='+backgroundColor(sort_total[i].name)+' src="/images/item/'+dish_serial(sort_total[i].name)+'.png"></td><td>'+sort_total[i].name+'(10개 단위)</td><td>'+sort_total[i].produce+'</td><td>'+sort_total[i].exchange+'</td><td>'+sort_total[i].profit+'</td></tr>'
+        }else if(oreha_serial(sort_total[i].name) !== undefined){
+        document.getElementById("profit_table").innerHTML += '<tr><td><img id='+backgroundColor(sort_total[i].name)+' src="/images/item/'+oreha_serial(sort_total[i].name)+'.png"></td><td>'+sort_total[i].name+'</td><td>'+sort_total[i].produce+'</td><td>'+sort_total[i].exchange+'</td><td>'+sort_total[i].profit+'</td></tr>'
+      }
+      }
+    }
+    for(var i = sort_total.length - 1; i >= 0; i--){
+      if(sort_total[i].profit < 0){
+        if(battle_serial(sort_total[i].name) !== undefined){
+          document.getElementById("loss_table").innerHTML += '<tr><td><img id='+backgroundColor(sort_total[i].name)+' src="/images/item/'+battle_serial(sort_total[i].name)+'.png"></td><td>'+sort_total[i].name+'</td><td>'+sort_total[i].produce+'</td><td>'+sort_total[i].exchange+'</td><td>'+sort_total[i].profit+'</td></tr>'
+        }else if(dish_serial(sort_total[i].name) !== undefined){
+          document.getElementById("loss_table").innerHTML += '<tr><td><img id='+backgroundColor(sort_total[i].name)+' src="/images/item/'+dish_serial(sort_total[i].name)+'.png"></td><td>'+sort_total[i].name+'(10개 단위)</td><td>'+sort_total[i].produce+'</td><td>'+sort_total[i].exchange+'</td><td>'+sort_total[i].profit+'</td></tr>'
+        }else if(oreha_serial(sort_total[i].name) !== undefined){
+          document.getElementById("loss_table").innerHTML += '<tr><td><img id='+backgroundColor(sort_total[i].name)+' src="/images/item/'+oreha_serial(sort_total[i].name)+'.png"></td><td>'+sort_total[i].name+'</td><td>'+sort_total[i].produce+'</td><td>'+sort_total[i].exchange+'</td><td>'+sort_total[i].profit+'</td></tr>'
+        }
+      }
+    }
+  }
+  
+  var life_object = {
+    a1:{
+      name:"들꽃",
+      unit_price:""
+    },
+    a2:{
+      name:"수줍은 들꽃",
+      unit_price:""
+    },
+    a3:{
+      name:"화사한 들꽃",
+      unit_price:""
+    },
+    a4:{
+      name:"투박한 버섯",
+      unit_price:""
+    },
+    a5:{
+      name:"싱싱한 버섯",
+      unit_price:""
+    },
+    a6:{
+      name:"화려한 버섯",
+      unit_price:""
+    },
+    a7:{
+      name:"목재",
+      unit_price:""
+    },
+    a8:{
+      name:"부드러운 목재",
+      unit_price:""
+    },
+    a9:{
+      name:"튼튼한 목재",
+      unit_price:""
+    },
+    a10:{
+      name:"철광석",
+      unit_price:""
+    },
+    a11:{
+      name:"묵직한 철광석",
+      unit_price:""
+    },
+    a12:{
+      name:"단단한 철광석",
+      unit_price:""
+    },
+    a13:{
+      name:"두툼한 생고기",
+      unit_price:""
+    },
+    a14:{
+      name:"다듬은 생고기",
+      unit_price:""
+    },
+    a15:{
+      name:"질긴 가죽",
+      unit_price:""
+    },
+    a16:{
+      name:"칼다르 두툼한 생고기",
+      unit_price:""
+    },
+    a17:{
+      name:"오레하 두툼한 생고기",
+      unit_price:""
+    },
+    a18:{
+      name:"수렵의 결정",
+      unit_price:""
+    },
+    a19:{
+      name:"생선",
+      unit_price:""
+    },
+    a20:{
+      name:"붉은 살 생선",
+      unit_price:""
+    },
+    a21:{
+      name:"자연산 진주",
+      unit_price:""
+    },
+    a22:{
+      name:"칼다르 태양 잉어",
+      unit_price:""
+    },
+    a23:{
+      name:"오레하 태양 잉어",
+      unit_price:""
+    },
+    a24:{
+      name:"낚시의 결정",
+      unit_price:""
+    },
+    a25:{
+      name:"고대 유물",
+      unit_price:""
+    },
+    a26:{
+      name:"희귀한 유물",
+      unit_price:""
+    },
+    a27:{
+      name:"칼다르 유물",
+      unit_price:""
+    },
+    a28:{
+      name:"오레하 유물",
+      unit_price:""
+    },
+    a29:{
+      name:"고고학의 결정",
+      unit_price:""
+    },
+    a30:{
+      name:"도구 제작 부품",
+      unit_price:""
+    },
+    a31:{
+      name:"초보자용 제작 키트",
+      unit_price:""
+    },
+    a32:{
+      name:"견습생용 제작 키트",
+      unit_price:""
+    },
+    a33:{
+      name:"숙련가용 제작 키트",
+      unit_price:""
+    },
+    a34:{
+      name:"전문가용 제작 키트",
+      unit_price:""
+    },
+    a35:{
+      name:"달인용 제작 키트",
+      unit_price:""
+    }
+  }
+  var battle_object = {
+    b1:{
+      name:"회복약",
+      produce:"",
+      exchange:""
+    },
+    b2:{
+      name:"고급 회복약",
+      produce:"",
+      exchange:""
+    },
+    b3:{
+      name:"정령의 회복약",
+      produce:"",
+      exchange:""
+    },
+    b4:{
+      name:"빛나는 정령의 회복약",
+      produce:"",
+      exchange:""
+    },
+    b5:{
+      name:"천둥 물약",
+      produce:"",
+      exchange:""
+    },
+    b6:{
+      name:"전기 수류탄",
+      produce:"",
+      exchange:""
+    },
+    b7:{
+      name:"성스러운 폭탄",
+      produce:"",
+      exchange:""
+    },
+    b8:{
+      name:"냉기 수류탄",
+      produce:"",
+      exchange:""
+    },
+    b9:{
+      name:"섬광 수류탄",
+      produce:"",
+      exchange:""
+    },
+    b10:{
+      name:"부식 폭탄",
+      produce:"",
+      exchange:""
+    },
+    b11:{
+      name:"점토 수류탄",
+      produce:"",
+      exchange:""
+    },
+    b12:{
+      name:"화염 수류탄",
+      produce:"",
+      exchange:""
+    },
+    b13:{
+      name:"암흑 수류탄",
+      produce:"",
+      exchange:""
+    },
+    b14:{
+      name:"회오리 수류탄",
+      produce:"",
+      exchange:""
+    },
+    b15:{
+      name:"수면 폭탄",
+      produce:"",
+      exchange:""
+    },
+    b16:{
+      name:"파괴 폭탄",
+      produce:"",
+      exchange:""
+    },
+    b17:{
+      name:"빛나는 전기 수류탄",
+      produce:"",
+      exchange:""
+    },
+    b18:{
+      name:"빛나는 부식 폭탄",
+      produce:"",
+      exchange:""
+    },
+    b19:{
+      name:"빛나는 성스러운 폭탄",
+      produce:"",
+      exchange:""
+    },
+    b20:{
+      name:"빛나는 수면 폭탄",
+      produce:"",
+      exchange:""
+    },
+    b21:{
+      name:"빛나는 파괴 폭탄",
+      produce:"",
+      exchange:""
+    },
+    b22:{
+      name:"빛나는 냉기 수류탄",
+      produce:"",
+      exchange:""
+    },
+    b23:{
+      name:"빛나는 회오리 수류탄",
+      produce:"",
+      exchange:""
+    },
+    b24:{
+      name:"빛나는 천둥 물약",
+      produce:"",
+      exchange:""
+    },
+    b25:{
+      name:"빛나는 섬광 수류탄",
+      produce:"",
+      exchange:""
+    },
+    b26:{
+      name:"빛나는 점토 수류탄",
+      produce:"",
+      exchange:""
+    },
+    b27:{
+      name:"빛나는 화염 수류탄",
+      produce:"",
+      exchange:""
+    },
+    b28:{
+      name:"빛나는 암흑 수류탄",
+      produce:"",
+      exchange:""
+    },
+    b29:{
+      name:"위장 로브",
+      produce:"",
+      exchange:""
+    },
+    b30:{
+      name:"모닥불",
+      produce:"",
+      exchange:""
+    },
+    b31:{
+      name:"은신 로브",
+      produce:"",
+      exchange:""
+    },
+    b32:{
+      name:"정비소 이동 포탈 주문서",
+      produce:"",
+      exchange:""
+    },
+    b33:{
+      name:"도발 허수아비",
+      produce:"",
+      exchange:""
+    },
+    b34:{
+      name:"성스러운 부적",
+      produce:"",
+      exchange:""
+    },
+    b35:{
+      name:"루테란의 나팔",
+      produce:"",
+      exchange:""
+    },
+    b36:{
+      name:"페로몬 폭탄",
+      produce:"",
+      exchange:""
+    },
+    b37:{
+      name:"만능 물약",
+      produce:"",
+      exchange:""
+    },
+    b38:{
+      name:"신호탄",
+      produce:"",
+      exchange:""
+    },
+    b39:{
+      name:"빛나는 위장 로브",
+      produce:"",
+      exchange:""
+    },
+    b40:{
+      name:"빛나는 신호탄",
+      produce:"",
+      exchange:""
+    },
+    b41:{
+      name:"빛나는 성스러운 부적",
+      produce:"",
+      exchange:""
+    },
+    b42:{
+      name:"빛나는 모닥불",
+      produce:"",
+      exchange:""
+    },
+    b43:{
+      name:"시간 정지 물약",
+      produce:"",
+      exchange:""
+    },
+    b44:{
+      name:"빛나는 만능 물약",
+      produce:"",
+      exchange:""
+    },
+    b45:{
+      name:"빛나는 은신 로브",
+      produce:"",
+      exchange:""
+    },
+    b46:{
+      name:"빛나는 도발 허수아비",
+      produce:"",
+      exchange:""
+    },
+    b47:{
+      name:"보호 물약",
+      produce:"",
+      exchange:""
+    },
+    b48:{
+      name:"진군의 깃발",
+      produce:"",
+      exchange:""
+    },
+    b49:{
+      name:"신속 로브",
+      produce:"",
+      exchange:""
+    },
+    b50:{
+      name:"각성 물약",
+      produce:"",
+      exchange:""
+    },
+    b51:{
+      name:"빛나는 진군의 깃발",
+      produce:"",
+      exchange:""
+    },
+    b52:{
+      name:"아드로핀 물약",
+      produce:"",
+      exchange:""
+    },
+    b53:{
+      name:"빛나는 보호 물약",
+      produce:"",
+      exchange:""
+    },
+    b54:{
+      name:"빛나는 신속 로브",
+      produce:"",
+      exchange:""
+    },
+  }
+  var dish_object = {
+    d1:{
+      name:"[일품] 장인의 노릇한 꼬치구이",
+      produce:"",
+      exchange:""
+    },
+    d2:{
+      name:"[일품] 장인의 매콤한 스튜",
+      produce:"",
+      exchange:""
+    },
+    d3:{
+      name:"[일품] 장인의 폭신한 오믈렛",
+      produce:"",
+      exchange:""
+    },
+    d4:{
+      name:"[일품] 장인의 마늘 스테이크 정식",
+      produce:"",
+      exchange:""
+    },
+    d5:{
+      name:"[일품] 달인의 바삭한 꼬치구이",
+      produce:"",
+      exchange:""
+    },
+    d6:{
+      name:"[일품] 달인의 달콤한 스튜",
+      produce:"",
+      exchange:""
+    },
+    d7:{
+      name:"[일품] 달인의 부드러운 오믈렛",
+      produce:"",
+      exchange:""
+    },
+    d8:{
+      name:"[일품] 달인의 버터 스테이크 정식",
+      produce:"",
+      exchange:""
+    },
+    d9:{
+      name:"[일품] 명인의 쫄깃한 꼬치구이",
+      produce:"",
+      exchange:""
+    },
+    d10:{
+      name:"[일품] 명인의 짭짤한 스튜",
+      produce:"",
+      exchange:""
+    },
+    d11:{
+      name:"[일품] 명인의 촉촉한 오믈렛",
+      produce:"",
+      exchange:""
+    },
+    d12:{
+      name:"[일품] 명인의 허브 스테이크 정식",
+      produce:"",
+      exchange:""
+    },
     
+  }
+  var oreha_object = {
+    c1:{
+      name:"하급 오레하 융화 재료(수렵)",
+      produce:"",
+      exchange:""
+    },
+    c2:{
+      name:"하급 오레하 융화 재료(고고학)",
+      produce:"",
+      exchange:""
+    },
+    c3:{
+      name:"하급 오레하 융화 재료(낚시)",
+      produce:"",
+      exchange:""
+    },
+    c4:{
+      name:"중급 오레하 융화 재료(수렵)",
+      produce:"",
+      exchange:""
+    },
+    c5:{
+      name:"중급 오레하 융화 재료(고고학)",
+      produce:"",
+      exchange:""
+    },
+    c6:{
+      name:"중급 오레하 융화 재료(낚시)",
+      produce:"",
+      exchange:""
+    },
+    c7:{
+      name:"상급 오레하 융화 재료(수렵)",
+      produce:"",
+      exchange:""
+    },
+    c8:{
+      name:"상급 오레하 융화 재료(고고학)",
+      produce:"",
+      exchange:""
+    },
+    c9:{
+      name:"상급 오레하 융화 재료(낚시)",
+      produce:"",
+      exchange:""
+    }
+    
+  }
+  
+  var life_item = JSON.parse(JSON.stringify(<%-JSON.stringify(a_ejs)%>))
+  var battle_item = JSON.parse(JSON.stringify(<%-JSON.stringify(b_ejs)%>))
+  var oreha_item = JSON.parse(JSON.stringify(<%-JSON.stringify(c_ejs)%>))
+  var dish_item = JSON.parse(JSON.stringify(<%-JSON.stringify(d_ejs)%>))
+  var time_string = (<%-JSON.stringify(time_ejs)%>)
+
+  life();
+  battle();
+  dish();
+  oreha();
+  time_calculus();
+  sort_total =  total.sort(function(a,b){
+      return b.profit - a.profit;
+  });
+  document.getElementById("profit_table").innerHTML = '<th colspan = "2">이름</th><th>영지제작</th><th>거래소가격</th><th>제작시 이득</th>'
+  document.getElementById("loss_table").innerHTML = '<th colspan = "2">이름</th><th>영지제작</th><th>거래소가격</th><th>제작시 손해</th>'
+  for(var i = 0; i < sort_total.length; i++){
+    if(sort_total[i].profit > 0){
+      if(battle_serial(sort_total[i].name) !== undefined){
+        document.getElementById("profit_table").innerHTML += '<tr><td><img id='+backgroundColor(sort_total[i].name)+' src="/images/item/'+battle_serial(sort_total[i].name)+'.png"></td><td>'+sort_total[i].name+'</td><td>'+sort_total[i].produce+'</td><td>'+sort_total[i].exchange+'</td><td>'+sort_total[i].profit+'</td></tr>'
+      }else if(dish_serial(sort_total[i].name) !== undefined){
+        document.getElementById("profit_table").innerHTML += '<tr><td><img id='+backgroundColor(sort_total[i].name)+' src="/images/item/'+dish_serial(sort_total[i].name)+'.png"></td><td>'+sort_total[i].name+'(10개 단위)</td><td>'+sort_total[i].produce+'</td><td>'+sort_total[i].exchange+'</td><td>'+sort_total[i].profit+'</td></tr>'
+      }else if(oreha_serial(sort_total[i].name) !== undefined){
+        document.getElementById("profit_table").innerHTML += '<tr><td><img id='+backgroundColor(sort_total[i].name)+' src="/images/item/'+oreha_serial(sort_total[i].name)+'.png"></td><td>'+sort_total[i].name+'</td><td>'+sort_total[i].produce+'</td><td>'+sort_total[i].exchange+'</td><td>'+sort_total[i].profit+'</td></tr>'
+      }
+    }
+  }
+  for(var i = sort_total.length - 1; i >= 0; i--){
+    if(sort_total[i].profit <= 0){
+      if(battle_serial(sort_total[i].name) !== undefined){
+        document.getElementById("loss_table").innerHTML += '<tr><td><img id='+backgroundColor(sort_total[i].name)+' src="/images/item/'+battle_serial(sort_total[i].name)+'.png"></td><td>'+sort_total[i].name+'</td><td>'+sort_total[i].produce+'</td><td>'+sort_total[i].exchange+'</td><td>'+sort_total[i].profit+'</td></tr>'
+      }else if(dish_serial(sort_total[i].name) !== undefined){
+        document.getElementById("loss_table").innerHTML += '<tr><td><img id='+backgroundColor(sort_total[i].name)+' src="/images/item/'+dish_serial(sort_total[i].name)+'.png"></td><td>'+sort_total[i].name+'(10개 단위)</td><td>'+sort_total[i].produce+'</td><td>'+sort_total[i].exchange+'</td><td>'+sort_total[i].profit+'</td></tr>'
+      }else if(oreha_serial(sort_total[i].name) !== undefined){
+        document.getElementById("loss_table").innerHTML += '<tr><td><img id='+backgroundColor(sort_total[i].name)+' src="/images/item/'+oreha_serial(sort_total[i].name)+'.png"></td><td>'+sort_total[i].name+'</td><td>'+sort_total[i].produce+'</td><td>'+sort_total[i].exchange+'</td><td>'+sort_total[i].profit+'</td></tr>'
+      }
+    }
+  }
+  function time_calculus(){
+    var end_ymd = time_string;
+    var yyyy = end_ymd.substr(0,4);
+    var mm = end_ymd.substr(5,2);
+    var dd;
+    var thh;
+    if(parseInt(end_ymd.substr(11,2))+9 >= 24){
+      thh = parseInt(end_ymd.substr(11,2))+9 - 24;
+      dd = parseInt(end_ymd.substr(8,2)) + 1;
+    }else{
+      thh = parseInt(end_ymd.substr(11,2))+9;
+      dd = parseInt(end_ymd.substr(8,2));
+    }
+    var tmm = end_ymd.substr(14,2);
+    var tss = end_ymd.substr(17,2);
+    var search_time = new Date(yyyy, mm, dd, parseInt(thh)+9, tmm, tss);
+    document.getElementById("time").innerHTML = '최근 가격 업데이트 : '+dd+'일 '+thh+'시 '+tmm+'분 '+tss+'초';
+  }
+  function life(){
+    for(var i = 0; i < life_item.length; i++){
+      if(life_item[i].Name == '들꽃'){
+        life_object.a1.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '수줍은 들꽃'){
+        life_object.a2.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '화사한 들꽃'){
+        life_object.a3.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '투박한 버섯'){
+        life_object.a4.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '싱싱한 버섯'){
+        life_object.a5.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '화려한 버섯'){
+        life_object.a6.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+
+      if(life_item[i].Name == '목재'){
+        life_object.a7.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '부드러운 목재'){
+        life_object.a8.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '튼튼한 목재'){
+        life_object.a9.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+
+      if(life_item[i].Name == '철광석'){
+        life_object.a10.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '묵직한 철광석'){
+        life_object.a11.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '단단한 철광석'){
+        life_object.a12.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      
+      if(life_item[i].Name == '두툼한 생고기'){
+        life_object.a13.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '다듬은 생고기'){
+        life_object.a14.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '질긴 가죽'){
+        life_object.a15.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '칼다르 두툼한 생고기'){
+        life_object.a16.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '오레하 두툼한 생고기'){
+        life_object.a17.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '수렵의 결정'){
+        life_object.a18.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      
+      if(life_item[i].Name == '생선'){
+        life_object.a19.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '붉은 살 생선'){
+        life_object.a20.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '자연산 진주'){
+        life_object.a21.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '칼다르 태양 잉어'){
+        life_object.a22.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '오레하 태양 잉어'){
+        life_object.a23.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '낚시의 결정'){
+        life_object.a24.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      
+      if(life_item[i].Name == '고대 유물'){
+        life_object.a25.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '희귀한 유물'){
+        life_object.a26.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '칼다르 유물'){
+        life_object.a27.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '오레하 유물'){
+        life_object.a28.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '고고학의 결정'){
+        life_object.a29.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      
+      if(life_item[i].Name == '도구 제작 부품'){
+        life_object.a30.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '초보자용 제작 키트'){
+        life_object.a31.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '견습생용 제작 키트'){
+        life_object.a32.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '숙련가용 제작 키트'){
+        life_object.a33.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '전문가용 제작 키트'){
+        life_object.a34.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+      if(life_item[i].Name == '달인용 제작 키트'){
+        life_object.a35.unit_price = life_item[i].Price/life_item[i].Unit;
+      }
+    }
+  }
+  function battle(){
+    for(var i = 0; i < battle_item.length; i++){
+      if(battle_item[i].Name == '회복약'){
+        battle_object.b1.exchange = (battle_item[i].Price/battle_item[i].Unit);
+        battle_object.b1.produce = (((life_object.a1.unit_price*10) + (life_object.a2.unit_price*5))/3).toFixed(1);
+        total.push({name:battle_item[i].Name, profit: (battle_object.b1.exchange - battle_object.b1.produce).toFixed(1), produce:battle_object.b1.produce, exchange: battle_object.b1.exchange})
+      }
+      if(battle_item[i].Name == '고급 회복약'){
+        battle_object.b2.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b2.produce = (((life_object.a1.unit_price*18) + (life_object.a2.unit_price*9) + Math.floor(15*sale))/3).toFixed(1);
+        total.push({name:battle_item[i].Name, profit: (battle_object.b2.exchange - battle_object.b2.produce).toFixed(1), produce:battle_object.b2.produce, exchange: battle_object.b2.exchange})
+      }
+      if(battle_item[i].Name == '정령의 회복약'){
+        battle_object.b3.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b3.produce = (((life_object.a1.unit_price*48) + (life_object.a2.unit_price*24) + (life_object.a3.unit_price*6) + Math.floor(30*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b3.exchange - battle_object.b3.produce).toFixed(1), produce:battle_object.b3.produce, exchange: battle_object.b3.exchange});
+      }
+      if(battle_item[i].Name == '빛나는 정령의 회복약'){
+        battle_object.b4.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b4.produce = (((life_object.a1.unit_price*48) + (life_object.a2.unit_price*24) + (life_object.a3.unit_price*14) + Math.floor(60*sale))/2).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b4.exchange - battle_object.b4.produce).toFixed(1), produce:battle_object.b4.produce, exchange: battle_object.b4.exchange});
+      }
+
+      if(battle_item[i].Name == '천둥 물약'){
+        battle_object.b5.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b5.produce = (((life_object.a1.unit_price*32) + (life_object.a2.unit_price*16) + (life_object.a3.unit_price*4) + (life_object.a26.unit_price*5) + Math.floor(15*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b5.exchange - battle_object.b5.produce).toFixed(1), produce:battle_object.b5.produce, exchange: battle_object.b5.exchange});
+      }
+      if(battle_item[i].Name == '전기 수류탄'){
+        battle_object.b6.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b6.produce = (((life_object.a4.unit_price*24) + (life_object.a5.unit_price*12) + (life_object.a6.unit_price*3) + (life_object.a10.unit_price*5) + Math.floor(15*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b6.exchange - battle_object.b6.produce).toFixed(1), produce:battle_object.b6.produce, exchange: battle_object.b6.exchange});
+      }
+      if(battle_item[i].Name == '성스러운 폭탄'){
+        battle_object.b7.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b7.produce = (((life_object.a4.unit_price*24) + (life_object.a5.unit_price*12) + (life_object.a6.unit_price*3) + (life_object.a10.unit_price*3) + Math.floor(15*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b7.exchange - battle_object.b7.produce).toFixed(1), produce:battle_object.b7.produce, exchange: battle_object.b7.exchange});
+      }
+      if(battle_item[i].Name == '냉기 수류탄'){
+        battle_object.b8.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b8.produce = (((life_object.a4.unit_price*24) + (life_object.a5.unit_price*12) + (life_object.a6.unit_price*3) + (life_object.a10.unit_price*5) + Math.floor(15*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b8.exchange - battle_object.b8.produce).toFixed(1), produce:battle_object.b8.produce, exchange: battle_object.b8.exchange});
+      }
+      if(battle_item[i].Name == '섬광 수류탄'){
+        battle_object.b9.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b9.produce = (((life_object.a4.unit_price*24) + (life_object.a5.unit_price*12) + (life_object.a6.unit_price*3) + (life_object.a10.unit_price*5) + Math.floor(15*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b9.exchange - battle_object.b9.produce).toFixed(1), produce:battle_object.b9.produce, exchange: battle_object.b9.exchange});
+      }
+      if(battle_item[i].Name == '부식 폭탄'){
+        battle_object.b10.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b10.produce = (((life_object.a4.unit_price*32) + (life_object.a5.unit_price*12) + (life_object.a6.unit_price*4) + (life_object.a11.unit_price*6) + Math.floor(15*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b10.exchange - battle_object.b10.produce).toFixed(1), produce:battle_object.b10.produce, exchange: battle_object.b10.exchange});
+      }
+      if(battle_item[i].Name == '점토 수류탄'){
+        battle_object.b11.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b11.produce = (((life_object.a4.unit_price*24) + (life_object.a5.unit_price*12) + (life_object.a6.unit_price*3) + (life_object.a10.unit_price*5) + Math.floor(15*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b11.exchange - battle_object.b11.produce).toFixed(1), produce:battle_object.b11.produce, exchange: battle_object.b11.exchange});
+      }
+      if(battle_item[i].Name == '화염 수류탄'){
+        battle_object.b12.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b12.produce = (((life_object.a4.unit_price*24) + (life_object.a5.unit_price*12) + (life_object.a6.unit_price*3) + (life_object.a8.unit_price*3) + Math.floor(15*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b12.exchange - battle_object.b12.produce).toFixed(1), produce:battle_object.b12.produce, exchange: battle_object.b12.exchange});
+      }
+      if(battle_item[i].Name == '암흑 수류탄'){
+        battle_object.b13.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b13.produce = (((life_object.a4.unit_price*24) + (life_object.a5.unit_price*12) + (life_object.a6.unit_price*3) + (life_object.a8.unit_price*3) + Math.floor(15*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b13.exchange - battle_object.b13.produce).toFixed(1), produce:battle_object.b13.produce, exchange: battle_object.b13.exchange});
+      }
+      if(battle_item[i].Name == '회오리 수류탄'){
+        battle_object.b14.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b14.produce = (((life_object.a4.unit_price*24) + (life_object.a5.unit_price*12) + (life_object.a6.unit_price*3) + (life_object.a8.unit_price*3) + Math.floor(15*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b14.exchange - battle_object.b14.produce).toFixed(1), produce:battle_object.b14.produce, exchange: battle_object.b14.exchange});
+      }
+      if(battle_item[i].Name == '수면 폭탄'){
+        battle_object.b15.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b15.produce = (((life_object.a4.unit_price*32) + (life_object.a5.unit_price*12) + (life_object.a6.unit_price*4) + (life_object.a10.unit_price*10) + Math.floor(15*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b15.exchange - battle_object.b15.produce).toFixed(1), produce:battle_object.b15.produce, exchange: battle_object.b15.exchange});
+      }
+      if(battle_item[i].Name == '파괴 폭탄'){
+        battle_object.b16.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b16.produce = (((life_object.a4.unit_price*32) + (life_object.a5.unit_price*12) + (life_object.a6.unit_price*4) + (life_object.a11.unit_price*6) + Math.floor(15*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b16.exchange - battle_object.b16.produce).toFixed(1), produce:battle_object.b16.produce, exchange: battle_object.b16.exchange});
+      }
+      if(battle_item[i].Name == '빛나는 전기 수류탄'){
+        battle_object.b17.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b17.produce = (((life_object.a4.unit_price*24) + (life_object.a5.unit_price*12) + (life_object.a6.unit_price*7) + (life_object.a10.unit_price*5) + Math.floor(30*sale))/2).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b17.exchange - battle_object.b17.produce).toFixed(1), produce:battle_object.b17.produce, exchange: battle_object.b17.exchange});
+      }
+      if(battle_item[i].Name == '빛나는 부식 폭탄'){
+        battle_object.b18.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b18.produce = (((life_object.a4.unit_price*32) + (life_object.a5.unit_price*12) + (life_object.a6.unit_price*6) + (life_object.a11.unit_price*6) + Math.floor(30*sale))/2).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b18.exchange - battle_object.b18.produce).toFixed(1), produce:battle_object.b18.produce, exchange: battle_object.b18.exchange});
+      }
+      if(battle_item[i].Name == '빛나는 성스러운 폭탄'){
+        battle_object.b19.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b19.produce = (((life_object.a4.unit_price*24) + (life_object.a5.unit_price*12) + (life_object.a6.unit_price*7) + (life_object.a10.unit_price*3) + Math.floor(30*sale))/2).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b19.exchange - battle_object.b19.produce).toFixed(1), produce:battle_object.b19.produce, exchange: battle_object.b19.exchange});
+      }
+      if(battle_item[i].Name == '빛나는 수면 폭탄'){
+        battle_object.b20.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b20.produce = (((life_object.a4.unit_price*32) + (life_object.a5.unit_price*12) + (life_object.a6.unit_price*6) + (life_object.a10.unit_price*10) + Math.floor(30*sale))/2).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b20.exchange - battle_object.b20.produce).toFixed(1), produce:battle_object.b20.produce, exchange: battle_object.b20.exchange});
+      }
+      if(battle_item[i].Name == '빛나는 파괴 폭탄'){
+        battle_object.b21.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b21.produce = (((life_object.a4.unit_price*32) + (life_object.a5.unit_price*12) + (life_object.a6.unit_price*6) + (life_object.a11.unit_price*6) + Math.floor(30*sale))/2).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b21.exchange - battle_object.b21.produce).toFixed(1), produce:battle_object.b21.produce, exchange: battle_object.b21.exchange});
+      }
+      if(battle_item[i].Name == '빛나는 냉기 수류탄'){
+        battle_object.b22.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b22.produce = (((life_object.a4.unit_price*24) + (life_object.a5.unit_price*12) + (life_object.a6.unit_price*7) + (life_object.a10.unit_price*5) + Math.floor(30*sale))/2).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b22.exchange - battle_object.b22.produce).toFixed(1), produce:battle_object.b22.produce, exchange: battle_object.b22.exchange});
+      }        
+      if(battle_item[i].Name == '빛나는 회오리 수류탄'){
+        battle_object.b23.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b23.produce = (((life_object.a4.unit_price*24) + (life_object.a5.unit_price*12) + (life_object.a6.unit_price*7) + (life_object.a8.unit_price*3) + Math.floor(30*sale))/2).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b23.exchange - battle_object.b23.produce).toFixed(1), produce:battle_object.b23.produce, exchange: battle_object.b23.exchange});
+      }
+      if(battle_item[i].Name == '빛나는 천둥 물약'){
+        battle_object.b24.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b24.produce = (((life_object.a1.unit_price*32) + (life_object.a2.unit_price*16) + (life_object.a3.unit_price*4) + (life_object.a26.unit_price*5) + (life_object.a6.unit_price*10) + Math.floor(30*sale))/2).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b24.exchange - battle_object.b24.produce).toFixed(1), produce:battle_object.b24.produce, exchange: battle_object.b24.exchange});
+      }
+      if(battle_item[i].Name == '빛나는 섬광 수류탄'){
+        battle_object.b25.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b25.produce = (((life_object.a4.unit_price*24) + (life_object.a5.unit_price*12) + (life_object.a6.unit_price*7) + (life_object.a10.unit_price*5) + Math.floor(30*sale))/2).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b25.exchange - battle_object.b25.produce).toFixed(1), produce:battle_object.b25.produce, exchange: battle_object.b25.exchange});
+      }
+      if(battle_item[i].Name == '빛나는 점토 수류탄'){
+        battle_object.b26.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b26.produce = (((life_object.a4.unit_price*24) + (life_object.a5.unit_price*12) + (life_object.a6.unit_price*7) + (life_object.a10.unit_price*5) + Math.floor(30*sale))/2).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b26.exchange - battle_object.b26.produce).toFixed(1), produce:battle_object.b26.produce, exchange: battle_object.b26.exchange});
+      }
+      if(battle_item[i].Name == '빛나는 화염 수류탄'){
+        battle_object.b27.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b27.produce = (((life_object.a4.unit_price*24) + (life_object.a5.unit_price*12) + (life_object.a6.unit_price*7) + (life_object.a8.unit_price*3) + Math.floor(30*sale))/2).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b27.exchange - battle_object.b27.produce).toFixed(1), produce:battle_object.b27.produce, exchange: battle_object.b27.exchange});
+      }
+      if(battle_item[i].Name == '빛나는 암흑 수류탄'){
+        battle_object.b28.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b28.produce = (((life_object.a4.unit_price*24) + (life_object.a5.unit_price*12) + (life_object.a6.unit_price*7) + (life_object.a8.unit_price*3) + Math.floor(30*sale))/2).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b28.exchange - battle_object.b28.produce).toFixed(1), produce:battle_object.b28.produce, exchange: battle_object.b28.exchange});
+      }
+
+      if(battle_item[i].Name == '위장 로브'){
+        battle_object.b29.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b29.produce = (((life_object.a4.unit_price*35) + (life_object.a5.unit_price*22) + (life_object.a15.unit_price*22) + Math.floor(15*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b29.exchange - battle_object.b29.produce).toFixed(1), produce:battle_object.b29.produce, exchange: battle_object.b29.exchange});
+      }
+      if(battle_item[i].Name == '모닥불'){
+        battle_object.b30.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b30.produce = (((life_object.a5.unit_price*15) + (life_object.a6.unit_price*3) + (life_object.a7.unit_price*12) + Math.floor(15*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b30.exchange - battle_object.b30.produce).toFixed(1), produce:battle_object.b30.produce, exchange: battle_object.b30.exchange});
+      }
+      if(battle_item[i].Name == '은신 로브'){
+        battle_object.b31.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b31.produce = (((life_object.a4.unit_price*35) + (life_object.a5.unit_price*15) + (life_object.a6.unit_price*5) + (life_object.a12.unit_price*2) + (life_object.a15.unit_price*2) + Math.floor(30*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b31.exchange - battle_object.b31.produce).toFixed(1), produce:battle_object.b31.produce, exchange: battle_object.b31.exchange});
+      }
+      if(battle_item[i].Name == '정비소 이동 포탈 주문서'){
+        battle_object.b32.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b32.produce = (((life_object.a1.unit_price*144) + (life_object.a3.unit_price*18) + (life_object.a21.unit_price*16) + Math.floor(15*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b32.exchange - battle_object.b32.produce).toFixed(1), produce:battle_object.b32.produce, exchange: battle_object.b32.exchange});
+      }
+      if(battle_item[i].Name == '도발 허수아비'){
+        battle_object.b33.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b33.produce = (((life_object.a5.unit_price*15) + (life_object.a6.unit_price*3) + (life_object.a7.unit_price*13) + Math.floor(15*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b33.exchange - battle_object.b33.produce).toFixed(1), produce:battle_object.b33.produce, exchange: battle_object.b33.exchange});
+      }
+      if(battle_item[i].Name == '성스러운 부적'){
+        battle_object.b34.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b34.produce = (((life_object.a4.unit_price*30) + (life_object.a5.unit_price*18) + (life_object.a6.unit_price*3) + Math.floor(15*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b34.exchange - battle_object.b34.produce).toFixed(1), produce:battle_object.b34.produce, exchange: battle_object.b34.exchange});
+      }
+      if(battle_item[i].Name == '루테란의 나팔'){
+        battle_object.b35.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b35.produce = (((life_object.a1.unit_price*40) + (life_object.a2.unit_price*20) + (life_object.a3.unit_price*4) + (life_object.a10.unit_price*2) + (life_object.a12.unit_price*2) + Math.floor(30*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b35.exchange - battle_object.b35.produce).toFixed(1), produce:battle_object.b35.produce, exchange: battle_object.b35.exchange});
+      }
+      if(battle_item[i].Name == '페로몬 폭탄'){
+        battle_object.b36.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b36.produce = (((life_object.a4.unit_price*32) + (life_object.a5.unit_price*12) + (life_object.a6.unit_price*4) + (life_object.a11.unit_price*6) + Math.floor(15*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b36.exchange - battle_object.b36.produce).toFixed(1), produce:battle_object.b36.produce, exchange: battle_object.b36.exchange});
+      }
+      if(battle_item[i].Name == '만능 물약'){
+        battle_object.b37.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b37.produce = (((life_object.a4.unit_price*32) + (life_object.a5.unit_price*16) + (life_object.a6.unit_price*4) + (life_object.a26.unit_price*5) + Math.floor(15*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b37.exchange - battle_object.b37.produce).toFixed(1), produce:battle_object.b37.produce, exchange: battle_object.b37.exchange});
+      }
+      if(battle_item[i].Name == '신호탄'){
+        battle_object.b38.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b38.produce = (((life_object.a1.unit_price*35) + (life_object.a21.unit_price*20))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b38.exchange - battle_object.b38.produce).toFixed(1), produce:battle_object.b38.produce, exchange: battle_object.b38.exchange});
+      }
+      if(battle_item[i].Name == '빛나는 위장 로브'){
+        battle_object.b39.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b39.produce = (((life_object.a4.unit_price*35) + (life_object.a5.unit_price*22) + (life_object.a6.unit_price*9) + (life_object.a15.unit_price*22) + Math.floor(30*sale))/2).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b39.exchange - battle_object.b39.produce).toFixed(1), produce:battle_object.b39.produce, exchange: battle_object.b39.exchange});
+      }
+      if(battle_item[i].Name == '빛나는 신호탄'){
+        battle_object.b40.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b40.produce = (((life_object.a1.unit_price*35) + (life_object.a2.unit_price*20) + (life_object.a21.unit_price*20) + Math.floor(5*sale))/2).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b40.exchange - battle_object.b40.produce).toFixed(1), produce:battle_object.b40.produce, exchange: battle_object.b40.exchange});
+      }
+      if(battle_item[i].Name == '빛나는 성스러운 부적'){
+        battle_object.b41.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b41.produce = (((life_object.a4.unit_price*30) + (life_object.a5.unit_price*18) + (life_object.a6.unit_price*6) + Math.floor(30*sale))/2).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b41.exchange - battle_object.b41.produce).toFixed(1), produce:battle_object.b41.produce, exchange: battle_object.b41.exchange});
+      }
+      if(battle_item[i].Name == '빛나는 모닥불'){
+        battle_object.b42.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b42.produce = (((life_object.a5.unit_price*15) + (life_object.a6.unit_price*9) + (life_object.a7.unit_price*12) + Math.floor(30*sale))/2).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b42.exchange - battle_object.b42.produce).toFixed(1), produce:battle_object.b42.produce, exchange: battle_object.b42.exchange});
+      }
+      if(battle_item[i].Name == '시간 정지 물약'){
+        battle_object.b43.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b43.produce = (((life_object.a1.unit_price*40) + (life_object.a2.unit_price*20) + (life_object.a3.unit_price*5) + (life_object.a9.unit_price*2) + (life_object.a26.unit_price*2) + Math.floor(30*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b43.exchange - battle_object.b43.produce).toFixed(1), produce:battle_object.b43.produce, exchange: battle_object.b43.exchange});
+      }
+      if(battle_item[i].Name == '빛나는 만능 물약'){
+        battle_object.b44.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b44.produce = (((life_object.a4.unit_price*32) + (life_object.a5.unit_price*16) + (life_object.a6.unit_price*14) + (life_object.a26.unit_price*5) + Math.floor(30*sale))/2).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b44.exchange - battle_object.b44.produce).toFixed(1), produce:battle_object.b44.produce, exchange: battle_object.b44.exchange});
+      }
+      if(battle_item[i].Name == '빛나는 은신 로브'){
+        battle_object.b45.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b45.produce = (((life_object.a4.unit_price*35) + (life_object.a5.unit_price*15) + (life_object.a6.unit_price*14) + (life_object.a12.unit_price*2) + (life_object.a15.unit_price*2) + Math.floor(60*sale))/2).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b45.exchange - battle_object.b45.produce).toFixed(1), produce:battle_object.b45.produce, exchange: battle_object.b45.exchange});
+      }
+      if(battle_item[i].Name == '빛나는 도발 허수아비'){
+        battle_object.b46.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b46.produce = (((life_object.a5.unit_price*15) + (life_object.a6.unit_price*10) + (life_object.a7.unit_price*13) + Math.floor(30*sale))/2).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b46.exchange - battle_object.b46.produce).toFixed(1), produce:battle_object.b46.produce, exchange: battle_object.b46.exchange});
+      }
+      if(battle_item[i].Name == '보호 물약'){
+        battle_object.b47.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b47.produce = (((life_object.a4.unit_price*32) + (life_object.a5.unit_price*16) + (life_object.a6.unit_price*4) + (life_object.a26.unit_price*5) + Math.floor(15*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b47.exchange - battle_object.b47.produce).toFixed(1), produce:battle_object.b47.produce, exchange: battle_object.b47.exchange});
+      }
+      if(battle_item[i].Name == '진군의 깃발'){
+        battle_object.b48.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b48.produce = (((life_object.a4.unit_price*38) + (life_object.a6.unit_price*4) + (life_object.a21.unit_price*8) + Math.floor(15*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b48.exchange - battle_object.b48.produce).toFixed(1), produce:battle_object.b48.produce, exchange: battle_object.b48.exchange});
+      }
+      if(battle_item[i].Name == '신속 로브'){
+        battle_object.b49.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b49.produce = (((life_object.a1.unit_price*27) + (life_object.a2.unit_price*17) + (life_object.a15.unit_price*17) + Math.floor(15*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b49.exchange - battle_object.b49.produce).toFixed(1), produce:battle_object.b49.produce, exchange: battle_object.b49.exchange});
+      }
+      if(battle_item[i].Name == '각성 물약'){
+        battle_object.b50.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b50.produce = (((life_object.a4.unit_price*40) + (life_object.a5.unit_price*20) + (life_object.a6.unit_price*5) + (life_object.a9.unit_price*2) + (life_object.a26.unit_price*4) + Math.floor(30*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b50.exchange - battle_object.b50.produce).toFixed(1), produce:battle_object.b50.produce, exchange: battle_object.b50.exchange});
+      }
+      if(battle_item[i].Name == '빛나는 진군의 깃발'){
+        battle_object.b51.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b51.produce = (((life_object.a4.unit_price*38) + (life_object.a6.unit_price*7) + (life_object.a21.unit_price*8) + Math.floor(30*sale))/2).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b51.exchange - battle_object.b51.produce).toFixed(1), produce:battle_object.b51.produce, exchange: battle_object.b51.exchange});
+      }
+      if(battle_item[i].Name == '아드로핀 물약'){
+        battle_object.b52.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b52.produce = (((life_object.a1.unit_price*48) + (life_object.a2.unit_price*24) + (life_object.a3.unit_price*6) + (life_object.a12.unit_price*2) + (life_object.a26.unit_price*2) + Math.floor(30*sale))/3).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b52.exchange - battle_object.b52.produce).toFixed(1), produce:battle_object.b52.produce, exchange: battle_object.b52.exchange});
+      }
+      if(battle_item[i].Name == '빛나는 보호 물약'){
+        battle_object.b53.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b53.produce = (((life_object.a4.unit_price*32) + (life_object.a5.unit_price*16) + (life_object.a6.unit_price*14) + (life_object.a26.unit_price*5) + Math.floor(30*sale))/2).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b53.exchange - battle_object.b53.produce).toFixed(1), produce:battle_object.b53.produce, exchange: battle_object.b53.exchange});
+      }
+      if(battle_item[i].Name == '빛나는 신속 로브'){
+        battle_object.b54.exchange = battle_item[i].Price/battle_item[i].Unit;
+        battle_object.b54.produce = (((life_object.a1.unit_price*27) + (life_object.a2.unit_price*17) + (life_object.a6.unit_price*3) + (life_object.a15.unit_price*17) + Math.floor(30*sale))/2).toFixed(1)
+        total.push({name:battle_item[i].Name, profit: (battle_object.b54.exchange - battle_object.b54.produce).toFixed(1), produce:battle_object.b54.produce, exchange: battle_object.b54.exchange});
+      }
+    }
+  }
+  function dish(){
+    for(var i = 0; i < dish_item.length; i++){
+      if(dish_item[i].Unit == 10){
+        if(dish_item[i].Name == '[일품] 장인의 노릇한 꼬치구이'){
+          dish_object.d1.exchange = dish_item[i].Price;
+          dish_object.d1.produce = ((life_object.a13.unit_price*32) + (life_object.a14.unit_price*20) + (life_object.a19.unit_price*32) + (life_object.a20.unit_price*20)).toFixed(1);
+          total.push({name:dish_item[i].Name, profit: (dish_object.d1.exchange - dish_object.d1.produce).toFixed(1), produce:dish_object.d1.produce, exchange: dish_object.d1.exchange})
+        }
+        if(dish_item[i].Name == '[일품] 장인의 매콤한 스튜'){
+          dish_object.d2.exchange = dish_item[i].Price;
+          dish_object.d2.produce = ((life_object.a13.unit_price*32) + (life_object.a14.unit_price*20) + (life_object.a19.unit_price*32) + (life_object.a20.unit_price*20)).toFixed(1);
+          total.push({name:dish_item[i].Name, profit: (dish_object.d2.exchange - dish_object.d2.produce).toFixed(1), produce:dish_object.d2.produce, exchange: dish_object.d2.exchange})
+        }
+        if(dish_item[i].Name == '[일품] 장인의 폭신한 오믈렛'){
+          dish_object.d3.exchange = dish_item[i].Price;
+          dish_object.d3.produce = ((life_object.a13.unit_price*32) + (life_object.a14.unit_price*20) + (life_object.a19.unit_price*32) + (life_object.a20.unit_price*20)).toFixed(1);
+          total.push({name:dish_item[i].Name, profit: (dish_object.d3.exchange - dish_object.d3.produce).toFixed(1), produce:dish_object.d3.produce, exchange: dish_object.d3.exchange})
+        }
+        if(dish_item[i].Name == '[일품] 장인의 마늘 스테이크 정식'){
+          dish_object.d4.exchange = dish_item[i].Price;
+          dish_object.d4.produce = ((life_object.a13.unit_price*60) + (life_object.a14.unit_price*38) + (life_object.a19.unit_price*60) + (life_object.a20.unit_price*38)).toFixed(1);
+          total.push({name:dish_item[i].Name, profit: (dish_object.d4.exchange - dish_object.d4.produce).toFixed(1), produce:dish_object.d4.produce, exchange: dish_object.d4.exchange})
+        }
+        
+        if(dish_item[i].Name == '[일품] 달인의 바삭한 꼬치구이'){
+          dish_object.d5.exchange = dish_item[i].Price;
+          dish_object.d5.produce = ((life_object.a13.unit_price*40) + (life_object.a14.unit_price*20) + (life_object.a16.unit_price*5) + (life_object.a19.unit_price*32) + (life_object.a20.unit_price*19) + (life_object.a22.unit_price*4) + Math.floor(20*sale)).toFixed(1);
+          total.push({name:dish_item[i].Name, profit: (dish_object.d5.exchange - dish_object.d5.produce).toFixed(1), produce:dish_object.d5.produce, exchange: dish_object.d5.exchange})
+        }
+        if(dish_item[i].Name == '[일품] 달인의 달콤한 스튜'){
+          dish_object.d6.exchange = dish_item[i].Price;
+          dish_object.d6.produce = ((life_object.a13.unit_price*40) + (life_object.a14.unit_price*20) + (life_object.a16.unit_price*5) + (life_object.a19.unit_price*32) + (life_object.a20.unit_price*19) + (life_object.a22.unit_price*4) + Math.floor(20*sale)).toFixed(1);
+          total.push({name:dish_item[i].Name, profit: (dish_object.d6.exchange - dish_object.d6.produce).toFixed(1), produce:dish_object.d6.produce, exchange: dish_object.d6.exchange})
+        }
+        if(dish_item[i].Name == '[일품] 달인의 부드러운 오믈렛'){
+          dish_object.d7.exchange = dish_item[i].Price;
+          dish_object.d7.produce = ((life_object.a13.unit_price*40) + (life_object.a14.unit_price*20) + (life_object.a16.unit_price*5) + (life_object.a19.unit_price*32) + (life_object.a20.unit_price*19) + (life_object.a22.unit_price*4) + Math.floor(20*sale)).toFixed(1);
+          total.push({name:dish_item[i].Name, profit: (dish_object.d7.exchange - dish_object.d7.produce).toFixed(1), produce:dish_object.d7.produce, exchange: dish_object.d7.exchange})
+        }
+        if(dish_item[i].Name == '[일품] 달인의 버터 스테이크 정식'){
+          dish_object.d8.exchange = dish_item[i].Price;
+          dish_object.d8.produce = ((life_object.a13.unit_price*80) + (life_object.a14.unit_price*40) + (life_object.a16.unit_price*10) + (life_object.a19.unit_price*80) + (life_object.a20.unit_price*40) + (life_object.a22.unit_price*10) + Math.floor(25*sale)).toFixed(1);
+          total.push({name:dish_item[i].Name, profit: (dish_object.d8.exchange - dish_object.d8.produce).toFixed(1), produce:dish_object.d8.produce, exchange: dish_object.d8.exchange})
+        }
+        
+        if(dish_item[i].Name == '[일품] 명인의 쫄깃한 꼬치구이'){
+          dish_object.d9.exchange = dish_item[i].Price;
+          dish_object.d9.produce = ((life_object.a13.unit_price*48) + (life_object.a14.unit_price*24) + (life_object.a17.unit_price*6) + (life_object.a19.unit_price*40) + (life_object.a20.unit_price*20) + (life_object.a23.unit_price*5) + Math.floor(35*sale)).toFixed(1);
+          total.push({name:dish_item[i].Name, profit: (dish_object.d9.exchange - dish_object.d9.produce).toFixed(1), produce:dish_object.d9.produce, exchange: dish_object.d9.exchange})
+        }
+        if(dish_item[i].Name == '[일품] 명인의 짭짤한 스튜'){
+          dish_object.d10.exchange = dish_item[i].Price;
+          dish_object.d10.produce = ((life_object.a13.unit_price*48) + (life_object.a14.unit_price*24) + (life_object.a17.unit_price*6) + (life_object.a19.unit_price*40) + (life_object.a20.unit_price*20) + (life_object.a23.unit_price*5) + Math.floor(35*sale)).toFixed(1);
+          total.push({name:dish_item[i].Name, profit: (dish_object.d10.exchange - dish_object.d10.produce).toFixed(1), produce:dish_object.d10.produce, exchange: dish_object.d10.exchange})
+        }
+        if(dish_item[i].Name == '[일품] 명인의 촉촉한 오믈렛'){
+          dish_object.d11.exchange = dish_item[i].Price;
+          dish_object.d11.produce = ((life_object.a13.unit_price*48) + (life_object.a14.unit_price*24) + (life_object.a17.unit_price*6) + (life_object.a19.unit_price*40) + (life_object.a20.unit_price*20) + (life_object.a23.unit_price*5) + Math.floor(35*sale)).toFixed(1);
+          total.push({name:dish_item[i].Name, profit: (dish_object.d11.exchange - dish_object.d11.produce).toFixed(1), produce:dish_object.d11.produce, exchange: dish_object.d11.exchange})
+        }
+        if(dish_item[i].Name == '[일품] 명인의 허브 스테이크 정식'){
+          dish_object.d12.exchange = dish_item[i].Price;
+          dish_object.d12.produce = ((life_object.a13.unit_price*96) + (life_object.a14.unit_price*48) + (life_object.a17.unit_price*12) + (life_object.a19.unit_price*80) + (life_object.a20.unit_price*40) + (life_object.a23.unit_price*10) + Math.floor(50*sale)).toFixed(1);
+          total.push({name:dish_item[i].Name, profit: (dish_object.d12.exchange - dish_object.d12.produce).toFixed(1), produce:dish_object.d12.produce, exchange: dish_object.d12.exchange})
+        }
+      }
+    }
+  }
+  function oreha(){
+    for(var i = 0; i < oreha_item.length; i++){
+      if(oreha_item[i].Name == '하급 오레하 융화 재료'){
+        oreha_object.c1.exchange = oreha_item[i].Price;
+        oreha_object.c1.produce = (((life_object.a13.unit_price*72) + (life_object.a15.unit_price*36) + (life_object.a17.unit_price*9) + Math.floor(203*sale))/30).toFixed(1);
+        oreha_object.c2.exchange = oreha_item[i].Price;
+        oreha_object.c2.produce = (((life_object.a25.unit_price*56) + (life_object.a26.unit_price*28) + (life_object.a28.unit_price*7) + Math.floor(203*sale))/30).toFixed(1);
+        oreha_object.c3.exchange = oreha_item[i].Price;
+        oreha_object.c3.produce = (((life_object.a19.unit_price*72) + (life_object.a21.unit_price*36) + (life_object.a23.unit_price*9) + Math.floor(203*sale))/30).toFixed(1);
+        total.push({name:oreha_item[i].Name + '(수렵)', profit: (oreha_object.c1.exchange - oreha_object.c1.produce).toFixed(1), produce:oreha_object.c1.produce, exchange: oreha_object.c1.exchange})
+        total.push({name:oreha_item[i].Name + '(고고학)', profit: (oreha_object.c2.exchange - oreha_object.c2.produce).toFixed(1), produce:oreha_object.c2.produce, exchange: oreha_object.c2.exchange})
+        total.push({name:oreha_item[i].Name + '(낚시)', profit: (oreha_object.c3.exchange - oreha_object.c3.produce).toFixed(1), produce:oreha_object.c3.produce, exchange: oreha_object.c3.exchange})
+      }
+      if(oreha_item[i].Name == '중급 오레하 융화 재료'){
+        oreha_object.c4.exchange = oreha_item[i].Price;
+        oreha_object.c4.produce = (((life_object.a13.unit_price*80) + (life_object.a15.unit_price*40) + (life_object.a17.unit_price*10) + Math.floor(205*sale))/30).toFixed(1);
+        oreha_object.c5.exchange = oreha_item[i].Price;
+        oreha_object.c5.produce = (((life_object.a25.unit_price*64) + (life_object.a26.unit_price*26) + (life_object.a28.unit_price*8) + Math.floor(205*sale))/30).toFixed(1);
+        oreha_object.c6.exchange = oreha_item[i].Price;
+        oreha_object.c6.produce = (((life_object.a19.unit_price*80) + (life_object.a21.unit_price*40) + (life_object.a23.unit_price*10) + Math.floor(205*sale))/30).toFixed(1);
+        total.push({name:oreha_item[i].Name + '(수렵)', profit: (oreha_object.c4.exchange - oreha_object.c4.produce).toFixed(1), produce:oreha_object.c4.produce, exchange: oreha_object.c4.exchange})
+        total.push({name:oreha_item[i].Name + '(고고학)', profit: (oreha_object.c5.exchange - oreha_object.c5.produce).toFixed(1), produce:oreha_object.c5.produce, exchange: oreha_object.c5.exchange})
+        total.push({name:oreha_item[i].Name + '(낚시)', profit: (oreha_object.c6.exchange - oreha_object.c6.produce).toFixed(1), produce:oreha_object.c6.produce, exchange: oreha_object.c6.exchange})
+      }
+      if(oreha_item[i].Name == '상급 오레하 융화 재료'){
+        oreha_object.c7.exchange = oreha_item[i].Price;
+        oreha_object.c7.produce = (((life_object.a13.unit_price*128) + (life_object.a15.unit_price*64) + (life_object.a17.unit_price*16) + Math.floor(250*sale))/20).toFixed(1);
+        oreha_object.c8.exchange = oreha_item[i].Price;
+        oreha_object.c8.produce = (((life_object.a25.unit_price*94) + (life_object.a26.unit_price*29) + (life_object.a28.unit_price*16) + Math.floor(250*sale))/20).toFixed(1);
+        oreha_object.c9.exchange = oreha_item[i].Price;
+        oreha_object.c9.produce = (((life_object.a19.unit_price*128) + (life_object.a21.unit_price*64) + (life_object.a23.unit_price*16) + Math.floor(250*sale))/20).toFixed(1);
+        total.push({name:oreha_item[i].Name + '(수렵)', profit: (oreha_object.c7.exchange - oreha_object.c7.produce).toFixed(1), produce:oreha_object.c7.produce, exchange: oreha_object.c7.exchange})
+        total.push({name:oreha_item[i].Name + '(고고학)', profit: (oreha_object.c8.exchange - oreha_object.c8.produce).toFixed(1), produce:oreha_object.c8.produce, exchange: oreha_object.c8.exchange})
+        total.push({name:oreha_item[i].Name + '(낚시)', profit: (oreha_object.c9.exchange - oreha_object.c9.produce).toFixed(1), produce:oreha_object.c9.produce, exchange: oreha_object.c9.exchange})
+      }
+    }
+  }
+ 
+  function battle_serial(name){
+    if(name == '회복약'){
+      return "b1"    
+    }
+    if(name == '고급 회복약'){
+      return "b2"      
+    }
+    if(name == '정령의 회복약'){
+      return "b3"
+    }
+    if(name == '빛나는 정령의 회복약'){
+      return "b4"
+    }
+
+    if(name == '천둥 물약'){
+      return "b5"
+    }
+    if(name == '전기 수류탄'){
+      return "b6"
+    }
+    if(name == '성스러운 폭탄'){
+      return "b7"
+    }
+    if(name == '냉기 수류탄'){
+      return "b8"
+    }
+    if(name == '섬광 수류탄'){
+      return "b9"
+    }
+    if(name == '부식 폭탄'){
+      return "b10"
+    }
+    if(name == '점토 수류탄'){
+      return "b11"
+    }
+    if(name == '화염 수류탄'){
+      return "b12"
+    }
+    if(name == '암흑 수류탄'){
+      return "b13"
+    }
+    if(name == '회오리 수류탄'){
+      return "b14"
+    }
+    if(name == '수면 폭탄'){
+      return "b15"
+    }
+    if(name == '파괴 폭탄'){
+      return "b16"
+    }
+    if(name == '빛나는 전기 수류탄'){
+      return "b17"
+    }
+    if(name == '빛나는 부식 폭탄'){
+      return "b18"
+    }
+    if(name == '빛나는 성스러운 폭탄'){
+      return "b19"
+    }
+    if(name == '빛나는 수면 폭탄'){
+      return "b20"
+    }
+    if(name == '빛나는 파괴 폭탄'){
+      return "b21"
+    }
+    if(name == '빛나는 냉기 수류탄'){
+      return "b22"
+    }        
+    if(name == '빛나는 회오리 수류탄'){
+      return "b23"
+    }
+    if(name == '빛나는 천둥 물약'){
+      return "b24"
+    }
+    if(name == '빛나는 섬광 수류탄'){
+      return "b25"
+    }
+    if(name == '빛나는 점토 수류탄'){
+      return "b26"
+    }
+    if(name == '빛나는 화염 수류탄'){
+      return "b27"
+    }
+    if(name == '빛나는 암흑 수류탄'){
+      return "b28"
+    }
+
+    if(name == '위장 로브'){
+      return "b29"
+    }
+    if(name == '모닥불'){
+      return "b30"
+    }
+    if(name == '은신 로브'){
+      return "b31"
+    }
+    if(name == '정비소 이동 포탈 주문서'){
+      return "b32"
+    }
+    if(name == '도발 허수아비'){
+      return "b33"
+    }
+    if(name == '성스러운 부적'){
+      return "b34"
+    }
+    if(name == '루테란의 나팔'){
+      return "b35"
+    }
+    if(name == '페로몬 폭탄'){
+      return "b36"
+    }
+    if(name == '만능 물약'){
+      return "b37"
+    }
+    if(name == '신호탄'){
+      return "b38"
+    }
+    if(name == '빛나는 위장 로브'){
+      return "b39"
+    }
+    if(name == '빛나는 신호탄'){
+      return "b40"
+    }
+    if(name == '빛나는 성스러운 부적'){
+      return "b41"
+    }
+    if(name == '빛나는 모닥불'){
+      return "b42"
+    }
+    if(name == '시간 정지 물약'){
+      return "b43"
+    }
+    if(name == '빛나는 만능 물약'){
+      return "b44"
+    }
+    if(name == '빛나는 은신 로브'){
+      return "b45"
+    }
+    if(name == '빛나는 도발 허수아비'){
+      return "b46"
+    }
+    if(name == '보호 물약'){
+      return "b47"
+    }
+    if(name == '진군의 깃발'){
+      return "b48"
+    }
+    if(name == '신속 로브'){
+      return "b49"
+    }
+    if(name == '각성 물약'){
+      return "b50"
+    }
+    if(name == '빛나는 진군의 깃발'){
+      return "b51"
+    }
+    if(name == '아드로핀 물약'){
+      return "b52"
+    }
+    if(name == '빛나는 보호 물약'){
+      return "b53"
+    }
+    if(name == '빛나는 신속 로브'){
+      return "b54"
+    }
+  }
+  function dish_serial(name){
+    if(name == '[일품] 장인의 노릇한 꼬치구이'){
+      return "d1"    
+    }
+    if(name == '[일품] 장인의 매콤한 스튜'){
+      return "d2"      
+    }
+    if(name == '[일품] 장인의 폭신한 오믈렛'){
+      return "d3"
+    }
+    if(name == '[일품] 장인의 마늘 스테이크 정식'){
+      return "d4"
+    }
+
+    if(name == '[일품] 달인의 바삭한 꼬치구이'){
+      return "d5"
+    }
+    if(name == '[일품] 달인의 달콤한 스튜'){
+      return "d6"
+    }
+    if(name == '[일품] 달인의 부드러운 오믈렛'){
+      return "d7"
+    }
+    if(name == '[일품] 달인의 버터 스테이크 정식'){
+      return "d8"
+    }
+    
+    if(name == '[일품] 명인의 쫄깃한 꼬치구이'){
+      return "d9"
+    }
+    if(name == '[일품] 명인의 짭짤한 스튜'){
+      return "d10"
+    }
+    if(name == '[일품] 명인의 촉촉한 오믈렛'){
+      return "d11"
+    }
+    if(name == '[일품] 명인의 허브 스테이크 정식'){
+      return "d12"
+    }
+  }
+  function oreha_serial(name){
+    if(name == '하급 오레하 융화 재료(수렵)' || name == '하급 오레하 융화 재료(고고학)' || name == '하급 오레하 융화 재료(낚시)'){
+      return "c1"    
+    }
+    if(name == '중급 오레하 융화 재료(수렵)' || name == '중급 오레하 융화 재료(고고학)' || name == '중급 오레하 융화 재료(낚시)'){
+      return "c2"    
+    }
+    if(name == '상급 오레하 융화 재료(수렵)' || name == '상급 오레하 융화 재료(고고학)' || name == '상급 오레하 융화 재료(낚시)'){
+      return "c3"    
+    }
+  }
+
+  function backgroundColor(name){
+    if(name == '하급 오레하 융화 재료(수렵)' || name == '하급 오레하 융화 재료(고고학)' || name == '하급 오레하 융화 재료(낚시)'){
+      return "green_border"    
+    }
+    if(name == '중급 오레하 융화 재료(수렵)' || name == '중급 오레하 융화 재료(고고학)' || name == '중급 오레하 융화 재료(낚시)'){
+      return "blue_border"    
+    }
+    if(name == '상급 오레하 융화 재료(수렵)' || name == '상급 오레하 융화 재료(고고학)' || name == '상급 오레하 융화 재료(낚시)'){
+      return "purple_border"    
+    }
+
+    if(name == '[일품] 장인의 노릇한 꼬치구이'){
+      return "green_border"    
+    }
+    if(name == '[일품] 장인의 매콤한 스튜'){
+      return "green_border"      
+    }
+    if(name == '[일품] 장인의 폭신한 오믈렛'){
+      return "green_border"
+    }
+    if(name == '[일품] 장인의 마늘 스테이크 정식'){
+      return "blue_border"
+    }
+
+    if(name == '[일품] 달인의 바삭한 꼬치구이'){
+      return "green_border"
+    }
+    if(name == '[일품] 달인의 달콤한 스튜'){
+      return "green_border"
+    }
+    if(name == '[일품] 달인의 부드러운 오믈렛'){
+      return "green_border"
+    }
+    if(name == '[일품] 달인의 버터 스테이크 정식'){
+      return "blue_border"
+    }
+    
+    if(name == '[일품] 명인의 쫄깃한 꼬치구이'){
+      return "green_border"
+    }
+    if(name == '[일품] 명인의 짭짤한 스튜'){
+      return "green_border"
+    }
+    if(name == '[일품] 명인의 촉촉한 오믈렛'){
+      return "green_border"
+    }
+    if(name == '[일품] 명인의 허브 스테이크 정식'){
+      return "blue_border"
+    }
+
+    if(name == '회복약'){
+      return "green"    
+    }
+    if(name == '고급 회복약'){
+      return "blue"      
+    }
+    if(name == '정령의 회복약'){
+      return "purple"
+    }
+    if(name == '빛나는 정령의 회복약'){
+      return "purple"
+    }
+
+    if(name == '천둥 물약'){
+      return "blue"
+    }
+    if(name == '전기 수류탄'){
+      return "blue"
+    }
+    if(name == '성스러운 폭탄'){
+      return "blue"
+    }
+    if(name == '냉기 수류탄'){
+      return "blue"
+    }
+    if(name == '섬광 수류탄'){
+      return "blue"
+    }
+    if(name == '부식 폭탄'){
+      return "blue"
+    }
+    if(name == '점토 수류탄'){
+      return "blue"
+    }
+    if(name == '화염 수류탄'){
+      return "blue"
+    }
+    if(name == '암흑 수류탄'){
+      return "blue"
+    }
+    if(name == '회오리 수류탄'){
+      return "blue"
+    }
+    if(name == '수면 폭탄'){
+      return "blue"
+    }
+    if(name == '파괴 폭탄'){
+      return "blue"
+    }
+
+    if(name == '위장 로브'){
+      return "blue"
+    }
+    if(name == '모닥불'){
+      return "blue"
+    }
+    if(name == '은신 로브'){
+      return "purple"
+    }
+    if(name == '도발 허수아비'){
+      return "blue"
+    }
+    if(name == '성스러운 부적'){
+      return "blue"
+    }
+    if(name == '루테란의 나팔'){
+      return "purple"
+    }
+    if(name == '페로몬 폭탄'){
+      return "blue"
+    }
+    if(name == '만능 물약'){
+      return "blue"
+    }
+    if(name == '신호탄'){
+      return "green"
+    }
+    if(name == '빛나는 위장 로브'){
+      return "b39"
+    }
+    if(name == '빛나는 신호탄'){
+      return "b40"
+    }
+    if(name == '빛나는 성스러운 부적'){
+      return "b41"
+    }
+    if(name == '빛나는 모닥불'){
+      return "b42"
+    }
+    if(name == '시간 정지 물약'){
+      return "purple"
+    }
+    if(name == '빛나는 만능 물약'){
+      return "b44"
+    }
+    if(name == '빛나는 은신 로브'){
+      return "purple"
+    }
+    if(name == '빛나는 도발 허수아비'){
+      return "blue"
+    }
+    if(name == '정비소 이동 포탈 주문서'){
+      return "blue"
+    }
+    if(name == '보호 물약'){
+      return "blue"
+    }
+    if(name == '진군의 깃발'){
+      return "blue"
+    }
+    if(name == '신속 로브'){
+      return "blue"
+    }
+    if(name == '각성 물약'){
+      return "purple"
+    }
+    if(name == '빛나는 진군의 깃발'){
+      return "b51"
+    }
+    if(name == '아드로핀 물약'){
+      return "purple"
+    }
+    if(name == '빛나는 보호 물약'){
+      return "b53"
+    }
+    if(name == '빛나는 신속 로브'){
+      return "b54"
+    }
+  }
 </script>
 </html>
