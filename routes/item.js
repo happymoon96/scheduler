@@ -43,21 +43,18 @@ const crawler = async () => {
     crawler();
   }
   //거래소 검색
-  while(true){
-    try{
-      await autoSearch(page)
-    }catch(e){
-      console.log(e)
-    }
-  }
-  
+  try{
+    await autoSearch(page)
+  }catch(e){
+    console.log(e)
+  } 
   //브라우저를 종료한다 
   await browser.close();
   }
   crawler();
-  // setInterval(function() {
-  //   crawler();
-  // },300000)
+  setInterval(function() {
+    crawler();
+  },300000)
   
 
   
