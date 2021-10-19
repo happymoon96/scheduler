@@ -44,7 +44,206 @@ const crawler = async () => {
   }
   //거래소 검색
   try{
-    await autoSearch(page)
+    await page.waitForTimeout(1000);
+    await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
+    
+    await page.click( '#lostark-wrapper > header > div.header__toggle > button');
+    await page.waitForTimeout(1000);
+    await page.click( '#expand-nav > div > ul > li:nth-child(6) > ul > li:nth-child(1) > a');
+    
+    await page.waitForTimeout(1000);
+    await page.waitForSelector('#lostark-wrapper > div > main > div > div.deal-wrapper > div.deal-fixed > form > fieldset > div > div.detail > button') 
+    await page.click( '#lostark-wrapper > div > main > div > div.deal-wrapper > div.deal-fixed > form > fieldset > div > div.detail > button');
+        
+    await page.waitForTimeout(1000);
+    await page.waitForSelector('#lostark-wrapper > div > main > div > div.deal-wrapper > div.category > div > div > div > ul > li:nth-child(8) > a') 
+    await page.click( '#lostark-wrapper > div > main > div > div.deal-wrapper > div.category > div > div > div > ul > li:nth-child(8) > a');
+  
+    await page.waitForTimeout(1000);
+    await page.waitForSelector('#lostark-wrapper > div > main > div > div.deal-wrapper > div.category > div > div > div > ul > li.is-active > ul > li:nth-child(1) > a') 
+    await page.click( '#lostark-wrapper > div > main > div > div.deal-wrapper > div.category > div > div > div > ul > li.is-active > ul > li:nth-child(1) > a');
+  
+    await page.waitForTimeout(1000);
+    await autoScroll(page)
+  
+    var life_content = await page.content();
+    var life_$ = cheerio.load(life_content, {decodeEntities: true});
+    var regex = /[^0-9]/g;
+    var life_length = parseInt(life_$('.sort__total').html().replace(regex,""));
+    const life_search_length = life_length/10 + life_length
+  
+    await page.waitForSelector('#tbodyItemList > li:nth-child('+Math.floor(life_search_length)+') > div.list__detail > table > tbody > tr:nth-child(3) > td > div > em')
+  
+    life_content = await page.content();
+    life_$ = cheerio.load(life_content, {decodeEntities: true});
+  
+    LifeResult = []
+    for(var i = 1; i <= life_search_length; i++){
+      if(i == 11 || i == 22 || i == 33 ){
+        continue;
+      }
+      var item_name = life_$('#tbodyItemList > li:nth-child('+i+') > div.list__grade > span.name').html();
+      var item_price = parseInt(life_$('#tbodyItemList > li:nth-child('+i+') > div.list__detail > table > tbody > tr:nth-child(3) > td > div > em').html().replace(",",""))
+      var item_unit;
+      if(life_$('#tbodyItemList > li:nth-child('+i+') > div.list__grade > span.count > em').html() == null){
+        item_unit = 1;
+      }else{
+        item_unit = parseInt(life_$('#tbodyItemList > li:nth-child('+i+') > div.list__grade > span.count > em').html().replace(regex,""));
+      }
+      var item = {
+        Name:item_name,
+        Price:item_price,
+        Unit:item_unit
+      }
+      LifeResult.push(item)
+    }
+  
+    await page.waitForTimeout(1000);
+    await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
+
+    await page.click( '#lostark-wrapper > header > div.header__toggle > button');
+    await page.waitForTimeout(1000);
+    await page.click( '#expand-nav > div > ul > li:nth-child(6) > ul > li:nth-child(1) > a');
+
+    await page.waitForTimeout(1000);
+    await page.waitForSelector('#lostark-wrapper > div > main > div > div.deal-wrapper > div.deal-fixed > form > fieldset > div > div.detail > button') 
+    await page.click( '#lostark-wrapper > div > main > div > div.deal-wrapper > div.deal-fixed > form > fieldset > div > div.detail > button');
+  
+    await page.waitForTimeout(1000);
+    await page.waitForSelector('#lostark-wrapper > div > main > div > div.deal-wrapper > div.category > div > div > div > ul > li:nth-child(6) > a') 
+    await page.click( '#lostark-wrapper > div > main > div > div.deal-wrapper > div.category > div > div > div > ul > li:nth-child(6) > a');
+  
+    await page.waitForTimeout(1000);
+    await page.waitForSelector('#lostark-wrapper > div > main > div > div.deal-wrapper > div.category > div > div > div > ul > li.is-active > ul > li:nth-child(1) > a') 
+    await page.click( '#lostark-wrapper > div > main > div > div.deal-wrapper > div.category > div > div > div > ul > li.is-active > ul > li:nth-child(1) > a');
+      
+    await page.waitForTimeout(1000);
+    await autoScroll(page)
+  
+    var battle_content = await page.content();
+    var battle_$ = cheerio.load(battle_content, {decodeEntities: true});
+    var regex = /[^0-9]/g;
+    var battle_length = parseInt(battle_$('.sort__total > em').html());
+    const battle_search_length = battle_length/10 + battle_length
+  
+    await page.waitForSelector('#tbodyItemList > li:nth-child('+Math.floor(battle_search_length)+') > div.list__detail > table > tbody > tr:nth-child(3) > td > div > em')
+  
+    battle_content = await page.content();
+    battle_$ = cheerio.load(battle_content, {decodeEntities: true});
+  
+    BattleResult = []
+    for(var i = 1; i <= battle_search_length; i++){
+      if(i == 11 || i == 22 || i == 33 || i == 44 || i == 55){
+        continue;
+      }
+      var item_name = battle_$('#tbodyItemList > li:nth-child('+i+') > div.list__grade > span.name').html();
+      var item_price = parseInt(battle_$('#tbodyItemList > li:nth-child('+i+') > div.list__detail > table > tbody > tr:nth-child(3) > td > div > em').html().replace(",",""))
+      var item_unit;
+      if(battle_$('#tbodyItemList > li:nth-child('+i+') > div.list__grade > span.count > em').html() == null){
+        item_unit = 1;
+      }else{
+        item_unit = parseInt(battle_$('#tbodyItemList > li:nth-child('+i+') > div.list__grade > span.count > em').html().replace(regex,""));
+      }
+      var item = {
+        Name:item_name,
+        Price:item_price,
+        Unit:item_unit
+      }
+      BattleResult.push(item)
+    }
+    await page.waitForTimeout(1000);
+    await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
+
+    await page.click( '#lostark-wrapper > header > div.header__toggle > button');
+    await page.waitForTimeout(1000);
+    await page.click( '#expand-nav > div > ul > li:nth-child(6) > ul > li:nth-child(1) > a');
+
+    await page.waitForTimeout(1000);
+    await page.waitForSelector('#lostark-wrapper > div > main > div > div.deal-wrapper > div.deal-fixed > form > fieldset > div > div.detail > button')  
+    await page.click( '#lostark-wrapper > div > main > div > div.deal-wrapper > div.deal-fixed > form > fieldset > div > div.detail > button');
+  
+    await page.waitForTimeout(1000);
+    await page.waitForSelector('#lostark-wrapper > div > main > div > div.deal-wrapper > div.category > div > div > div > ul > li:nth-child(7) > a')  
+    await page.click( '#lostark-wrapper > div > main > div > div.deal-wrapper > div.category > div > div > div > ul > li:nth-child(7) > a');
+  
+    await page.waitForTimeout(1000);
+    await page.waitForSelector('#lostark-wrapper > div > main > div > div.deal-wrapper > div.category > div > div > div > ul > li.is-active > ul > li > a')  
+    await page.click( '#lostark-wrapper > div > main > div > div.deal-wrapper > div.category > div > div > div > ul > li.is-active > ul > li > a');
+      
+    await page.waitForTimeout(1000);
+    await autoScroll(page)
+  
+    var Dish_content = await page.content();
+    var Dish_$ = cheerio.load(Dish_content, {decodeEntities: true});
+    var regex = /[^0-9]/g;
+    var Dish_length = parseInt(Dish_$('.sort__total > em').html());
+    const Dish_search_length = Dish_length/10 + Dish_length
+  
+    await page.waitForSelector('#tbodyItemList > li:nth-child('+Math.floor(Dish_search_length)+') > div.list__detail > table > tbody > tr:nth-child(3) > td > div > em')
+  
+    Dish_content = await page.content();
+    Dish_$ = cheerio.load(Dish_content, {decodeEntities: true});
+  
+    DishResult = []
+    for(var i = 1; i <= Dish_search_length; i++){
+      if(i == 11 || i == 22 || i == 33 || i == 44 || i == 55 || i == 66 || i == 77 || i == 88 || i == 99 || i == 110 || i == 121){
+        continue;
+      }
+      var item_name = Dish_$('#tbodyItemList > li:nth-child('+i+') > div.list__grade > span.name').html();
+      var item_price = parseInt(Dish_$('#tbodyItemList > li:nth-child('+i+') > div.list__detail > table > tbody > tr:nth-child(3) > td > div > em').html().replace(",",""))
+      var item_unit;
+      if(Dish_$('#tbodyItemList > li:nth-child('+i+') > div.list__grade > span.count > em').html() == null){
+        item_unit = 1;
+      }else{
+        item_unit = parseInt(Dish_$('#tbodyItemList > li:nth-child('+i+') > div.list__grade > span.count > em').html().replace(regex,""));
+      }
+      var item = {
+        Name:item_name,
+        Price:item_price,
+        Unit:item_unit
+      }
+      DishResult.push(item)
+    }
+    await page.waitForTimeout(1000);
+    await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
+    
+    await page.click( '#lostark-wrapper > header > div.header__toggle > button');
+    await page.waitForTimeout(1000);
+    await page.click( '#expand-nav > div > ul > li:nth-child(6) > ul > li:nth-child(1) > a');
+
+    await page.waitForTimeout(1000);
+    await page.type( '#txtItemName', '오레하 융화 재료' );
+      
+    await page.waitForTimeout(1000);
+    await page.waitForSelector('#lostark-wrapper > div > main > div > div.deal-wrapper > div.deal-fixed > form > fieldset > div > div.name > button.button.button--deal-submit')  
+    await page.click( '#lostark-wrapper > div > main > div > div.deal-wrapper > div.deal-fixed > form > fieldset > div > div.name > button.button.button--deal-submit');
+      
+    await page.waitForTimeout(1000);
+  
+    var oreha_content = await page.content();
+    var oreha_$ = cheerio.load(oreha_content, {decodeEntities: true});
+  
+    OrehaResult = []
+    const oreha_search_length = 3;
+    for(var i = 1; i <= oreha_search_length; i++){
+      var item_name = oreha_$('#tbodyItemList > li:nth-child('+i+') > div.list__grade > span.name').html();
+      var item_price = parseInt(oreha_$('#tbodyItemList > li:nth-child('+i+') > div.list__detail > table > tbody > tr:nth-child(3) > td > div > em').html().replace(",",""))
+      var item_unit;
+      if(oreha_$('#tbodyItemList > li:nth-child('+i+') > div.list__grade > span.count > em').html() == null){
+        item_unit = 1;
+      }else{
+        item_unit = parseInt(oreha_$('#tbodyItemList > li:nth-child('+i+') > div.list__grade > span.count > em').html().replace(regex,""));
+      }
+      var item = {
+        Name:item_name,
+        Price:item_price,
+        Unit:item_unit
+      }
+      OrehaResult.push(item)
+    }
+    // await page.evaluate(window.scrollBy(0, 0))
+    console.log("완료")
+    time = new Date();
   }catch(e){
     console.log(e)
   } 
