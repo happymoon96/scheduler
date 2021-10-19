@@ -21,7 +21,7 @@ router.get('/error', (req, res, next) => {
 
 const crawler = async () => {
     //브라우저를 띄우고
-  const browser = await puppeteer.launch({headless: false,args: ['--no-sandbox', '--disable-setuid-sandbox'],});
+  const browser = await puppeteer.launch({headless: true,args: ['--no-sandbox', '--disable-setuid-sandbox'],});
   // 페이지를 띄우고
   const page = await browser.newPage();
   // 페이지 이동 
